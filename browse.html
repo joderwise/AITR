@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Browse AI Tools · AI Trust Ratings</title>
+<meta name="description" content="Browse safety ratings for AI tools by pricing tier. Filter by tool type and safety rating.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/styles/webawesome.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/webawesome.loader.js"></script>
+<link rel="stylesheet" href="css/aitr-tokens.css?v=20261005">
+<link rel="stylesheet" href="css/aitr-components.css?v=20261005">
+<link rel="stylesheet" href="css/site.css?v=20261005">
+<link rel="stylesheet" href="css/pages/browse.css?v=20261005">
+</head>
+<body>
+<a class="aitr-skip" href="#main">Skip to content</a>
+<div class="aitr-aurora" data-density="page" aria-hidden="true"></div>
+<header class="aitr-nav" data-current="browse" data-search="false"></header>
+
+<main id="main">
+  <!-- Figma 2437:5141 · Header (title + filter bar) -->
+  <section class="browse-header aitr-page" data-reveal>
+    <h1 class="aitr-heading-5xl browse-title">Browse AI Tools</h1>
+    <form class="browse-filters" role="search" aria-label="Filter AI tools" novalidate>
+      <div class="browse-search">
+        <wa-input class="aitr-field" appearance="glass" id="browse-q" name="q" type="search" size="large" with-clear
+          placeholder="Search AI tools…" autocomplete="off"
+          role="combobox" aria-label="Search AI tools" aria-expanded="false" aria-controls="search-list" aria-autocomplete="list">
+          <wa-icon slot="start" library="lucide" name="search" aria-hidden="true"></wa-icon>
+          <kbd slot="end" class="browse-kbd" aria-hidden="true">⌘K</kbd>
+        </wa-input>
+        <!-- Query Field · State=Loading (Figma 2483:10664): 3 skeleton options + hidden status -->
+        <ul id="search-list" role="listbox" class="aitr-search-listbox browse-listbox" aria-label="Matching tools" aria-busy="true" hidden>
+          <li role="presentation" class="browse-listbox__label"><span class="aitr-bone" style="inline-size: 96px"></span></li>
+          <li role="option" aria-disabled="true" class="browse-listbox__skeleton">
+            <span class="aitr-bone browse-listbox__logo"></span>
+            <span class="browse-listbox__text"><span class="aitr-bone browse-listbox__name" style="inline-size: 180px"></span><span class="aitr-bone" style="inline-size: 72px"></span></span>
+            <span class="aitr-bone" style="inline-size: 44px"></span>
+          </li>
+          <li role="option" aria-disabled="true" class="browse-listbox__skeleton">
+            <span class="aitr-bone browse-listbox__logo"></span>
+            <span class="browse-listbox__text"><span class="aitr-bone browse-listbox__name" style="inline-size: 140px"></span><span class="aitr-bone" style="inline-size: 72px"></span></span>
+            <span class="aitr-bone" style="inline-size: 44px"></span>
+          </li>
+          <li role="option" aria-disabled="true" class="browse-listbox__skeleton">
+            <span class="aitr-bone browse-listbox__logo"></span>
+            <span class="browse-listbox__text"><span class="aitr-bone browse-listbox__name" style="inline-size: 210px"></span><span class="aitr-bone" style="inline-size: 72px"></span></span>
+            <span class="aitr-bone" style="inline-size: 44px"></span>
+          </li>
+        </ul>
+        <p class="aitr-visually-hidden" role="status" id="browse-search-status"></p>
+      </div>
+      <wa-select class="aitr-field" appearance="glass" id="browse-type" name="type" size="large" value="all" aria-label="Tool type">
+        <wa-icon slot="expand-icon" library="lucide" name="chevron-down" aria-hidden="true"></wa-icon>
+        <wa-option value="all">All types</wa-option>
+        <wa-option value="chat-search">Chat &amp; Search</wa-option>
+        <wa-option value="writing">Writing</wa-option>
+        <wa-option value="image">Image</wa-option>
+        <wa-option value="video-audio">Video &amp; Audio</wa-option>
+        <wa-option value="code-dev">Code &amp; Developer Tools</wa-option>
+        <wa-option value="productivity-agents">Productivity &amp; Agents</wa-option>
+      </wa-select>
+      <wa-select class="aitr-field" appearance="glass" id="browse-rating" name="rating" size="large" value="all" aria-label="Safety rating">
+        <wa-icon slot="expand-icon" library="lucide" name="chevron-down" aria-hidden="true"></wa-icon>
+        <wa-option value="all">All ratings</wa-option>
+        <wa-option value="business-ready">Business Ready</wa-option>
+        <wa-option value="internal-work-only">Internal Work Only</wa-option>
+        <wa-option value="public-data-only">Public Data Only</wa-option>
+        <wa-option value="unsafe">Unsafe</wa-option>
+      </wa-select>
+    </form>
+  </section>
+
+  <!-- Figma 2437:5167 · Results -->
+  <section class="browse-results aitr-page" data-reveal>
+    <div class="browse-count-row">
+      <p class="aitr-caption-m browse-count" id="browse-count" role="status" aria-live="polite">Showing <strong>24</strong> of 84 tools</p>
+      <button type="button" class="aitr-link browse-clear" data-arrow="none" id="browse-clear" hidden>Clear filters</button>
+    </div>
+
+    <div class="browse-grid" id="browse-grid"></div><!-- cards are rendered from js/data/tools.js (84 tools) -->
+
+    <!-- Empty State (Figma 2477:7676) -->
+    <div class="aitr-empty browse-empty" role="status" id="browse-empty" hidden>
+      <h2 class="aitr-heading-2xl" id="browse-empty-title">No tools match these filters</h2>
+      <p class="aitr-body-l" id="browse-empty-body">Nothing in Writing matches “notion”. Try a different search, or clear the type and rating filters.</p>
+      <div class="browse-empty__actions">
+        <wa-button variant="neutral" appearance="outlined" pill size="large" id="browse-empty-clear">Clear filters</wa-button>
+        <a class="aitr-link" data-arrow="trailing" href="contribute.html">Can’t find a tool? Suggest it in Contribute <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></a>
+      </div>
+    </div>
+
+    <!-- Load more (Figma 2437:5254) -->
+    <div class="browse-load-more" id="browse-load-more">
+      <wa-button variant="neutral" appearance="outlined" pill size="large" id="browse-load-more-btn">Load more tools</wa-button>
+      <p class="aitr-caption-m browse-load-more__caption" id="browse-load-more-caption">60 more tools</p>
+    </div>
+  </section>
+</main>
+
+<footer class="aitr-footer"></footer>
+<script type="module" src="js/site.js"></script>
+<script type="module" src="js/pages/browse.js"></script>
+</body>
+</html>

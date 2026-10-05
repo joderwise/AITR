@@ -1,0 +1,107 @@
+/* 15 · Contribute — page-specific layout only.
+   Figma: Desktop 2445:6807 · Tablet 2445:6985 · Mobile 2445:7152 · Error 2478:9636 · Success 2477:10392.
+   Shared components (.aitr-glass, .aitr-form-panel, .aitr-form, .aitr-form-field, .aitr-form__summary, .aitr-chip-row,
+   .aitr-confirmation, .aitr-badge-success, .aitr-link, wa-callout tones, nav, footer, aurora) live in css/site.css.
+   Everything here is the two-column layout, the Body section padding and the form ⇄ confirmation swap. */
+
+.contribute-layout {
+  /* Body section: Desktop padding 88 / 112 (Space/5XL + Space/XS · Space/5XL + Space/XL), gap = Aside gap 96 */
+  --contribute-pad-top: calc(var(--aitr-space-5xl) + var(--aitr-space-xs));
+  --contribute-pad-bottom: calc(var(--aitr-space-5xl) + var(--aitr-space-xl));
+  --contribute-intro-width: 440px;   /* intro column, measured from the design */
+  --contribute-note-width: 400px;    /* review note, measured from the design */
+
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--aitr-layout-aside-gap);
+  padding-block: var(--contribute-pad-top) var(--contribute-pad-bottom);
+}
+
+/* ---------- Intro column ---------- */
+.contribute-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 28px; /* 28 at every width (Figma Intro gap) */
+  flex: 0 0 var(--contribute-intro-width);
+  inline-size: var(--contribute-intro-width);
+  max-inline-size: 100%;
+}
+.contribute-intro__title { margin: 0; color: var(--aitr-color-text-normal); }
+.contribute-intro__lead  { margin: 0; color: var(--aitr-color-text-quiet); }
+.contribute-intro__note  { margin: 0; color: var(--aitr-color-text-subtle); max-inline-size: var(--contribute-note-width); }
+
+/* ---------- Glass form panel (padding + radius come from .aitr-form-panel) ---------- */
+.contribute-panel {
+  flex: 1 1 0;
+  min-inline-size: 0;
+}
+
+/* Error summary copy colours inside the Danger callout (title Danger/On/Quiet · body Text/Quiet, Figma 2385:75) */
+.contribute-summary__title { display: block; }
+.contribute-summary__body  { margin: var(--aitr-space-2xs) 0 0; color: var(--aitr-color-text-quiet); }
+.contribute-summary__body a { text-decoration: underline; text-underline-offset: 0.15em; }
+.contribute-summary__body a:hover { color: var(--aitr-color-text-normal); }
+
+/* The Form Field renders its own label row; hide Web Awesome's internal (empty) label part so `required`
+   does not paint a second asterisk under the label. */
+.contribute-panel :is(wa-input, wa-textarea).aitr-field::part(label) { display: none; }
+
+/* Field error row: 16px circle-alert + message, gap 6 (Figma 2386:79) */
+.contribute-field-error { display: none; align-items: center; gap: calc(var(--aitr-space-2xs) + var(--aitr-space-3xs)); margin: 0; }
+.aitr-form-field[data-state="error"] .contribute-field-error { display: flex; }
+.contribute-field-error wa-icon { flex: none; font-size: var(--aitr-form-control-icon-size, 16px); inline-size: 16px; block-size: 16px; }
+[size="small"] .contribute-field-error wa-icon { font-size: 16px; }
+
+/* Choice group: fieldset reset; legend floats so it becomes a normal flex child */
+.contribute-choice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aitr-space-s);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+.contribute-choice__legend { float: left; inline-size: 100%; padding: 0; margin: 0; color: var(--aitr-color-text-normal); }
+.contribute-choice__select { display: none; }
+.contribute-choice__select::part(combobox) { block-size: 56px; } /* Query Field Select 56 (the field rule in site.css only covers .aitr-form-field) */
+
+/* Submit row */
+.contribute-form__actions { display: flex; }
+
+/* Inline Confirmation sits 24 below the panel top (Figma 2477:10497 pt 24) */
+.contribute-confirmation[data-layout="inline"] { padding-block-start: var(--aitr-space-l); }
+
+/* ---------- Form ⇄ Confirmation cross-fade (Transition/Normal) ----------
+   Leaving: .aitr-form.is-leaving (site.css) · entering confirmation: .aitr-confirmation's own fade-in.
+   The reverse path ("Submit another") needs the two extra hooks below. */
+.contribute-confirmation.is-leaving { animation: aitr-fade-out var(--aitr-transition-normal) var(--aitr-transition-easing) both; }
+.aitr-form.contribute-is-entering { animation: aitr-fade-in var(--aitr-transition-normal) var(--aitr-transition-easing) both; }
+.aitr-form[hidden], .contribute-confirmation[hidden] { display: none; }
+
+/* ---------- Tablet: intro above the form (8 columns), gap Space/2XL, panel padding 32 ---------- */
+@media (max-width: 1279px) {
+  .contribute-layout {
+    --contribute-pad-top: calc(var(--aitr-space-4xl) + var(--aitr-space-2xs));   /* 68 */
+    --contribute-pad-bottom: calc(var(--aitr-space-5xl) + var(--aitr-space-2xs)); /* 84 */
+    flex-direction: column;
+    gap: var(--aitr-space-2xl);
+  }
+  .contribute-intro { flex: none; inline-size: 100%; }
+  .contribute-intro__note { max-inline-size: none; }
+  .contribute-panel { flex: none; inline-size: 100%; padding: var(--aitr-space-xl); }
+}
+
+/* ---------- Mobile: one column, chips wrap, full-width Submit (site.css), panel padding 20 (site.css) ---------- */
+@media (max-width: 767px) {
+  .contribute-layout {
+    --contribute-pad-top: calc(var(--aitr-space-2xl) + var(--aitr-space-2xs));  /* 44 */
+    --contribute-pad-bottom: calc(var(--aitr-space-3xl) + var(--aitr-space-xs)); /* 56 */
+    gap: 28px;                                                                   /* 28 */
+  }
+  .contribute-panel { padding: var(--aitr-space-section-inner); border-radius: var(--aitr-border-radius-dialog); } /* design keeps r28 on mobile */
+  .contribute-form__actions { flex-direction: column; }
+  .contribute-choice .aitr-chip-row { display: none; } /* 390 frame: chips → Select dropdown (2445:7188, 3 Oct) */
+  .contribute-choice__select { display: block; inline-size: 100%; }
+}

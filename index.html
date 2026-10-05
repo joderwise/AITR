@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>AI Trust Ratings — Know exactly what data you can use with any AI tool at work</title>
+<meta name="description" content="Safety ratings for AI tools by pricing tier — so your team stays compliant without slowing down.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/styles/webawesome.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/webawesome.loader.js"></script>
+<link rel="stylesheet" href="css/aitr-tokens.css?v=20261005">
+<link rel="stylesheet" href="css/aitr-components.css?v=20261005">
+<link rel="stylesheet" href="css/site.css?v=20261005">
+<link rel="stylesheet" href="css/pages/home.css?v=20261005">
+</head>
+<body>
+<a class="aitr-skip" href="#main">Skip to content</a>
+<div class="aitr-aurora" data-density="home" aria-hidden="true"></div>
+<header class="aitr-nav" data-current="home" data-search="false" data-overlay="true"></header>
+
+<main id="main">
+
+  <!-- ===================== 11 · Home Hero (component 2425:3198 · instance 2433:4542) ===================== -->
+  <section class="aitr-home-hero" aria-labelledby="hero-title">
+
+    <!-- Hero aurora (indigo wash + 4 blobs + 2 highlights) — rendered by site.js from this placeholder -->
+    <div class="aitr-aurora" data-density="hero" aria-hidden="true"></div>
+
+    <!-- Scene (decorative, desktop + tablet): orbit, 2-step search demo, tier deck, cursor -->
+    <div class="home-hero__scene" aria-hidden="true">
+
+      <div class="home-orbit">
+        <img class="home-orbit__ring" src="assets/icons/hero-ring-1220.png" alt="" width="1220" height="1220" style="--x:150px;--y:150px">
+        <img class="home-orbit__ring" src="assets/icons/hero-ring-1010.png" alt="" width="1010" height="1010" style="--x:255px;--y:255px">
+        <img class="home-orbit__ring" src="assets/icons/hero-ring-770.png"  alt="" width="770"  height="770"  style="--x:375px;--y:375px">
+        <img class="home-orbit__ring" src="assets/icons/hero-ring-510.png"  alt="" width="510"  height="510"  style="--x:505px;--y:505px">
+
+        <!-- six "Type / …" glass circles (60 px, Lucide icon 26 px) -->
+        <span class="home-orbit__type" data-type="video-audio" data-grow style="--x:913px;--y:907px"><wa-icon library="lucide" name="video"></wa-icon></span>
+        <span class="home-orbit__type" data-type="chat-search" data-grow style="--x:509px;--y:603px"><wa-icon library="lucide" name="message-square"></wa-icon><i class="home-orbit__safety" data-verdict="business-ready" aria-hidden="true"><wa-icon library="lucide" name="check"></wa-icon></i></span>
+        <span class="home-orbit__type" data-type="code" style="--x:1111px;--y:784px"><wa-icon library="lucide" name="code-xml"></wa-icon><i class="home-orbit__safety" data-verdict="internal-work-only" aria-hidden="true"><wa-icon library="lucide" name="building-2"></wa-icon></i></span>
+        <span class="home-orbit__type" data-type="writing" style="--x:555px;--y:387px"><wa-icon library="lucide" name="pen-line"></wa-icon></span>
+        <span class="home-orbit__type" data-type="image" style="--x:919px;--y:262px;--o:0.42"><wa-icon library="lucide" name="image"></wa-icon><i class="home-orbit__safety" data-verdict="public-data-only" aria-hidden="true"><wa-icon library="lucide" name="triangle-alert"></wa-icon></i></span>
+        <span class="home-orbit__type" data-type="agents" style="--x:419px;--y:956px;--o:0.42"><wa-icon library="lucide" name="bot"></wa-icon><i class="home-orbit__safety" data-verdict="unsafe" aria-hidden="true"><wa-icon library="lucide" name="x"></wa-icon></i></span>
+      </div>
+
+      <!-- Step labels -->
+      <p class="home-label home-label--search">Search a tool</p>
+      <p class="home-label home-label--plan">Pick your plan</p>
+      <p class="home-label home-label--rating">Get the rating</p>
+
+      <!-- Step 1 · Search -->
+      <div class="home-step home-step--search">
+        <div class="home-step__field is-active">
+          <wa-icon class="home-step__icon" library="lucide" name="search"></wa-icon>
+          <span class="home-typing"><span class="home-typing__text">AIToo</span></span>
+          <i class="home-caret"></i>
+        </div>
+        <div class="home-step__list home-step__list--results">
+          <p class="home-step__listlabel">Matching tools</p>
+          <div class="home-step__option is-selected">
+            <span class="home-step__mark aitr-tool-mark--generic" style="--size:28px" aria-hidden="true">AI</span>
+            <span class="home-step__text"><b>AI Tool</b><small>Example Inc.</small></span>
+            <span class="home-step__plans">6 plans</span>
+          </div>
+          <p class="home-step__keys"><span>↑↓ to move</span><span>↵ to select</span><span>Esc to close</span></p>
+        </div>
+      </div>
+
+      <!-- Step 2 · Plan -->
+      <div class="home-step home-step--plan">
+        <div class="home-step__field">
+          <span class="home-step__selected"><span class="home-step__mark aitr-tool-mark--generic" style="--size:28px" aria-hidden="true">AI</span><b>AI Tool</b></span>
+          <span class="home-step__change">Change</span>
+        </div>
+        <div class="home-step__list">
+          <p class="home-step__listlabel home-step__listlabel--plan">Which plan are you on?</p>
+          <div class="home-step__plan"><b>Free</b><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag></div>
+          <div class="home-step__plan"><b>Go</b><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag></div>
+          <div class="home-step__plan"><b>Plus</b><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag></div>
+          <div class="home-step__plan"><b>Pro</b><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag></div>
+          <div class="home-step__plan"><b>Business</b><wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag></div>
+          <div class="home-step__plan is-selected"><b>Enterprise</b><wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag></div>
+        </div>
+      </div>
+
+      <!-- Tier deck (Tier Card · Summary): Free (back) · Business · Enterprise (front) -->
+      <article class="aitr-tier-card aitr-glass home-deck__card home-deck__card--free" data-style="summary">
+        <div class="aitr-tier-card__head">
+          <span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true">AI</span>
+          <span class="aitr-tier-card__title">AI Tool<small>Free tier</small></span>
+          <wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag>
+        </div>
+        <div class="aitr-tier-card__rows">
+          <div class="aitr-tier-card__row"><span>Data training</span><span>By default</span></div>
+          <div class="aitr-tier-card__row"><span>Security</span><span>5 out of 10</span></div>
+          <div class="aitr-tier-card__row"><span>Transparency</span><span>8 out of 10</span></div>
+          <div class="aitr-tier-card__row"><span>Jurisdiction</span><span>US · Safe</span></div>
+        </div>
+      </article>
+
+      <article class="aitr-tier-card aitr-glass home-deck__card home-deck__card--business" data-style="summary">
+        <div class="aitr-tier-card__head">
+          <span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true">AI</span>
+          <span class="aitr-tier-card__title">AI Tool<small>Business tier</small></span>
+          <wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag>
+        </div>
+        <div class="aitr-tier-card__rows">
+          <div class="aitr-tier-card__row"><span>Data training</span><span>No training on your data</span></div>
+          <div class="aitr-tier-card__row"><span>Security</span><span>9 out of 10</span></div>
+          <div class="aitr-tier-card__row"><span>Transparency</span><span>8 out of 10</span></div>
+          <div class="aitr-tier-card__row"><span>Jurisdiction</span><span>US · Safe</span></div>
+        </div>
+      </article>
+
+      <article class="aitr-tier-card aitr-glass home-deck__card home-deck__card--enterprise" data-style="summary">
+        <div class="aitr-tier-card__head">
+          <span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true">AI</span>
+          <span class="aitr-tier-card__title">AI Tool<small>Enterprise tier</small></span>
+          <wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag>
+        </div>
+        <div class="aitr-tier-card__rows">
+          <div class="aitr-tier-card__row"><span>Data training</span><span>No training on your data</span></div>
+          <div class="aitr-tier-card__row"><span>Security</span><span>7 out of 10</span></div>
+          <div class="aitr-tier-card__row"><span>Transparency</span><span>8 out of 10</span></div>
+          <div class="aitr-tier-card__row"><span>Jurisdiction</span><span>US · Safe</span></div>
+        </div>
+        <p class="aitr-tier-card__note">Human-verified · last checked 2026-08-18</p>
+      </article>
+
+      <!-- Synthetic cursor -->
+      <div class="home-cursor">
+        <img class="home-cursor__ring" src="assets/icons/hero-cursor-ring.svg" alt="" width="36" height="36">
+        <img class="home-cursor__dot" src="assets/icons/hero-cursor-dot.svg" alt="" width="10" height="10">
+        <img class="home-cursor__ripple" src="assets/icons/hero-cursor-ripple.svg" alt="" width="36" height="36">
+      </div>
+    </div>
+
+    <!-- Copy -->
+    <div class="aitr-page home-hero__page">
+      <div class="home-hero__copy">
+        <h1 id="hero-title" class="aitr-heading-hero home-hero__title">Know exactly what data<br class="home-hero__br"> you can use with<br class="home-hero__br"> <span class="home-hero__accent">any AI tool</span> at work.</h1>
+        <p class="aitr-body-l home-hero__lead">Safety ratings for AI tools by pricing tier — so your team stays compliant without slowing down.</p>
+        <div class="aitr-combobox home-hero__search-wrap" data-search-scope>
+          <wa-input class="aitr-field home-hero__search" type="search" size="large" with-clear placeholder="Search AI tools…" role="combobox" aria-label="Search AI tools" aria-expanded="false" aria-controls="search-list" aria-autocomplete="list" autocomplete="off">
+            <wa-icon slot="start" library="lucide" name="search"></wa-icon>
+            <kbd slot="end">/</kbd>
+          </wa-input>
+          <ul id="search-list" role="listbox" class="aitr-search-listbox" aria-label="Matching tools" hidden></ul>
+          <p class="aitr-visually-hidden" data-search-status aria-live="polite"></p>
+        </div>
+        <div class="home-hero__trending">
+          <span class="aitr-caption-m home-hero__trending-label">Trending:</span>
+          <button type="button" class="home-hero__trend" data-query="ChatGPT"><img src="assets/logos/chatgpt.png" alt="" width="24" height="24"><span>ChatGPT</span></button>
+          <button type="button" class="home-hero__trend" data-query="Claude"><img src="assets/logos/claude.png" alt="" width="24" height="24"><span>Claude</span></button>
+          <button type="button" class="home-hero__trend" data-query="Midjourney"><img src="assets/logos/midjourney.png" alt="" width="24" height="24"><span>Midjourney</span></button>
+        </div>
+
+        <!-- Mobile only: one static Enterprise Tier card -->
+        <article class="aitr-tier-card aitr-glass home-hero__mobile-card" data-style="summary" aria-label="Example rating: AI Tool, Enterprise tier, Business Ready">
+          <div class="aitr-tier-card__head">
+            <span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true">AI</span>
+            <span class="aitr-tier-card__title">AI Tool<small>Enterprise tier</small></span>
+            <wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag>
+          </div>
+          <div class="aitr-tier-card__rows">
+            <div class="aitr-tier-card__row"><span>Data training</span><span>No training on your data</span></div>
+            <div class="aitr-tier-card__row"><span>Security</span><span>7 out of 10</span></div>
+            <div class="aitr-tier-card__row"><span>Transparency</span><span>8 out of 10</span></div>
+            <div class="aitr-tier-card__row"><span>Jurisdiction</span><span>US · Safe</span></div>
+          </div>
+          <p class="aitr-tier-card__note">Human-verified · last checked 2026-08-18</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Motion Toggle (component set 2524:102 · instance 2524:307): site.js hydrates ring + icon + tooltip -->
+    <button type="button" class="home-hero__toggle" data-motion-toggle aria-pressed="false" aria-controls="hero-scene-status"></button>
+    <script>if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.currentScript.previousElementSibling.setAttribute('aria-pressed', 'true');</script>
+    <span id="hero-scene-status" class="aitr-visually-hidden" aria-live="polite"></span>
+  </section>
+
+  <!-- ===================== Browse by Tool Type (2433:4831) ===================== -->
+  <section class="aitr-section home-section home-types" aria-labelledby="types-title">
+    <div class="aitr-page">
+      <header class="aitr-section__header" data-reveal>
+        <h2 id="types-title" class="aitr-heading-3xl">Browse by Tool Type</h2>
+      </header>
+      <div class="aitr-grid aitr-grid--3" data-reveal-group>
+        <a class="aitr-category-tile" data-type="chat-search" href="browse.html?type=chat-search">
+          <span class="aitr-category-tile__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-part="bubble" d="M35 25C35 25.8841 34.6488 26.7319 34.0237 27.357C33.3986 27.9821 32.5507 28.3333 31.6667 28.3333H11.6667L5 35V8.33333C5 7.44928 5.35119 6.60143 5.97631 5.97631C6.60143 5.35119 7.44928 5 8.33333 5H31.6667C32.5507 5 33.3986 5.35119 34.0237 5.97631C34.6488 6.60143 35 7.44928 35 8.33333V25Z"/><path data-part="dot" d="M13.3333 16.6667h0.02"/><path data-part="dot" d="M20 16.6667h0.02"/><path data-part="dot" d="M26.6667 16.6667h0.02"/></svg></span>
+          <span class="aitr-category-tile__text"><span class="aitr-category-tile__name">Chat &amp; Search</span><span class="aitr-category-tile__count">9 tools</span></span>
+          <wa-icon library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
+        </a>
+        <a class="aitr-category-tile" data-type="writing" href="browse.html?type=writing">
+          <span class="aitr-category-tile__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-part="line" d="M5 35H35"/><path data-part="pen" d="M35.2896 11.3532C36.1707 10.4722 36.6659 9.27727 36.666 8.03124C36.6662 6.78522 36.1714 5.59017 35.2904 4.70899C34.4094 3.82781 33.2145 3.33268 31.9685 3.33252C30.7225 3.33236 29.5274 3.82719 28.6462 4.70815L6.4029 26.9565C6.01593 27.3423 5.72975 27.8174 5.56956 28.3398L3.3679 35.5932C3.32482 35.7373 3.32157 35.8904 3.35848 36.0362C3.3954 36.1821 3.4711 36.3152 3.57756 36.4215C3.68402 36.5278 3.81727 36.6033 3.96316 36.6399C4.10906 36.6766 4.26216 36.6731 4.40623 36.6298L11.6612 34.4298C12.1832 34.2711 12.6582 33.9866 13.0446 33.6015L35.2896 11.3532Z"/></svg></span>
+          <span class="aitr-category-tile__text"><span class="aitr-category-tile__name">Writing</span><span class="aitr-category-tile__count">9 tools</span></span>
+          <wa-icon library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
+        </a>
+        <a class="aitr-category-tile" data-type="image" href="browse.html?type=image">
+          <span class="aitr-category-tile__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-part="frame" d="M8.33333 5H31.6667C32.5507 5 33.3986 5.35119 34.0237 5.97631C34.6488 6.60143 35 7.44928 35 8.33333V31.6667C35 32.5507 34.6488 33.3986 34.0237 34.0237C33.3986 34.6488 32.5507 35 31.6667 35H8.33333C7.44928 35 6.60143 34.6488 5.97631 34.0237C5.35119 33.3986 5 32.5507 5 31.6667V8.33333C4.99999 7.45216 5.34889 6.60683 5.97041 5.98218C6.59193 5.35754 7.4355 5.00441 8.31667 5"/><path data-part="sun" d="M18.3333 15C18.3333 15.6593 18.1378 16.3038 17.7715 16.8519C17.4053 17.4001 16.8847 17.8273 16.2756 18.0796C15.6665 18.3319 14.9963 18.3979 14.3497 18.2693C13.7031 18.1407 13.1091 17.8232 12.6429 17.357C12.1768 16.8909 11.8593 16.2969 11.7307 15.6503C11.6021 15.0037 11.6681 14.3335 11.9204 13.7244C12.1727 13.1153 12.5999 12.5947 13.1481 12.2285C13.6962 11.8622 14.3407 11.6667 15 11.6667C15.8263 11.6667 16.6232 11.9736 17.2361 12.5279C17.8489 13.0823 18.234 13.8445 18.3166 14.6667"/><path data-part="hill" d="M35 24.9999L29.8567 19.8566C29.2316 19.2317 28.3839 18.8806 27.5 18.8806C26.6161 18.8806 25.7684 19.2317 25.1433 19.8566L10 34.9999"/></svg></span>
+          <span class="aitr-category-tile__text"><span class="aitr-category-tile__name">Image</span><span class="aitr-category-tile__count">13 tools</span></span>
+          <wa-icon library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
+        </a>
+        <a class="aitr-category-tile" data-type="video-audio" href="browse.html?type=video-audio">
+          <span class="aitr-category-tile__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-part="board" d="M5 18.3335H35V31.6668C35 32.5509 34.6488 33.3987 34.0237 34.0238C33.3986 34.649 32.5507 35.0002 31.6667 35.0002H8.33333C7.44928 35.0002 6.60143 34.649 5.97631 34.0238C5.35119 33.3987 5 32.5509 5 31.6668V18.3335Z"/><g data-part="top"><path d="M33.6669 9.99976L5.00025 18.3331L3.50025 14.3331C3.00025 12.4998 4.00025 10.6664 5.66691 10.1664L28.1669 3.49976C30.0003 2.99976 31.8336 3.99976 32.3336 5.66643L33.6669 9.99976Z"/><path d="M10.3342 8.83362L15.5008 15.3336"/><path d="M20.6672 5.66663L25.8338 12.3333"/></g></svg></span>
+          <span class="aitr-category-tile__text"><span class="aitr-category-tile__name">Video &amp; Audio</span><span class="aitr-category-tile__count">21 tools</span></span>
+          <wa-icon library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
+        </a>
+        <a class="aitr-category-tile" data-type="code-developer-tools" href="browse.html?type=code-developer-tools">
+          <span class="aitr-category-tile__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-part="right" d="M30 26.6668L36.6667 20.0002L30 13.3335"/><path data-part="left" d="M9.99968 13.3335L3.33301 20.0002L9.99968 26.6668"/><path data-part="slash" d="M22.4997 11.9998L17.4997 27.9998"/></svg></span>
+          <span class="aitr-category-tile__text"><span class="aitr-category-tile__name">Code &amp; Developer Tools</span><span class="aitr-category-tile__count">10 tools</span></span>
+          <wa-icon library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
+        </a>
+        <a class="aitr-category-tile" data-type="productivity-agents" href="browse.html?type=productivity-agents">
+          <span class="aitr-category-tile__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-part="antenna" d="M19.9997 13.3332V6.6665H13.333"/><path data-part="head" d="M30.0003 13.3335H10.0003C8.15938 13.3335 6.66699 14.8259 6.66699 16.6668V30.0002C6.66699 31.8411 8.15938 33.3335 10.0003 33.3335H30.0003C31.8413 33.3335 33.3337 31.8411 33.3337 30.0002V16.6668C33.3337 14.8259 31.8413 13.3335 30.0003 13.3335Z"/><path d="M3.33301 23.3335H6.66634"/><path d="M33.333 23.3335H36.6663"/><path data-part="eye" d="M25 21.6665V24.9998"/><path data-part="eye" d="M15 21.6665V24.9998"/></svg></span>
+          <span class="aitr-category-tile__text"><span class="aitr-category-tile__name">Productivity &amp; Agents</span><span class="aitr-category-tile__count">22 tools</span></span>
+          <wa-icon library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Browse by Safety Rating (2433:4910) ===================== -->
+  <section class="aitr-section home-section home-levels" aria-labelledby="levels-title">
+    <div class="aitr-page">
+      <header class="aitr-section__header" data-reveal>
+        <h2 id="levels-title" class="aitr-heading-3xl">Browse by Safety Rating</h2>
+      </header>
+      <div class="aitr-grid aitr-grid--4" data-reveal-group>
+        <a class="aitr-level-card" data-verdict="business-ready" href="browse.html?rating=business-ready" aria-label="Business Ready, 23 tools">
+          <div class="aitr-level-card__head"><wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag><span class="aitr-level-card__count" data-count-up="23">23</span><span class="aitr-level-card__unit">tools</span></div>
+          <p>Safe for confidential/company data; enterprise-grade controls verified.</p>
+          <span class="aitr-level-card__link">View tools <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></span>
+        </a>
+        <a class="aitr-level-card" data-verdict="internal-work-only" href="browse.html?rating=internal-work-only" aria-label="Internal Work Only, 11 tools">
+          <div class="aitr-level-card__head"><wa-tag class="aitr-verdict-tag" data-verdict="internal-work-only" size="small" pill>Internal Work Only</wa-tag><span class="aitr-level-card__count" data-count-up="11">11</span><span class="aitr-level-card__unit">tools</span></div>
+          <p>Safe for internal business data; avoid confidential or client data.</p>
+          <span class="aitr-level-card__link">View tools <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></span>
+        </a>
+        <a class="aitr-level-card" data-verdict="public-data-only" href="browse.html?rating=public-data-only" aria-label="Public Data Only, 38 tools">
+          <div class="aitr-level-card__head"><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag><span class="aitr-level-card__count" data-count-up="38">38</span><span class="aitr-level-card__unit">tools</span></div>
+          <p>Only safe for information that’s already public.</p>
+          <span class="aitr-level-card__link">View tools <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></span>
+        </a>
+        <a class="aitr-level-card" data-verdict="unsafe" href="browse.html?rating=unsafe" aria-label="Unsafe, 12 tools">
+          <div class="aitr-level-card__head"><wa-tag class="aitr-verdict-tag" data-verdict="unsafe" size="small" pill>Unsafe</wa-tag><span class="aitr-level-card__count" data-count-up="12">12</span><span class="aitr-level-card__unit">tools</span></div>
+          <p>Not recommended for company data.</p>
+          <span class="aitr-level-card__link">View tools <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== How every rating is made (2433:4990) ===================== -->
+  <section class="aitr-section home-section home-method" aria-labelledby="method-title">
+    <div class="aitr-page">
+      <header class="aitr-section__header" data-reveal>
+        <h2 id="method-title" class="aitr-heading-3xl">How every rating is made.</h2>
+      </header>
+      <div class="aitr-grid aitr-grid--4" data-reveal-group>
+        <article class="aitr-method-card aitr-glass">
+          <h3>Public sources</h3>
+          <p>Privacy policy, terms, data processing agreement, security and trust pages, and public certification registries.</p>
+        </article>
+        <article class="aitr-method-card aitr-glass">
+          <h3>AI-assisted research</h3>
+          <p>Each pricing tier is graded on its own evidence, so “is this safe?” always has a per-tier answer.</p>
+        </article>
+        <article class="aitr-method-card aitr-glass">
+          <h3>Human verification</h3>
+          <p>A person verifies every rating before it goes live. No vendor pays for a rating.</p>
+        </article>
+        <article class="aitr-method-card aitr-glass">
+          <h3>Re-checked on a schedule</h3>
+          <p>Sources are re-checked and the last-checked date is shown on every tool.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== The weakest factor sets the rating (2433:5017) ===================== -->
+  <section class="aitr-section home-section home-methodology" aria-labelledby="methodology-title">
+    <div class="aitr-page home-methodology__split">
+      <div class="home-methodology__copy" data-reveal>
+        <h2 id="methodology-title" class="aitr-heading-3xl">The weakest factor sets the rating.</h2>
+        <p class="aitr-body-m home-methodology__body">A tier can only be as safe as its weakest factor — the most restrictive one sets the rating. We check training, security, where the company is based and transparency.</p>
+        <a class="aitr-link" data-arrow="trailing" href="how-we-assess.html">How we assess <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></a>
+      </div>
+      <section class="aitr-factor-grid aitr-glass" data-weakest="1" aria-labelledby="factor-grid-title" data-reveal>
+        <h3 id="factor-grid-title" class="aitr-factor-grid__title"><span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:40px" aria-hidden="true">AI</span>AI Tool · Free tier</h3>
+        <div class="aitr-factor-grid__cols">
+          <div class="aitr-factor-grid__col">
+            <span class="aitr-factor-grid__label">Training</span>
+            <span class="aitr-factor-grid__meter" data-tone="danger" role="img" aria-label="Training: 2 of 4" style="--n:4"><i class="on"></i><i class="on"></i><i></i><i></i></span>
+            <span class="aitr-factor-grid__note">Trains unless you opt out</span>
+          </div>
+          <div class="aitr-factor-grid__col">
+            <span class="aitr-factor-grid__label">Security</span>
+            <span class="aitr-factor-grid__meter" data-tone="warning" role="img" aria-label="Security: 5 of 10" style="--n:10"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="aitr-factor-grid__note">Encryption, testing, certifications</span>
+          </div>
+          <div class="aitr-factor-grid__col">
+            <span class="aitr-factor-grid__label">Transparency</span>
+            <span class="aitr-factor-grid__meter" data-tone="success" role="img" aria-label="Transparency: 8 of 10" style="--n:10"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+            <span class="aitr-factor-grid__note">How clearly practices are documented</span>
+          </div>
+          <div class="aitr-factor-grid__col">
+            <span class="aitr-factor-grid__label">Location</span>
+            <span class="aitr-factor-grid__meter" data-tone="success" role="img" aria-label="Location: 2 of 2" style="--n:2"><i class="on"></i><i class="on"></i></span>
+            <span class="aitr-factor-grid__note">No jurisdiction concerns</span>
+          </div>
+        </div>
+        <div class="aitr-factor-grid__result">
+          <wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag>
+          <p>Training on your data by default caps this tier at Public Data Only.</p>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ===================== Stats strip (2433:5082) ===================== -->
+  <section class="home-stats-section" aria-label="At a glance">
+    <div class="aitr-page">
+      <div class="aitr-stats" data-reveal>
+        <div class="aitr-stat" data-size="large" data-divider="on">
+          <span class="aitr-stat__value">50+</span>
+          <span class="aitr-stat__label">AI tools assessed</span>
+        </div>
+        <div class="aitr-stat" data-size="large" data-divider="on">
+          <span class="aitr-stat__value">Monthly</span>
+          <span class="aitr-stat__label">Updated ratings</span>
+        </div>
+        <div class="aitr-stat" data-size="large">
+          <span class="aitr-stat__value">ROAI</span>
+          <span class="aitr-stat__label">Governance Framework</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Governance CTA (2433:5102) ===================== -->
+  <section class="aitr-section home-section home-cta" aria-labelledby="cta-title">
+    <div class="aitr-page">
+      <section class="aitr-cta-band aitr-glass" data-layout="row" aria-labelledby="cta-title" data-reveal>
+        <img class="aitr-cta-band__logo" src="assets/brand/roai-logo-light.svg" alt="ROAI" width="80" height="80">
+        <div class="aitr-cta-band__copy">
+          <h2 id="cta-title" class="aitr-heading-3xl">Need AI governance for your whole team?</h2>
+          <p class="aitr-body-m">AI Trust Ratings is free for individual lookup. For team-wide controls, custom assessments, and SLA-backed reporting — talk to us about ROAI Governance Engine.</p>
+        </div>
+        <wa-button class="aitr-cta-band__action" variant="brand" appearance="accent" pill size="large" href="for-business.html#contact">Book a demo</wa-button>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<footer class="aitr-footer"></footer>
+
+<script type="module" src="js/site.js"></script>
+<script type="module">
+  // Home-only behaviour: Motion Toggle → hero loop pause (WCAG 2.2.2) + trending chips → search.
+  // site.js hydrates [data-motion-toggle] and dispatches a bubbling `aitr-motion` event (detail.paused) on each click.
+  const hero = document.querySelector('.aitr-home-hero');
+  if (hero) {
+    const toggle = hero.querySelector('[data-motion-toggle]');
+    const status = document.getElementById('hero-scene-status');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const KEY = 'aitr:hero-paused';
+    const applyPaused = (paused, announce) => {
+      hero.classList.toggle('is-paused', paused);
+      if (announce && status) status.textContent = paused ? 'Hero animation paused.' : 'Hero animation playing.';
+      try { sessionStorage.setItem(KEY, paused ? '1' : '0'); } catch (_) { /* storage unavailable */ }
+    };
+    hero.addEventListener('aitr-motion', (e) => applyPaused(Boolean(e.detail && e.detail.paused), true));
+    let paused = toggle ? toggle.getAttribute('aria-pressed') === 'true' : reduced.matches;
+    if (toggle && !reduced.matches) {
+      let stored = null; try { stored = sessionStorage.getItem(KEY); } catch (_) {}
+      if (stored !== null && (stored === '1') !== paused) toggle.click(); // replay the stored choice through the shared toggle
+      else applyPaused(paused, false);
+    } else {
+      applyPaused(paused, false);
+    }
+    reduced.addEventListener('change', () => { if (reduced.matches && toggle && toggle.getAttribute('aria-pressed') !== 'true') toggle.click(); });
+
+    const search = hero.querySelector('.home-hero__search');
+    hero.querySelectorAll('.home-hero__trend').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        if (!search) return;
+        search.value = chip.dataset.query || chip.textContent.trim();
+        search.focus();
+        search.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+  }
+</script>
+</body>
+</html>

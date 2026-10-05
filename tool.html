@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>AI Tool · AI Trust Ratings</title>
+<meta name="description" content="Safety rating for AI Tool by pricing tier — data training, security, transparency and jurisdiction, assessed with the ROAI Governance Framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/styles/webawesome.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/webawesome.loader.js"></script>
+<link rel="stylesheet" href="css/aitr-tokens.css?v=20261005b">
+<link rel="stylesheet" href="css/aitr-components.css?v=20261005b">
+<link rel="stylesheet" href="css/site.css?v=20261005b">
+<link rel="stylesheet" href="css/pages/tool.css?v=20261005b">
+</head>
+<body class="tool-page">
+<a class="aitr-skip" href="#main">Skip to content</a>
+<div class="aitr-aurora" data-density="page" aria-hidden="true"></div>
+<header class="aitr-nav" data-current="" data-search="true"></header>
+
+<main id="main">
+
+  <!-- ── Tool Header ─────────────────────────────────────────────── -->
+  <section class="aitr-section tool-section--header">
+    <div class="aitr-page">
+      <header class="aitr-tool-header" data-size="large">
+        <a class="aitr-link" data-arrow="leading" href="browse.html"><wa-icon library="lucide" name="arrow-left" aria-hidden="true"></wa-icon>Back to search</a>
+        <div class="aitr-tool-header__identity">
+          <div class="aitr-tool-header__logo"><span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:80px" aria-hidden="true"></span></div><!-- 3 Oct: Tool=Generic with Show initial=false on all Tool detail frames → plain brand circle -->
+          <div class="aitr-tool-header__text">
+            <div class="aitr-tool-header__name">
+              <h1 class="aitr-heading-5xl tool-header__title">AI Tool</h1>
+              <span class="aitr-trace">AGENTIC CAPABILITIES</span>
+            </div>
+            <p class="aitr-tool-header__vendor aitr-body-l">Example Inc. · Chat &amp; Search</p>
+          </div>
+        </div>
+        <p class="aitr-tool-header__description aitr-body-l tool-header__description">Conversational AI assistant.</p>
+      </header>
+    </div>
+  </section>
+
+  <!-- ── Rating summary (Figma 2447:6909 · Rating Summary + Unlock Teaser) ───── -->
+  <section class="aitr-section tool-section--rating" aria-labelledby="rating-title">
+    <div class="aitr-page tool-rating" id="tool-rating">
+      <h2 class="aitr-visually-hidden" id="rating-title">Rating by pricing tier</h2>
+      <p class="aitr-visually-hidden" role="status" aria-live="polite" id="rating-status"></p>
+
+      <!-- Feedback · Error (tier data): replaces the card and the teaser -->
+      <div class="aitr-inline-error" role="alert" data-layout="row" id="compare-error" hidden>
+        <div class="aitr-inline-error__text">
+          <p class="aitr-inline-error__title">We couldn’t load the tier comparison</p>
+          <p class="aitr-inline-error__body">Check your connection and try again. The details below still show the Enterprise tier.</p>
+        </div>
+        <wa-button variant="neutral" appearance="outlined" pill size="large" id="compare-retry">Try again</wa-button>
+      </div>
+
+      <div class="tool-rating__card aitr-glass" id="rating-summary" data-state="default">
+        <div class="tool-rating__header">
+          <div class="aitr-form-field tool-rating__tier">
+            <label class="aitr-form-field__label" for="tier-select">Rating for this tier</label>
+            <wa-select class="aitr-field" id="tier-select" value="5" size="large">
+              <wa-option value="0">Free</wa-option>
+              <wa-option value="1">Go</wa-option>
+              <wa-option value="2">Plus</wa-option>
+              <wa-option value="3">Pro</wa-option>
+              <wa-option value="4">Business</wa-option>
+              <wa-option value="5">Enterprise</wa-option>
+            </wa-select>
+          </div>
+          <wa-button class="tool-rating__all" id="see-all-tiers" variant="neutral" appearance="outlined" pill size="large" aria-haspopup="dialog" aria-controls="tiers-dialog">See all tiers</wa-button>
+        </div>
+        <div class="tool-rating__body">
+          <section class="aitr-verdict-card" data-verdict="business-ready" aria-labelledby="verdict-title" id="verdict-card">
+            <p class="aitr-verdict-card__eyebrow" id="verdict-eyebrow">DATA CLEARANCE · ENTERPRISE TIER</p>
+            <h3 class="aitr-verdict-card__title" id="verdict-title">Business Ready</h3>
+            <p class="aitr-verdict-card__body">Approved for confidential data — business-grade controls verified.</p>
+            <p class="aitr-verdict-card__trace">SAFE FOR PUBLIC, INTERNAL AND CONFIDENTIAL DATA</p>
+          </section>
+          <div class="tool-rating__factors" id="factor-grid" role="group" aria-label="The four factors"></div>
+        </div>
+      </div>
+
+      <!-- Unlock Teaser (2574:250 · Row on Desktop/Tablet, Stacked on Mobile) — opens the Lead Gate -->
+      <section class="tool-teaser" id="unlock-teaser" aria-labelledby="teaser-title">
+        <div class="tool-teaser__copy">
+          <wa-icon library="lucide" name="lock-keyhole" class="tool-teaser__icon" aria-hidden="true"></wa-icon>
+          <h3 class="aitr-heading-xl tool-teaser__title" id="teaser-title">Want to know why it’s rated this way?</h3>
+          <p class="aitr-body-m tool-teaser__body">See the full assessment for free. All we need is your work email.</p>
+        </div>
+        <ul class="tool-teaser__benefits" aria-label="What you get">
+          <li class="tool-teaser__benefit">
+            <wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon>
+            <div class="tool-teaser__benefit-text"><p class="tool-teaser__benefit-title">Why it got this rating</p><p class="tool-teaser__benefit-line aitr-caption-m">The deciding factor for this tier</p></div>
+          </li>
+          <li class="tool-teaser__benefit">
+            <wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon>
+            <div class="tool-teaser__benefit-text"><p class="tool-teaser__benefit-title">Certifications</p><p class="tool-teaser__benefit-line aitr-caption-m">SOC 2, ISO 27001, SSO — verified</p></div>
+          </li>
+          <li class="tool-teaser__benefit">
+            <wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon>
+            <div class="tool-teaser__benefit-text"><p class="tool-teaser__benefit-title">Every source</p><p class="tool-teaser__benefit-line aitr-caption-m">Links to the exact documents we read</p></div>
+          </li>
+          <li class="tool-teaser__benefit">
+            <wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon>
+            <div class="tool-teaser__benefit-text"><p class="tool-teaser__benefit-title">Transparency checks</p><p class="tool-teaser__benefit-line aitr-caption-m">8 checks, each with yes or no</p></div>
+          </li>
+        </ul>
+        <div class="tool-teaser__cta">
+          <wa-button variant="brand" appearance="accent" pill size="large" id="teaser-unlock" aria-controls="lead-gate">Unlock for free</wa-button>
+          <p class="tool-teaser__note aitr-caption-m">Free · work email · takes 10 seconds</p>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ── Details ─────────────────────────────────────────────────── -->
+  <section class="aitr-section aitr-section--divided tool-section--details" aria-labelledby="details-title">
+    <div class="aitr-page tool-details">
+      <h2 class="aitr-heading-3xl tool-details__title" id="details-title"><span data-when="locked"><span data-field="tier-name">Enterprise</span> tier · full assessment</span><span data-when="unlocked">Details for the <span data-field="tier-name">Enterprise</span> tier</span></h2>
+      <p class="aitr-visually-hidden" role="status" aria-live="polite" id="tier-announce"></p>
+
+      <div class="aitr-inline-notice" role="status" id="unlock-notice" hidden>
+        <wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon>
+        <span>Full assessment unlocked.</span>
+      </div>
+
+      <div class="aitr-locked" id="assessment-lock">
+        <div class="aitr-locked__content tool-assessment" id="assessment" inert aria-hidden="true">
+
+          <section class="tool-assessment__section" aria-labelledby="sec-title">
+            <h3 class="aitr-heading-xl tool-assessment__heading" id="sec-title">Security &amp; certifications</h3>
+            <ul class="aitr-fact-list">
+              <li class="aitr-fact" data-leading="check">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text">
+                  <p class="aitr-fact__title">SSO</p>
+                  <p class="aitr-fact__body">Your IT team can control who is allowed to log in and enforce your company’s own login security.</p>
+                </div>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-3">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check" id="src-3">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text">
+                  <p class="aitr-fact__title">SOC 2</p>
+                  <p class="aitr-fact__body">An independent auditor has checked how this tool protects your data and confirmed its security controls.</p>
+                </div>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-3">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check" id="src-4">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text">
+                  <p class="aitr-fact__title">ISO 27001</p>
+                  <p class="aitr-fact__body">Certified against ISO 27001, an international standard for keeping information secure — checked by an outside auditor.</p>
+                </div>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-4">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check" id="src-5">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text">
+                  <p class="aitr-fact__title">Zero Training</p>
+                  <p class="aitr-fact__body">The vendor commits not to use your data to train its AI.</p>
+                </div>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-5">Show source</a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="tool-assessment__section" aria-labelledby="why-title">
+            <h3 class="aitr-heading-xl tool-assessment__heading" id="why-title">Why this is <span data-field="verdict-name">Business Ready</span></h3>
+            <div class="tool-assessment__content">
+              <p class="aitr-body-m" id="why-body">No blocking gaps — this tier meets our checks for handling confidential data.</p>
+            </div>
+          </section>
+
+          <section class="tool-assessment__section" aria-labelledby="data-title">
+            <h3 class="aitr-heading-xl tool-assessment__heading" id="data-title">How it handles your data</h3>
+            <ul class="aitr-fact-list">
+              <li class="aitr-fact" data-leading="none">
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Training</p><p class="aitr-fact__body" data-field="training">No training on your data</p></div>
+              </li>
+              <li class="aitr-fact" data-leading="none">
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Data retention</p><p class="aitr-fact__body">They publish a clear data-retention policy.</p></div>
+              </li>
+              <li class="aitr-fact" data-leading="none">
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Agentic capability</p><p class="aitr-fact__body">Can act on your device. This tool can take actions on your computer — running commands, editing files, or controlling apps. An administrator can turn this capability off. Agentic behavior is not part of this safety rating — review it with your IT or security team before enabling it.</p></div>
+              </li>
+              <li class="aitr-fact" data-leading="none">
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Where the company is based</p><p class="aitr-fact__body">Based in US — no jurisdiction concerns for this rating.</p></div>
+              </li>
+            </ul>
+          </section>
+
+          <section class="tool-assessment__section" aria-labelledby="docs-title">
+            <h3 class="aitr-heading-xl tool-assessment__heading" id="docs-title">Sources by topic</h3>
+            <div class="tool-assessment__content">
+              <dl class="tool-sources">
+                <div class="tool-sources__row">
+                  <dt class="tool-sources__topic">Security</dt>
+                  <dd class="tool-sources__cites"><ul class="aitr-citation-list tool-citations" aria-label="Security sources">
+                    <li><a class="aitr-citation" id="cite-3" data-cite="3" href="#src-3" aria-label="Source 3: SECURITY PAGE · CHECKED 2026-08-18"><span class="aitr-citation__number" aria-hidden="true">3</span>SECURITY PAGE · CHECKED 2026-08-18</a></li> <li><a class="aitr-citation" id="cite-4" data-cite="4" href="#src-4" aria-label="Source 4: SECURITY PAGE · CHECKED 2026-08-18"><span class="aitr-citation__number" aria-hidden="true">4</span>SECURITY PAGE · CHECKED 2026-08-18</a></li>
+                  </ul></dd>
+                </div>
+                <div class="tool-sources__row">
+                  <dt class="tool-sources__topic">Data training</dt>
+                  <dd class="tool-sources__cites"><ul class="aitr-citation-list tool-citations" aria-label="Data training sources">
+                    <li><a class="aitr-citation" id="cite-1" data-cite="1" href="#src-1" aria-label="Source 1: PRIVACY POLICY · CHECKED 2026-08-18"><span class="aitr-citation__number" aria-hidden="true">1</span>PRIVACY POLICY · CHECKED 2026-08-18</a></li> <li><a class="aitr-citation" id="cite-5" data-cite="5" href="#src-5" aria-label="Source 5: DATA PROCESSING AGREEMENT · CHECKED 2026-08-18"><span class="aitr-citation__number" aria-hidden="true">5</span>DATA PROCESSING AGREEMENT · CHECKED 2026-08-18</a></li>
+                  </ul></dd>
+                </div>
+                <div class="tool-sources__row">
+                  <dt class="tool-sources__topic">Transparency</dt>
+                  <dd class="tool-sources__cites"><ul class="aitr-citation-list tool-citations" aria-label="Transparency sources">
+                    <li><a class="aitr-citation" id="cite-2" data-cite="2" href="#src-2" aria-label="Source 2: TERMS OF SERVICE · CHECKED 2026-08-18"><span class="aitr-citation__number" aria-hidden="true">2</span>TERMS OF SERVICE · CHECKED 2026-08-18</a></li>
+                  </ul></dd>
+                </div>
+                <div class="tool-sources__row">
+                  <dt class="tool-sources__topic">Location</dt>
+                  <dd class="tool-sources__cites"><ul class="aitr-citation-list tool-citations" aria-label="Location sources">
+                    <li><a class="aitr-citation" data-cite="1" href="#src-1" aria-label="Source 1: PRIVACY POLICY · CHECKED 2026-08-18"><span class="aitr-citation__number" aria-hidden="true">1</span>PRIVACY POLICY · CHECKED 2026-08-18</a></li>
+                  </ul></dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+
+          <section class="tool-assessment__section" aria-labelledby="transparency-title">
+            <h3 class="aitr-heading-xl tool-assessment__heading" id="transparency-title">Transparency breakdown</h3>
+            <ul class="aitr-fact-list">
+              <li class="aitr-fact" data-leading="check" id="src-1">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Clear privacy policy</p></div>
+                <span class="aitr-fact__value">Yes</span>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-1">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="cross" id="src-2">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="x" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Reasonable terms of service</p></div>
+                <span class="aitr-fact__value">No</span>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-2">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Discloses how it uses your data for training</p></div>
+                <span class="aitr-fact__value">Yes</span>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-1">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Clear data-retention policy</p></div>
+                <span class="aitr-fact__value">Yes</span>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-1">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Publishes security documentation</p></div>
+                <span class="aitr-fact__value">Yes</span>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-3">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="check">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Documents its AI models</p></div>
+                <span class="aitr-fact__value">Yes</span>
+                <a class="aitr-link aitr-fact__source" data-arrow="none" href="#cite-3">Show source</a>
+              </li>
+              <li class="aitr-fact" data-leading="cross">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="x" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Responsive support</p></div>
+                <span class="aitr-fact__value">No</span>
+              </li>
+              <li class="aitr-fact" data-leading="check">
+                <span class="aitr-fact__leading"><wa-icon library="lucide" name="check" aria-hidden="true"></wa-icon></span>
+                <div class="aitr-fact__text"><p class="aitr-fact__title">Known history of data or security issues</p></div>
+                <span class="aitr-fact__value">Yes</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="aitr-locked__fade" aria-hidden="true"></div>
+
+        <div class="aitr-locked__gate">
+          <form class="aitr-lead-gate" id="lead-gate" novalidate aria-labelledby="gate-title" data-gate-form>
+            <div class="aitr-lead-gate__head">
+              <wa-icon library="lucide" name="lock-keyhole" class="aitr-lead-gate__lock" aria-hidden="true"></wa-icon>
+              <h3 class="aitr-lead-gate__title" id="gate-title">See the full <span data-field="tier-name">Enterprise</span> assessment</h3>
+              <p class="aitr-lead-gate__body aitr-body-m">Scores, certifications, sources and the full transparency breakdown behind this rating.</p>
+            </div>
+            <div class="aitr-form__summary" role="alert" hidden data-gate-summary></div>
+            <div class="aitr-form__row">
+              <div class="aitr-form-field" data-state="default">
+                <label class="aitr-form-field__label" for="gate-name">Name <span class="aitr-form-field__required" aria-hidden="true">*</span></label>
+                <wa-input class="aitr-field" id="gate-name" name="name" placeholder="Jane Smith" size="large" autocomplete="name" required aria-required="true" aria-describedby="gate-name-error"></wa-input>
+                <p class="aitr-form-field__error tool-field-error" id="gate-name-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="tool-field-error__text">Enter your name.</span></p>
+              </div>
+              <div class="aitr-form-field" data-state="default">
+                <label class="aitr-form-field__label" for="gate-email">Work Email <span class="aitr-form-field__required" aria-hidden="true">*</span></label>
+                <wa-input class="aitr-field" id="gate-email" name="email" type="email" placeholder="jane@company.com" size="large" autocomplete="email" required aria-required="true" aria-describedby="gate-email-error"></wa-input>
+                <p class="aitr-form-field__error tool-field-error" id="gate-email-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="tool-field-error__text">Enter a valid work email.</span></p>
+              </div>
+            </div>
+            <div class="aitr-form-field" data-state="default">
+              <label class="aitr-form-field__label" for="gate-company">Company <span class="aitr-form-field__required" aria-hidden="true">*</span></label>
+              <wa-input class="aitr-field" id="gate-company" name="company" placeholder="Acme Corp" size="large" autocomplete="organization" required aria-required="true" aria-describedby="gate-company-error"></wa-input>
+              <p class="aitr-form-field__error tool-field-error" id="gate-company-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="tool-field-error__text">Enter your company.</span></p>
+            </div>
+            <wa-button type="submit" variant="brand" appearance="accent" pill size="large">Unlock full assessment</wa-button>
+            <p class="aitr-lead-gate__privacy">We will only use your email to follow up on your request. See our <a href="#">Privacy Policy</a>.</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Mobile: collapsed teaser + bottom sheet -->
+      <div class="aitr-gate-collapsed" id="gate-collapsed">
+        <wa-icon library="lucide" name="lock-keyhole" class="aitr-lead-gate__lock" aria-hidden="true"></wa-icon>
+        <p class="aitr-lead-gate__title">See the full <span data-field="tier-name">Enterprise</span> assessment</p>
+        <p class="aitr-lead-gate__body aitr-body-m">Scores, certifications, sources and the full transparency breakdown behind this rating.</p>
+        <wa-button variant="brand" appearance="accent" pill size="large" id="gate-open" aria-haspopup="dialog" aria-controls="gate-sheet">Unlock full assessment</wa-button>
+      </div>
+      <dialog class="aitr-lead-gate" id="gate-sheet" aria-labelledby="sheet-title">
+        <div class="aitr-lead-gate__handle" aria-hidden="true"></div>
+        <form class="aitr-form" novalidate data-gate-form>
+          <div class="aitr-lead-gate__head">
+            <wa-icon library="lucide" name="lock-keyhole" class="aitr-lead-gate__lock" aria-hidden="true"></wa-icon>
+            <h3 class="aitr-lead-gate__title" id="sheet-title">See the full <span data-field="tier-name">Enterprise</span> assessment</h3>
+            <p class="aitr-lead-gate__body aitr-body-m">Scores, certifications, sources and the full transparency breakdown behind this rating.</p>
+          </div>
+          <div class="aitr-form__summary" role="alert" hidden data-gate-summary></div>
+          <div class="aitr-form-field" data-state="default">
+            <label class="aitr-form-field__label" for="sheet-name">Name <span class="aitr-form-field__required" aria-hidden="true">*</span></label>
+            <wa-input class="aitr-field" id="sheet-name" name="name" placeholder="Jane Smith" size="large" autocomplete="name" required aria-required="true" aria-describedby="sheet-name-error"></wa-input>
+            <p class="aitr-form-field__error tool-field-error" id="sheet-name-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="tool-field-error__text">Enter your name.</span></p>
+          </div>
+          <div class="aitr-form-field" data-state="default">
+            <label class="aitr-form-field__label" for="sheet-email">Work Email <span class="aitr-form-field__required" aria-hidden="true">*</span></label>
+            <wa-input class="aitr-field" id="sheet-email" name="email" type="email" placeholder="jane@company.com" size="large" autocomplete="email" required aria-required="true" aria-describedby="sheet-email-error"></wa-input>
+            <p class="aitr-form-field__error tool-field-error" id="sheet-email-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="tool-field-error__text">Enter a valid work email.</span></p>
+          </div>
+          <div class="aitr-form-field" data-state="default">
+            <label class="aitr-form-field__label" for="sheet-company">Company <span class="aitr-form-field__required" aria-hidden="true">*</span></label>
+            <wa-input class="aitr-field" id="sheet-company" name="company" placeholder="Acme Corp" size="large" autocomplete="organization" required aria-required="true" aria-describedby="sheet-company-error"></wa-input>
+            <p class="aitr-form-field__error tool-field-error" id="sheet-company-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="tool-field-error__text">Enter your company.</span></p>
+          </div>
+          <wa-button type="submit" variant="brand" appearance="accent" pill size="large">Unlock full assessment</wa-button>
+          <p class="aitr-lead-gate__privacy">We will only use your email to follow up on your request. See our <a href="#">Privacy Policy</a>.</p>
+        </form>
+      </dialog>
+    </div>
+  </section>
+
+  <!-- ── Provenance + disclaimer ─────────────────────────────────── -->
+  <section class="aitr-section tool-section--provenance">
+    <div class="aitr-page tool-provenance">
+      <p class="aitr-body-m-strong">Powered by the ROAI Governance Framework.</p>
+      <p class="aitr-caption-m tool-provenance__meta">RAB2B — ROAI framework. Assessed from public vendor documents; no vendor payment for ratings. · 5 sources checked · Last checked 2026-08-18</p>
+      <a class="aitr-link" data-arrow="trailing" href="how-we-assess.html">How we assess <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></a>
+      <aside class="aitr-disclaimer"><strong>Advisory Disclaimer:</strong> AI Trust Ratings reflect publicly available information at the time of review. They are not legal advice and should not be the sole basis for compliance decisions. Policies change — always verify directly with the vendor before processing sensitive data. Ratings are provided by RAB2B Operational AI for informational purposes only.</aside>
+    </div>
+  </section>
+
+  <!-- ── Related tools ───────────────────────────────────────────── -->
+  <section class="aitr-section aitr-section--divided tool-section--related" aria-labelledby="related-title">
+    <div class="aitr-page tool-related">
+      <h2 class="aitr-heading-3xl" id="related-title">Related Tools</h2>
+      <div class="aitr-grid aitr-grid--4" data-reveal-group>
+        <article class="aitr-registry-card">
+          <div class="aitr-registry-card__top">
+            <img class="aitr-tool-mark aitr-tool-mark--round" src="assets/logos/browse/ernie-bot.png" alt="" width="36" height="36">
+            <div>
+              <a class="aitr-registry-card__name" href="/tools/ernie-bot">ERNIE Bot (Baidu)</a>
+              <div class="aitr-registry-card__meta">Baidu · Chat &amp; Search</div>
+            </div>
+            <wa-icon library="lucide" name="chevron-right" class="tool-related__open" aria-hidden="true"></wa-icon>
+          </div>
+          <div class="aitr-registry-card__footer">
+            <wa-tag class="aitr-verdict-tag" data-verdict="unsafe" size="small" pill>Unsafe</wa-tag>
+            <span class="aitr-registry-card__checked">FREE</span>
+          </div>
+        </article>
+        <article class="aitr-registry-card">
+          <div class="aitr-registry-card__top">
+            <img class="aitr-tool-mark aitr-tool-mark--round" src="assets/logos/browse/claude.png" alt="" width="36" height="36">
+            <div>
+              <a class="aitr-registry-card__name" href="/tools/claude">Claude</a> <wa-icon library="lucide" name="bolt" label="Agentic capabilities" class="tool-related__agentic"></wa-icon>
+              <div class="aitr-registry-card__meta">Anthropic · Chat &amp; Search</div>
+            </div>
+            <wa-icon library="lucide" name="chevron-right" class="tool-related__open" aria-hidden="true"></wa-icon>
+          </div>
+          <div class="aitr-registry-card__footer">
+            <wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag>
+            <span class="aitr-registry-card__checked">ENTERPRISE</span>
+          </div>
+        </article>
+        <article class="aitr-registry-card">
+          <div class="aitr-registry-card__top">
+            <img class="aitr-tool-mark aitr-tool-mark--round" src="assets/logos/browse/deepseek.png" alt="" width="36" height="36">
+            <div>
+              <a class="aitr-registry-card__name" href="/tools/deepseek">DeepSeek</a>
+              <div class="aitr-registry-card__meta">DeepSeek · Chat &amp; Search</div>
+            </div>
+            <wa-icon library="lucide" name="chevron-right" class="tool-related__open" aria-hidden="true"></wa-icon>
+          </div>
+          <div class="aitr-registry-card__footer">
+            <wa-tag class="aitr-verdict-tag" data-verdict="unsafe" size="small" pill>Unsafe</wa-tag>
+            <span class="aitr-registry-card__checked">API (PAY-AS-YOU-GO)</span>
+          </div>
+        </article>
+        <article class="aitr-registry-card">
+          <div class="aitr-registry-card__top">
+            <img class="aitr-tool-mark aitr-tool-mark--round" src="assets/logos/browse/gemini.png" alt="" width="36" height="36">
+            <div>
+              <a class="aitr-registry-card__name" href="/tools/gemini">Gemini</a> <wa-icon library="lucide" name="bolt" label="Agentic capabilities" class="tool-related__agentic"></wa-icon>
+              <div class="aitr-registry-card__meta">Google · Chat &amp; Search</div>
+            </div>
+            <wa-icon library="lucide" name="chevron-right" class="tool-related__open" aria-hidden="true"></wa-icon>
+          </div>
+          <div class="aitr-registry-card__footer">
+            <wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag>
+            <span class="aitr-registry-card__checked">WORKSPACE ENTERPRISE</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- "See all tiers" modal (Figma 2685:14735 · Tier Comparison): native dialog = focus trap, Esc, inert page, backdrop; bottom sheet below 768 -->
+<dialog class="tool-tiers" id="tiers-dialog" aria-labelledby="tiers-title" aria-describedby="tiers-sub">
+  <div class="tool-tiers__grabber" aria-hidden="true"></div>
+  <div class="tool-tiers__header">
+    <div class="tool-tiers__titles">
+      <h2 class="tool-tiers__title" id="tiers-title">Compare all tiers</h2>
+      <p class="tool-tiers__sub" id="tiers-sub">AI Tool · the same four checks for every plan</p>
+    </div>
+    <button type="button" class="tool-tiers__close" id="tiers-close" aria-label="Close"><wa-icon library="lucide" name="x" aria-hidden="true"></wa-icon></button>
+  </div>
+  <div class="tool-tiers__labels" aria-hidden="true"><span>Tier</span><span>Rating</span><span>Security</span><span>Transparency</span><span>Data training</span><span>Location</span></div>
+  <ul class="tool-tiers__list" id="tiers-list" role="list"></ul>
+  <div class="tool-tiers__legend">
+    <p class="tool-tiers__legend-title">How to read the bars</p>
+    <p>Security and Transparency: 10 bars, more is better.</p>
+    <p>Data training: 4 bars never trains · 3 only if you opt in · 2 trains unless you opt out · 1 always trains.</p>
+    <p>Location: 2 bars safe · 1 bar jurisdiction concern.</p>
+  </div>
+</dialog>
+
+<footer class="aitr-footer"></footer>
+
+<script type="module" src="js/site.js"></script>
+<script type="module" src="js/pages/tool.js"></script>
+</body>
+</html>

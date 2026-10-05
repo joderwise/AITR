@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Contribute · AI Trust Ratings</title>
+<meta name="description" content="Help keep AI Trust Ratings accurate. Request a new tool review, report outdated information, or share general feedback.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/styles/webawesome.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.11.0/dist-cdn/webawesome.loader.js"></script>
+<link rel="stylesheet" href="css/aitr-tokens.css?v=20261005">
+<link rel="stylesheet" href="css/aitr-components.css?v=20261005">
+<link rel="stylesheet" href="css/site.css?v=20261005">
+<link rel="stylesheet" href="css/pages/contribute.css?v=20261005">
+</head>
+<body>
+<a class="aitr-skip" href="#main">Skip to content</a>
+<div class="aitr-aurora" data-density="page" aria-hidden="true"></div>
+<header class="aitr-nav" data-current="contribute" data-search="true"></header>
+
+<main id="main">
+  <section class="aitr-page contribute-layout" aria-labelledby="contribute-title">
+
+    <!-- Intro column (Figma 2445:6848) -->
+    <div class="contribute-intro" data-reveal>
+      <h1 id="contribute-title" class="aitr-heading-5xl contribute-intro__title">Contribute</h1>
+      <p class="aitr-body-l contribute-intro__lead">Help keep AI Trust Ratings accurate. Request a new tool review, report outdated information, or share general feedback.</p>
+      <p class="aitr-caption-m contribute-intro__note">Submissions are reviewed by the ROAI team before any changes are published.</p>
+    </div>
+
+    <!-- Glass form panel (Figma 2445:6852) -->
+    <div class="aitr-glass aitr-form-panel contribute-panel" data-reveal style="--reveal-delay: var(--aitr-motion-stagger-tight)">
+
+      <form id="contribute-form" class="aitr-form aitr-form--contribute" novalidate aria-labelledby="contribute-title">
+
+        <!-- Danger summary: rendered only when 2+ fields are invalid (Figma 2478:9645 › Callout) -->
+        <div class="aitr-form__summary" id="contribute-summary" hidden>
+          <wa-callout id="contribute-summary-callout" variant="danger" role="alert" tabindex="-1">
+            <strong class="aitr-label-m contribute-summary__title" id="contribute-summary-title"></strong>
+            <p class="aitr-body-s contribute-summary__body" id="contribute-summary-body"></p>
+          </wa-callout>
+        </div>
+
+        <!-- Choice group (Figma 2445:6853) — single select + arrow keys handled by site.js (fires aitr-change) -->
+        <fieldset class="contribute-choice">
+          <legend class="aitr-body-m-strong contribute-choice__legend" id="contribute-choice-legend">What would you like to do?</legend>
+          <div class="aitr-chip-row" id="contribute-kind-group" role="radiogroup" aria-labelledby="contribute-choice-legend">
+            <wa-button class="aitr-chip" appearance="outlined" size="small" pill aria-pressed="true" data-value="request-new-tool">Request New Tool</wa-button>
+            <wa-button class="aitr-chip" appearance="outlined" size="small" pill aria-pressed="false" data-value="report-error-or-update">Report Error or Update</wa-button>
+            <wa-button class="aitr-chip" appearance="outlined" size="small" pill aria-pressed="false" data-value="general-feedback">General Feedback</wa-button>
+          </div>
+          <!-- Mobile (390): the chip row becomes a Query Field Type=Select 56/r16 (Figma 2445:7188, 3 Oct); mirrors the radiogroup -->
+          <wa-select class="aitr-field contribute-choice__select" id="contribute-kind-select" value="request-new-tool" size="large" aria-labelledby="contribute-choice-legend">
+            <wa-option value="request-new-tool">Request New Tool</wa-option>
+            <wa-option value="report-error-or-update">Report Error or Update</wa-option>
+            <wa-option value="general-feedback">General Feedback</wa-option>
+          </wa-select>
+          <input type="hidden" name="kind" id="contribute-kind" value="request-new-tool">
+        </fieldset>
+
+        <!-- Field / Tool Name (Figma 2445:6895) -->
+        <div class="aitr-form-field" data-state="default" data-field="toolName">
+          <label class="aitr-form-field__label" for="contribute-tool-name">Tool Name <span class="aitr-form-field__required" aria-hidden="true">*</span><span class="aitr-visually-hidden"> (required)</span></label>
+          <wa-input class="aitr-field" id="contribute-tool-name" name="toolName" size="large" placeholder="e.g. AI Tool, Claude, Cursor" required autocomplete="off" autocapitalize="words" enterkeyhint="next"></wa-input>
+          <p class="aitr-form-field__error contribute-field-error" id="contribute-tool-name-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="contribute-field-error__text"></span></p>
+        </div>
+
+        <!-- Field / Website URL (Figma 2445:6919) -->
+        <div class="aitr-form-field" data-state="default" data-field="website">
+          <label class="aitr-form-field__label" for="contribute-website">Website URL <span class="aitr-form-field__optional">(optional)</span></label>
+          <wa-input class="aitr-field" id="contribute-website" name="website" type="url" inputmode="url" size="large" placeholder="https://example.com" autocomplete="url" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next"></wa-input>
+          <p class="aitr-form-field__error contribute-field-error" id="contribute-website-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="contribute-field-error__text"></span></p>
+        </div>
+
+        <!-- Field / Email (Figma 2445:6936) -->
+        <div class="aitr-form-field" data-state="default" data-field="email">
+          <label class="aitr-form-field__label" for="contribute-email">Email <span class="aitr-form-field__optional">(optional — for follow-up)</span></label>
+          <wa-input class="aitr-field" id="contribute-email" name="email" type="email" inputmode="email" size="large" placeholder="you@company.com" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next"></wa-input>
+          <p class="aitr-form-field__error contribute-field-error" id="contribute-email-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="contribute-field-error__text"></span></p>
+        </div>
+
+        <!-- Field / Details (Figma 2445:6953) -->
+        <div class="aitr-form-field" data-state="default" data-field="details">
+          <label class="aitr-form-field__label" for="contribute-details">Details <span class="aitr-form-field__required" aria-hidden="true">*</span><span class="aitr-visually-hidden"> (required)</span></label>
+          <wa-textarea class="aitr-field" id="contribute-details" name="details" rows="5" size="large" resize="none" placeholder="Please provide as much detail as possible..." required autocapitalize="sentences" enterkeyhint="enter"></wa-textarea>
+          <p class="aitr-form-field__error contribute-field-error" id="contribute-details-error"><wa-icon library="lucide" name="circle-alert" aria-hidden="true"></wa-icon><span class="contribute-field-error__text"></span></p>
+        </div>
+
+        <!-- Submit (Figma 2445:6871) -->
+        <div class="contribute-form__actions">
+          <wa-button id="contribute-submit" class="aitr-form__submit" type="submit" variant="brand" appearance="accent" pill size="large">Submit</wa-button>
+        </div>
+      </form>
+
+      <!-- Confirmation: replaces the form on success (Figma 2477:10497) -->
+      <div id="contribute-confirmation" class="aitr-confirmation contribute-confirmation" role="status" data-layout="inline" data-actions="inline" hidden>
+        <span class="aitr-badge-success">Submitted</span>
+        <h2 class="aitr-confirmation__heading aitr-heading-3xl" id="contribute-confirmation-heading" tabindex="-1">Thanks — your submission is in</h2>
+        <p class="aitr-body-l">The ROAI team reviews every submission, usually within 2 business days. If you left an email, we’ll write if we need more detail.</p>
+        <div class="aitr-confirmation__actions">
+          <wa-button id="contribute-again" variant="neutral" appearance="outlined" pill size="large">Submit another</wa-button>
+          <a class="aitr-link" data-arrow="trailing" href="browse.html">Browse tools <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="aitr-footer"></footer>
+
+<script type="module" src="js/site.js"></script>
+<script type="module" src="js/pages/contribute.js"></script>
+</body>
+</html>

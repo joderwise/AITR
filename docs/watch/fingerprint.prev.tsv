@@ -1,0 +1,68 @@
+# id	name	w	h	children	textHash	instances	geoHash	styleHash   — taken 2026-10-03T23:10Z (supersedes fingerprint.prev.tsv). styleHash added: image fills, solid colours, visibility, radius, instance variant props. Changes vs prev: Browse D/T/M + Search loading + Related Tools marks → Tool=Generic instance with white fill + vendor image (circular logos); Contribute Mobile −92; Tool detail Mobile −43 (16, 17, Unlock error), Loading Mobile −17; 13.3 marks. See docs/GAPS.md 3 Oct (late) entry.
+2367:14	Read me	1440	463	3	90ae6af1	0	c8be8284	a90386a6
+2433:4535	11 · Home · Desktop	1440	2953	11	b3c6cb96	75	54aac60f	6581224c
+2433:5225	11 · Home · Tablet	834	3965	11	1e3ed1e6	77	bbb9d2c	4c2b8773
+2433:5886	11 · Home · Mobile	390	5025	11	7d10c7af	57	8aca2f0d	42021dcf
+2437:5107	12 · Browse Tools · Desktop	1440	2031	6	52bb4c22	177	a3a8053f	cd905bb8
+2437:5675	12 · Browse Tools · Tablet	834	2659	6	52bb4c22	179	4a4deca8	d912e05f
+2437:6260	12 · Browse Tools · Mobile	390	4617	6	cd94ba99	177	1c039b84	f662876c
+2442:6724	14 · For Business · Desktop	1440	3492	10	9f9bdab7	82	f6314967	13989fc0
+2442:7246	14 · For Business · Tablet	834	3944	10	70f116e1	83	515a9f13	65791c78
+2442:7756	14 · For Business · Mobile	390	4522	10	64bc2897	81	1c9313c0	e4dcbbe6
+2445:6807	15 · Contribute · Desktop	1440	1143	4	f61b787d	21	ea9a1033	2bf9f668
+2445:6985	15 · Contribute · Tablet	834	1285	4	364863f	22	4813bb25	85b9459c
+2445:7152	15 · Contribute · Mobile	390	1239	4	610ecd11	19	3ba23764	e2a25e42
+2447:6838	16 · Tool detail · AI Tool · Desktop	1440	2827	9	9ffee28e	155	a6e91f8d	baffbe3
+2447:7729	16 · Tool detail · AI Tool · Tablet	834	2963	9	42fa659b	112	74bf00fa	1bd3596e
+2447:8480	16 · Tool detail · AI Tool · Mobile	390	3327	9	a00d4e3c	106	c621b0f0	f5f47848
+2447:9277	17 · Tool detail · AI Tool · unlocked · Desktop	1440	3909	9	6c49ae63	141	5da9024b	f346eaeb
+2447:10028	17 · Tool detail · AI Tool · unlocked · Tablet	834	4487	9	d9974d1c	98	4b169366	6c4ed9cc
+2447:10711	17 · Tool detail · AI Tool · unlocked · Mobile	390	5206	9	79e8c575	92	23902f1c	5300e6a0
+2477:7522	12 · Browse Tools · No results · Desktop	1440	1016	5	e4b0e24	17	a7343618	5e4b0beb
+2477:7690	12 · Browse Tools · No results · Tablet	834	959	5	e4b0e24	19	b37b4cb	ef237288
+2477:7861	12 · Browse Tools · No results · Mobile	390	913	5	6e72a8eb	17	c156619a	9546eced
+2477:8021	12 · Browse Tools · Loading · Desktop	1440	935	5	a5f41a28	19	3930b73d	9797c44a
+2477:8660	12 · Browse Tools · Loading · Tablet	834	1078	5	a5f41a28	21	3a5cd267	e3e2b609
+2477:9302	12 · Browse Tools · Loading · Mobile	390	1084	5	c64151a1	16	8a2da97a	784ef509
+2477:9898	16 · Tool detail · AI Tool · Error (tier data) · Desktop	1440	2336	9	14a5bc7f	96	eebb4631	d7c9840f
+2477:10077	16 · Tool detail · AI Tool · Error (tier data) · Tablet	834	2404	9	bd248a29	97	74ad48cd	3ccbf95f
+2477:10239	16 · Tool detail · AI Tool · Error (tier data) · Mobile	390	2672	9	bdaaa56a	95	7243f945	6f7c1e08
+2477:10392	15 · Contribute · Success · Desktop	1440	719	4	e14023cc	13	c8c27af8	369ca371
+2477:10513	15 · Contribute · Success · Tablet	834	814	4	a7e282c6	14	ff998686	e911d91e
+2477:10590	15 · Contribute · Success · Mobile	390	908	4	bd459e9b	12	99a1d8af	83576a1c
+2477:10657	14 · For Business · Get in touch · Success · Desktop	1440	3281	10	c2aeaf31	72	a684817d	18ce186b
+2477:10940	14 · For Business · Get in touch · Success · Tablet	834	3758	10	ad1730ab	73	64dc1c76	fb1e13a3
+2477:11220	14 · For Business · Get in touch · Success · Mobile	390	4157	10	2ef15c35	71	a37595cc	b7207c91
+2478:9636	15 · Contribute · Error (form) · Desktop	1440	1309	4	a595a279	24	14650db6	66541ef
+2478:9809	15 · Contribute · Error (form) · Tablet	834	1447	4	41a73f53	25	be6e94ed	20911263
+2478:9960	15 · Contribute · Error (form) · Mobile	390	1436	4	19f3b5f7	22	35cc94dc	1379a39d
+2483:9916	16 · Tool detail · AI Tool · Loading (tier data) · Desktop	1440	2551	9	15243ef5	136	69c5df9a	d5fddbc7
+2483:10184	16 · Tool detail · AI Tool · Loading (tier data) · Tablet	834	2589	9	c9ab7d2b	102	bbda1a18	ee5ed36b
+2483:10352	16 · Tool detail · AI Tool · Loading (tier data) · Mobile	390	2846	9	2d1058e9	96	3cb984ae	6994c00c
+2483:10510	12 · Browse Tools · Search loading · Desktop	1440	2031	7	600faf07	178	6724264	bf811048
+2483:10696	12 · Browse Tools · Search loading · Tablet	834	2659	7	198e5c67	180	cd98c89	f032c65f
+2483:10885	12 · Browse Tools · Search loading · Mobile	390	4617	7	e45ce7bc	178	17a4a0d1	2c2b272c
+2559:12613	13.1 · How we assess · What is ROAI · Desktop	1440	1271	5	71c38532	23	ac33ab6b	19c43cc2
+2559:12769	13.1 · How we assess · What is ROAI · Tablet	834	1371	5	dd392550	24	d1267109	726ad41
+2559:12915	13.1 · How we assess · What is ROAI · Mobile	390	1849	5	9f30bf76	17	23eb8517	990ba139
+2559:13029	13.2 · How we assess · How we rate a tool · Desktop	1440	1088	5	c73f79e0	18	4dc7e53c	47e704ba
+2559:13121	13.2 · How we assess · How we rate a tool · Tablet	834	1045	5	f2a1b1ee	19	1962d722	37eb362b
+2559:13210	13.2 · How we assess · How we rate a tool · Mobile	390	1209	5	81ac62cc	12	5046737a	eb699a63
+2559:13265	13.3 · How we assess · Every pricing tier, separately · Desktop	1440	1178	5	4ca84aad	22	13cecc9e	5c64fc7f
+2559:13369	13.3 · How we assess · Every pricing tier, separately · Tablet	834	1109	5	483a767f	23	538bd77a	fc34e6a6
+2559:13470	13.3 · How we assess · Every pricing tier, separately · Mobile	390	1249	5	ef5a0bb3	16	7ef76d17	4bfc05db
+2559:13536	13.4 · How we assess · The four safety levels · Desktop	1440	1066	5	14ed0565	30	225d1e09	aac6b32
+2559:13724	13.4 · How we assess · The four safety levels · Tablet	834	1209	5	7eb310d3	31	caf1bc02	5bf09929
+2559:13909	13.4 · How we assess · The four safety levels · Mobile	390	1633	5	9b8e1474	24	d1c4562e	d1a6b2
+2559:14060	13.5 · How we assess · What we check · Desktop	1440	1306	5	62be0248	22	646621b1	7aa44278
+2559:14182	13.5 · How we assess · What we check · Tablet	834	1393	5	693c610a	23	b880b99a	b3ef754f
+2559:14301	13.5 · How we assess · What we check · Mobile	390	1791	5	7c36f3f	16	8acaed46	97605f0e
+2559:14386	13.6 · How we assess · Where our facts come from · Desktop	1440	1046	5	b43e736a	18	a658d20f	114ea1d2
+2559:14477	13.6 · How we assess · Where our facts come from · Tablet	834	977	5	9aa755b0	19	cbca71d4	e2333b1d
+2559:14565	13.6 · How we assess · Where our facts come from · Mobile	390	1063	5	cf596a03	12	37d78787	67797534
+2559:14619	13.7 · How we assess · How current it is · Desktop	1440	929	5	b58aa8f9	18	1bd2590d	a9cdbb7d
+2559:14709	13.7 · How we assess · How current it is · Tablet	834	876	5	bc1e446f	19	319e17a8	c9b8b6f8
+2559:14797	13.7 · How we assess · How current it is · Mobile	390	926	5	2faf5792	12	2e9d636b	cffd65af
+2579:13008	16 · Tool detail · AI Tool · Unlock error · Desktop	1440	2827	9	30356c9b	156	827a5b80	cb35fea1
+2579:13566	16 · Tool detail · AI Tool · Unlock error · Tablet	834	2963	9	9896bcb6	113	18936ed1	10026a4e
+2579:14060	16 · Tool detail · AI Tool · Unlock error · Mobile	390	3327	9	ca09e255	107	42eceb9d	55f94acc

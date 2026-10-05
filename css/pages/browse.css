@@ -1,0 +1,227 @@
+/* 12 · Browse Tools — page-specific layout only.
+   Figma: Desktop 2437:5107 · Tablet 2437:5675 · Mobile 2437:6260
+   States: No results 2477:7522 · Loading 2477:8021 · Search loading 2483:10510
+   Generic chrome / components live in site.css + aitr-components.css. Invented classes are prefixed .browse-. */
+
+/* ---------- Header (2437:5141): top 80 / bottom 24, gap 32 ---------- */
+.browse-header {
+  position: relative;
+  z-index: 3; /* search listbox must paint above the results grid */
+  display: grid;
+  gap: var(--aitr-space-xl);
+  padding-block: var(--aitr-space-5xl) var(--aitr-space-l);
+}
+.browse-title { margin: 0; color: var(--aitr-color-text-normal); }
+
+/* ---------- Filter bar: 1fr 240 240, gap 12 ---------- */
+.browse-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) calc(var(--aitr-space-6xl) * 2) calc(var(--aitr-space-6xl) * 2);
+  gap: var(--aitr-space-s);
+  align-items: center;
+  margin: 0;
+}
+.browse-search { position: relative; min-inline-size: 0; }
+.browse-filters .aitr-field { inline-size: 100%; }
+
+/* Query Field · Appearance=Glass (2413:25 / 2413:32): Glass/Fill strong + Glass/Rim + Elevation/Card, radius 16, 18px text.
+   Raw glass values are the ones the library keeps raw (SPEC §2). */
+.browse-filters .aitr-field[appearance="glass"]::part(base),
+.browse-filters wa-select.aitr-field[appearance="glass"]::part(combobox) {
+  block-size: var(--aitr-space-4xl);
+  border: var(--aitr-border-width-s) solid rgb(255 255 255 / 0.95); /* Glass/Rim (raw per SPEC §2) */
+  border-radius: var(--aitr-border-radius-l);
+  font-size: var(--aitr-font-size-l);
+  color: var(--aitr-color-text-normal);
+  transition:
+    border-color var(--aitr-transition-fast) var(--aitr-transition-easing-standard),
+    box-shadow var(--aitr-transition-fast) var(--aitr-transition-easing-standard);
+}
+.browse-filters wa-input.aitr-field[appearance="glass"]::part(base) { padding-inline: var(--aitr-space-l); }
+.browse-filters wa-select.aitr-field[appearance="glass"]::part(combobox) { padding-inline: var(--aitr-space-m); }
+.browse-filters .aitr-field[appearance="glass"]::part(input),
+.browse-filters .aitr-field[appearance="glass"]::part(display-input) {
+  block-size: 100%;
+  font: var(--aitr-font-weight-normal) var(--aitr-font-size-l) / var(--aitr-line-height-normal) var(--aitr-font-family-body);
+  color: var(--aitr-color-text-normal);
+}
+.browse-filters .aitr-field[appearance="glass"]::part(input)::placeholder { color: var(--aitr-color-text-subtle); opacity: 1; }
+.browse-filters .aitr-field[appearance="glass"]::part(start),
+.browse-filters .aitr-field[appearance="glass"]::part(expand-icon),
+.browse-filters .aitr-field[appearance="glass"]::part(clear-button) {
+  color: var(--aitr-color-text-subtle);
+  font-size: var(--aitr-form-control-icon-size);
+}
+/* Focus / Search-loading = Brand border 1.5px (Query Field State=Focus / Loading) */
+.browse-filters .aitr-field[appearance="glass"]:focus-within::part(base),
+.browse-filters .aitr-field[appearance="glass"]:focus-within::part(combobox),
+.browse-search[data-loading] .aitr-field::part(base) {
+  border-color: var(--aitr-color-brand-fill-loud);
+  border-width: var(--aitr-border-width-s-plus);
+}
+/* ⌘K hint: Show shortcut=false on the Browse glass field; shown while the field is focused / searching. Hidden on touch. */
+.browse-kbd { display: none; }
+.browse-search:focus-within wa-input.aitr-field[appearance="glass"] .browse-kbd,
+.browse-search[data-loading] wa-input.aitr-field[appearance="glass"] .browse-kbd { display: inline-flex; }
+@media (hover: none) and (pointer: coarse) { .browse-search .browse-kbd { display: none; } }
+@media (max-width: 1279px) {
+  .browse-search:focus-within wa-input.aitr-field[appearance="glass"] .browse-kbd,
+  .browse-search[data-loading] wa-input.aitr-field[appearance="glass"] .browse-kbd { display: none; }
+}
+
+/* Listbox skeleton (Query Field State=Loading, 2483:10664): p 6, radius 16, Float shadow, 3 rows */
+.browse-listbox {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  z-index: 2;
+  margin-block-start: var(--aitr-space-xs);
+  padding: calc(var(--aitr-space-s) / 2);
+  border: var(--aitr-border-width-s) solid var(--aitr-color-surface-border);
+  box-shadow: var(--aitr-shadow-float);
+  animation: browse-listbox-in var(--aitr-transition-slow) var(--aitr-transition-easing-enter) both;
+}
+.browse-listbox[hidden] { display: none; }
+.browse-listbox__label { padding: var(--aitr-space-xs) 0 calc(var(--aitr-space-s) / 2) var(--aitr-space-s); }
+.browse-listbox[aria-busy="true"] .browse-listbox__skeleton {
+  display: flex;
+  min-block-size: 0;
+  align-items: center;
+  gap: var(--aitr-space-s);
+  padding: calc(var(--aitr-space-xs) + var(--aitr-space-3xs)) calc(var(--aitr-space-s) + var(--aitr-space-3xs)) calc(var(--aitr-space-xs) + var(--aitr-space-3xs)) var(--aitr-space-s);
+  border-radius: var(--aitr-border-radius-m);
+}
+.browse-listbox__text { display: grid; gap: var(--aitr-space-xs); flex: 1; min-inline-size: 0; }
+.browse-listbox .aitr-bone { display: block; inline-size: auto; block-size: calc(var(--aitr-space-xs) + var(--aitr-space-3xs)); }
+.browse-listbox .browse-listbox__name { block-size: var(--aitr-space-s); }
+.browse-listbox .browse-listbox__logo {
+  inline-size: var(--aitr-tag-height);
+  block-size: var(--aitr-tag-height);
+  border-radius: var(--aitr-border-radius-s);
+  flex: none;
+}
+@keyframes browse-listbox-in {
+  from { opacity: 0; transform: translateY(var(--aitr-motion-distance-m)); }
+}
+
+/* ---------- Results (2437:5167): top 24 / bottom 112, gap 20 ---------- */
+.browse-results {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: calc(var(--aitr-space-2xl) / 2);
+  padding-block: var(--aitr-space-l) calc(var(--aitr-space-5xl) + var(--aitr-space-xl));
+}
+.browse-count-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--aitr-space-m);
+  min-block-size: var(--aitr-space-l);
+}
+.browse-count { margin: 0; color: var(--aitr-color-text-quiet); }
+.browse-count strong { font-weight: var(--aitr-font-weight-semibold); }
+.browse-clear {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: var(--aitr-space-2xs) 0;
+  cursor: pointer;
+}
+.browse-clear[hidden] { display: none; }
+
+/* Grid 3-up → 2-up → 1-up */
+.browse-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--aitr-layout-gutter);
+}
+.browse-grid[hidden] { display: none; }
+.browse-grid > .aitr-registry-card[hidden] { display: none; }
+
+/* Registry Card internals that the page composes: identity column fills, chevron right, agentic flag inline */
+.browse-grid .aitr-registry-card__top > div { flex: 1; min-inline-size: 0; }
+.browse-card__agentic {
+  font-size: var(--aitr-space-m);
+  color: var(--aitr-color-text-subtle);
+  vertical-align: middle;
+  margin-inline-start: var(--aitr-space-3xs);
+}
+.browse-card__open {
+  flex: none;
+  margin-inline-start: auto;
+  font-size: var(--aitr-form-control-icon-size);
+  color: var(--aitr-color-text-subtle);
+  transition: transform var(--aitr-transition-fast) var(--aitr-transition-easing-standard);
+}
+.browse-grid .aitr-registry-card:hover .browse-card__open { transform: translateX(var(--aitr-motion-distance-s)); }
+
+/* List enter: fade + rise 8, ~30 ms stagger (max 8) — re-run when filters change */
+.browse-grid > .aitr-registry-card.is-entering {
+  animation: browse-card-in var(--aitr-transition-normal) var(--aitr-transition-easing-enter) both;
+  animation-delay: calc(min(var(--i, 0), 7) * var(--aitr-motion-stagger-tight) / 2);
+}
+@keyframes browse-card-in {
+  from { opacity: 0; transform: translateY(var(--aitr-motion-distance-m)); }
+}
+
+/* Loading: 6 skeleton cards (3 on mobile) */
+.browse-grid[aria-busy="true"] > .aitr-registry-card { min-block-size: calc(var(--aitr-space-6xl) + var(--aitr-space-l)); }
+
+/* Empty State: page-level wrapper only (component styling is generic) */
+.browse-empty[hidden] { display: none; }
+.browse-empty__actions {
+  display: grid;
+  justify-items: center;
+  gap: var(--aitr-space-m);
+  padding-block-start: var(--aitr-space-xs);
+}
+
+/* Load more row: top 16, gap 12, centred */
+.browse-load-more {
+  display: grid;
+  justify-items: center;
+  gap: var(--aitr-space-s);
+  padding-block-start: var(--aitr-space-m);
+}
+.browse-load-more[hidden] { display: none; }
+.browse-load-more__caption { margin: 0; color: var(--aitr-color-text-subtle); }
+
+/* ---------- Tablet (2437:5675): header 60/20 gap 24 · filters wrap · results 20/84 gap 16 · 2-up ---------- */
+@media (max-width: 1279px) {
+  .browse-header {
+    gap: var(--aitr-space-l);
+    padding-block: calc(var(--aitr-space-5xl) * 0.75) calc(var(--aitr-space-2xl) / 2);
+  }
+  .browse-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .browse-search { grid-column: 1 / -1; }
+  .browse-results {
+    gap: var(--aitr-space-m);
+    padding-block: calc(var(--aitr-space-2xl) / 2) calc((var(--aitr-space-5xl) + var(--aitr-space-xl)) * 0.75);
+  }
+  .browse-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- Mobile (2437:6260): header 40/12 gap 20 · filters stack · results 12/56 gap 12 · 1-up · 3 skeletons ---------- */
+@media (max-width: 767px) {
+  .browse-header {
+    gap: var(--aitr-space-section-inner);
+    padding-block: var(--aitr-space-2xl) var(--aitr-space-s);
+  }
+  .browse-filters { grid-template-columns: minmax(0, 1fr); }
+  .browse-results {
+    gap: var(--aitr-space-s);
+    padding-block: var(--aitr-space-s) calc((var(--aitr-space-5xl) + var(--aitr-space-xl)) * 0.5);
+  }
+  .browse-grid { grid-template-columns: minmax(0, 1fr); }
+  .browse-grid[aria-busy="true"] > .aitr-registry-card:nth-child(n + 4) { display: none; }
+  .browse-count-row { flex-wrap: wrap; }
+}
+
+/* 5 Oct spacing audit: cards are 147 high in every frame (one-line name + one-line meta) → meta/name truncate instead of wrapping; mobile grid gap 16; count row 18 */
+.browse-grid .aitr-registry-card__top > div { overflow: hidden; }
+.browse-grid .aitr-registry-card__name { display: inline-block; max-inline-size: calc(100% - 28px); vertical-align: bottom; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.browse-grid .aitr-registry-card__meta { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.browse-count-row { min-block-size: 18px; block-size: auto; }
+@media (max-width: 767px) { .browse-grid { gap: var(--aitr-space-m); } }
+.browse-grid > .aitr-registry-card { min-block-size: 147px; box-sizing: border-box; }

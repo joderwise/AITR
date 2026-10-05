@@ -1,0 +1,169 @@
+/* AITR component styles — the code side of the Figma Code Connect templates in code-connect/.
+   Load after Web Awesome 3.11 and aitr-tokens.css:
+     <link rel="stylesheet" href="aitr-tokens.css">
+     <link rel="stylesheet" href="aitr-components.css">
+   Web Awesome elements (wa-button, wa-input, wa-select, wa-tag) are styled through their
+   documented ::part() hooks only. Everything else is plain HTML + these classes.
+   Every value is a var(--aitr-*) token; no raw colours. */
+
+/* ---------- shared ---------- */
+:where(.aitr-chip, .aitr-citation, .aitr-level-card, .aitr-category-tile, .aitr-registry-card a, .aitr-brand):focus-visible {
+  outline: var(--aitr-focus-ring-width) solid var(--aitr-color-focus);
+  outline-offset: var(--aitr-focus-ring-offset);
+}
+:where(.aitr-chip, .aitr-level-card, .aitr-category-tile, .aitr-registry-card) {
+  transition:
+    transform var(--aitr-transition-fast) var(--aitr-transition-easing-standard),
+    box-shadow var(--aitr-transition-fast) var(--aitr-transition-easing-standard),
+    background-color var(--aitr-transition-fast) var(--aitr-transition-easing-standard);
+}
+/* Pressed = Figma "State=Pressed": Mix/Active layer + press scale */
+:where(.aitr-level-card, .aitr-category-tile):active { transform: scale(var(--aitr-motion-scale-press)); }
+.aitr-skeleton, [aria-busy="true"] .aitr-bone {
+  background: var(--aitr-color-overlay-inline);
+  border-radius: var(--aitr-border-radius-pill);
+  animation: aitr-pulse 1.2s linear infinite;
+}
+@keyframes aitr-pulse { 50% { opacity: 0.5; } }
+@media (prefers-reduced-motion: reduce) {
+  .aitr-skeleton, [aria-busy="true"] .aitr-bone { animation: none; }
+  :where(.aitr-level-card, .aitr-category-tile):active { transform: none; }
+}
+.aitr-visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- verdict tones (Chip Tone ≠ Neutral, Verdict Card, Safety Level Card) ---------- */
+[data-verdict="business-ready"]     { --v-ground: var(--aitr-color-verdict-business-ready-ground);     --v-boundary: var(--aitr-color-verdict-business-ready-boundary);     --v-text: var(--aitr-color-verdict-business-ready-text); }
+[data-verdict="internal-work-only"] { --v-ground: var(--aitr-color-verdict-internal-work-only-ground); --v-boundary: var(--aitr-color-verdict-internal-work-only-boundary); --v-text: var(--aitr-color-verdict-internal-work-only-text); }
+[data-verdict="public-data-only"]   { --v-ground: var(--aitr-color-verdict-public-data-only-ground);   --v-boundary: var(--aitr-color-verdict-public-data-only-boundary);   --v-text: var(--aitr-color-verdict-public-data-only-text); }
+[data-verdict="unsafe"]             { --v-ground: var(--aitr-color-verdict-unsafe-ground);             --v-boundary: var(--aitr-color-verdict-unsafe-boundary);             --v-text: var(--aitr-color-verdict-unsafe-text); }
+
+wa-tag.aitr-verdict-tag::part(base) {
+  background: var(--v-ground);
+  border: 1px solid var(--v-boundary);
+  color: var(--v-text);
+  font: var(--aitr-font-weight-medium) var(--aitr-font-size-xs) / 1 var(--aitr-font-family-body);
+}
+
+/* ---------- Chip (Tone=Neutral) = wa-button toggle ---------- */
+wa-button.aitr-chip::part(base) {
+  background: var(--aitr-color-surface-raised);
+  border-color: var(--aitr-color-neutral-border-normal);
+  color: var(--aitr-color-text-normal);
+}
+wa-button.aitr-chip[aria-pressed="true"]::part(base) {
+  background: var(--aitr-color-brand-fill-normal);
+  border-color: var(--aitr-color-brand-border-loud);
+  color: var(--aitr-color-brand-on-quiet);
+}
+
+/* ---------- Tag (provenance trace) ---------- */
+.aitr-trace {
+  display: inline-flex; align-items: center; gap: var(--aitr-space-2xs);
+  padding: var(--aitr-space-3xs) var(--aitr-space-xs);
+  border-radius: var(--aitr-border-radius-pill);
+  background: var(--aitr-color-surface-lowered);
+  color: var(--aitr-color-text-quiet);
+  font: var(--aitr-font-size-2xs) / 1.4 var(--aitr-font-family-code);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.aitr-trace::before { content: ""; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--aitr-color-accent-signal); }
+
+/* ---------- Citation ---------- */
+.aitr-citation {
+  display: inline-flex; align-items: center; gap: var(--aitr-space-2xs);
+  padding: var(--aitr-space-3xs) var(--aitr-space-xs);
+  border-radius: var(--aitr-border-radius-pill);
+  background: var(--aitr-color-neutral-fill-normal);
+  color: var(--aitr-color-text-quiet);
+  font: var(--aitr-font-size-2xs) / 1.4 var(--aitr-font-family-code);
+  text-transform: uppercase; text-decoration: none;
+}
+.aitr-citation__number { color: var(--aitr-color-accent-signal-text); font-weight: var(--aitr-font-weight-semibold); }
+.aitr-citation:hover { background: color-mix(in srgb, var(--aitr-color-neutral-fill-normal), var(--aitr-color-mix-hover)); color: var(--aitr-color-text-normal); }
+.aitr-citation:active { background: color-mix(in srgb, var(--aitr-color-neutral-fill-normal), var(--aitr-color-mix-active)); }
+
+/* ---------- Query Field (wa-input / wa-select) ---------- */
+:is(wa-input, wa-select).aitr-field::part(base),
+wa-select.aitr-field::part(combobox) { border-color: var(--aitr-form-control-border-color); }
+.aitr-search-listbox {
+  margin: var(--aitr-space-2xs) 0 0; padding: var(--aitr-space-xs); list-style: none;
+  background: var(--aitr-color-surface-raised); border-radius: var(--aitr-border-radius-l); box-shadow: var(--aitr-shadow-l);
+}
+.aitr-search-listbox [role="option"] { display: flex; align-items: center; gap: var(--aitr-space-s); padding: var(--aitr-space-s); border-radius: var(--aitr-border-radius-m); }
+.aitr-search-listbox [role="option"][aria-selected="true"] { background: var(--aitr-color-surface-lowered); }
+
+/* ---------- Score Meter ---------- */
+.aitr-score { display: grid; gap: var(--aitr-space-xs); }
+.aitr-score__head { display: flex; justify-content: space-between; align-items: baseline; }
+.aitr-score__name { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-l) / 1.4 var(--aitr-font-family-heading); color: var(--aitr-color-text-normal); }
+.aitr-score__value { font: var(--aitr-font-size-xs) / 1.4 var(--aitr-font-family-code); color: var(--aitr-color-accent-signal-text); }
+.aitr-score__track {
+  block-size: 10px;
+  /* 10 segments, the first --value filled */
+  background:
+    linear-gradient(90deg, var(--aitr-color-brand-fill-loud) calc(var(--value, 0) * 10%), var(--aitr-color-neutral-fill-normal) 0);
+  mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 4px), transparent 0 10%);
+  border-radius: var(--aitr-border-radius-pill);
+}
+.aitr-score[aria-busy="true"] .aitr-score__track { --value: 0; animation: aitr-pulse 1.2s linear infinite; }
+.aitr-score[aria-busy="true"] .aitr-score__value { color: var(--aitr-color-text-subtle); }
+
+/* ---------- Verdict Card ---------- */
+.aitr-verdict-card {
+  display: grid; gap: var(--aitr-space-s);
+  padding: var(--aitr-space-xl);
+  border-radius: var(--aitr-border-radius-xl);
+  background: var(--v-ground); border: 1px solid var(--v-boundary); color: var(--v-text);
+}
+.aitr-verdict-card__eyebrow, .aitr-verdict-card__trace { margin: 0; font: var(--aitr-font-size-2xs) / 1.4 var(--aitr-font-family-code); text-transform: uppercase; }
+.aitr-verdict-card__title { margin: 0; font: var(--aitr-font-weight-bold) var(--aitr-font-size-5xl) / 1.05 var(--aitr-font-family-heading); }
+.aitr-verdict-card__body { margin: 0; font: var(--aitr-font-size-m) / 1.6 var(--aitr-font-family-body); }
+.aitr-verdict-card__trace { display: flex; align-items: center; gap: var(--aitr-space-xs); }
+.aitr-verdict-card__trace::before { content: ""; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--v-boundary); }
+.aitr-verdict-card[aria-busy="true"] { background: var(--aitr-color-surface-lowered); border-color: var(--aitr-color-surface-border); }
+@media (max-width: 767px) { .aitr-verdict-card { padding: var(--aitr-space-l); } .aitr-verdict-card__title { font-size: var(--aitr-font-size-3xl); } }
+
+/* ---------- Safety Level Card ---------- */
+.aitr-level-card {
+  display: grid; gap: var(--aitr-space-s); padding: var(--aitr-space-l);
+  border-radius: var(--aitr-border-radius-l); background: var(--aitr-color-surface-raised);
+  border: 1px solid transparent; color: var(--aitr-color-text-quiet); text-decoration: none;
+}
+.aitr-level-card:hover { border-color: var(--v-boundary); box-shadow: var(--aitr-shadow-m); }
+.aitr-level-card__head { display: flex; justify-content: space-between; align-items: center; }
+.aitr-level-card__count { font: var(--aitr-font-weight-heading) var(--aitr-font-size-3xl) / 1 var(--aitr-font-family-heading); color: var(--aitr-color-text-normal); }
+.aitr-level-card__link { color: var(--aitr-color-brand-on-quiet); font: var(--aitr-font-weight-medium) var(--aitr-font-size-s) / 1.4 var(--aitr-font-family-body); }
+
+/* ---------- Category Tile ---------- */
+.aitr-category-tile {
+  display: flex; align-items: center; gap: var(--aitr-space-m); padding: var(--aitr-space-m) var(--aitr-space-l);
+  border-radius: var(--aitr-border-radius-l); background: var(--aitr-color-surface-raised); box-shadow: var(--aitr-shadow-s);
+  color: var(--aitr-color-text-normal); text-decoration: none;
+}
+.aitr-category-tile:hover { box-shadow: var(--aitr-shadow-m); }
+.aitr-category-tile__icon { display: grid; place-items: center; inline-size: 60px; block-size: 60px; border-radius: var(--aitr-border-radius-m); background: var(--aitr-color-surface-lowered); }
+.aitr-category-tile__text { display: grid; flex: 1; }
+.aitr-category-tile__name { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-m) / 1.4 var(--aitr-font-family-body); }
+.aitr-category-tile__count { font: var(--aitr-font-size-xs) / 1.4 var(--aitr-font-family-body); color: var(--aitr-color-text-subtle); }
+
+/* ---------- Registry Card ---------- */
+.aitr-registry-card {
+  position: relative; display: grid; gap: var(--aitr-space-m); padding: var(--aitr-space-l);
+  border-radius: var(--aitr-border-radius-l); background: var(--aitr-color-surface-raised); box-shadow: var(--aitr-shadow-s);
+}
+.aitr-registry-card:hover { box-shadow: var(--aitr-shadow-m); transform: translateY(-2px); }
+.aitr-registry-card:active { box-shadow: var(--aitr-shadow-s); transform: none; }
+.aitr-registry-card__top { display: flex; align-items: center; gap: var(--aitr-space-s); }
+.aitr-registry-card__name { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-m) / 1.4 var(--aitr-font-family-body); color: var(--aitr-color-text-normal); text-decoration: none; }
+.aitr-registry-card__name::after { content: ""; position: absolute; inset: 0; } /* stretched link */
+.aitr-registry-card__meta, .aitr-registry-card__checked { font: var(--aitr-font-size-2xs) / 1.4 var(--aitr-font-family-code); color: var(--aitr-color-text-subtle); text-transform: uppercase; }
+.aitr-registry-card__footer { display: flex; justify-content: space-between; align-items: center; padding-block-start: var(--aitr-space-s); border-block-start: 1px solid var(--aitr-color-surface-border); }
+.aitr-registry-card[aria-busy="true"] .aitr-bone { display: block; block-size: 12px; }
+
+/* ---------- Tool Mark ---------- */
+.aitr-tool-mark { inline-size: 40px; block-size: 40px; padding: 9px; border-radius: var(--aitr-border-radius-m); background: var(--aitr-color-surface-raised); border: 1px solid var(--aitr-color-surface-border); object-fit: contain; }
+.aitr-tool-mark[aria-busy="true"] { display: inline-block; background: var(--aitr-color-surface-lowered); }
+
+/* ---------- Brand Lockup ---------- */
+.aitr-brand { display: inline-flex; align-items: center; text-decoration: none; }
+.aitr-brand img { block-size: 31px; inline-size: auto; }

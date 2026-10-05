@@ -1,0 +1,189 @@
+/* 14 · For Business — page-specific layout only.
+   Pattern styling (.aitr-list-item, .aitr-stat, .aitr-form-field, .aitr-confirmation, .aitr-glass, .aitr-table base)
+   lives in css/site.css; Code Connect components in css/aitr-components.css. Invented classes are prefixed .business-.
+   Section paddings copy the Figma Desktop frame (2442:6724); Tablet ×0.75, Mobile ×0.5 (2442:7246 / 2442:7756). */
+
+/* ---------- section rhythm ---------- */
+.aitr-section.business-section {
+  --business-pt: var(--aitr-space-section);
+  --business-pb: var(--aitr-space-section);
+  --business-k: 1;
+  position: relative;
+  padding-block: calc(var(--business-pt) * var(--business-k)) calc(var(--business-pb) * var(--business-k));
+}
+.aitr-section.business-hero       { --business-pt: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); --business-pb: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); }   /* 96 / 96 */
+.aitr-section.business-illusion   { --business-pt: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); --business-pb: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); }   /* 96 / 96 */
+.aitr-section.business-included   { --business-pt: var(--aitr-space-3xl); --business-pb: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); }                                  /* 48 / 96 */
+.aitr-section.business-governance { --business-pt: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); --business-pb: var(--aitr-space-3xl); }                                  /* 96 / 48 */
+.aitr-section.business-proof      { --business-pt: var(--aitr-space-3xl); --business-pb: calc(var(--aitr-space-4xl) + var(--aitr-space-xl)); }                                  /* 48 / 96 */
+.aitr-section.business-contact    { --business-pt: 0px; --business-pb: calc(var(--aitr-space-5xl) + var(--aitr-space-xl)); }                                                     /* 0 / 112 */
+
+/* ---------- hero ---------- */
+.business-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 460px;
+  gap: var(--aitr-space-5xl);
+  align-items: center;
+}
+.business-hero__copy {
+  display: grid;
+  gap: calc(var(--aitr-space-l) + var(--aitr-space-2xs)); /* 28 */
+  justify-items: start;
+}
+.business-product { gap: var(--aitr-space-s); margin: 0; color: var(--aitr-color-text-normal); } /* design: 36 logo + Body/M Strong, Text/Normal */
+.aitr-eyebrow.business-product img.business-product__logo { inline-size: 36px; block-size: 36px; object-fit: contain; }
+.business-hero__title { margin: 0; color: var(--aitr-color-text-normal); }
+.business-hero__lead  { margin: 0; color: var(--aitr-color-text-quiet); }
+
+.business-list { list-style: none; margin: 0; padding: 0; inline-size: 100%; }
+.business-list > li { margin: 0; } /* Web Awesome native styles indent every li by 18px */
+
+.business-registry {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--aitr-space-s);
+  min-inline-size: 0;
+}
+.business-registry__chevron {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  font-size: var(--aitr-form-control-icon-size);
+  color: var(--aitr-color-text-subtle);
+}
+
+/* ---------- two-column sections (copy | content) ---------- */
+.business-split__inner {
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
+  gap: var(--aitr-space-5xl);
+  align-items: start;
+}
+.business-split__head { display: grid; gap: var(--aitr-space-s); align-content: start; }
+.business-split__head h2 { margin: 0; color: var(--aitr-color-text-normal); }
+.business-split__lead { margin: 0; color: var(--aitr-color-text-quiet); }
+
+.business-illusion__body { display: grid; gap: calc(var(--aitr-space-m) + var(--aitr-space-2xs)); /* 20 */ }
+.business-illusion__body p { margin: 0; color: var(--aitr-color-text-normal); }
+.business-illusion__note { color: var(--aitr-color-text-quiet) !important; }
+.business-illusion__note strong { color: var(--aitr-color-text-normal); }
+
+/* ---------- What’s included table ---------- */
+.business-included__inner {
+  display: grid;
+  gap: calc(var(--aitr-space-l) + var(--aitr-space-2xs)); /* 28 */
+  justify-items: start;
+}
+.business-included__inner h2 { margin: 0; color: var(--aitr-color-text-normal); }
+/* Comfortable table (For Business): white header row with Body/M Strong plan names + Caption sub-line,
+   row labels Text/Normal, highlight column Surface/Lowered (same grey in head and body), 18/28 cell padding. */
+.business-table-wrap { inline-size: 100%; }
+.business-table { table-layout: fixed; }
+.business-table th,
+.business-table td {
+  padding: calc(var(--aitr-space-m) + var(--aitr-space-3xs)) calc(var(--aitr-space-l) + var(--aitr-space-2xs)); /* 18 / 28 */
+  overflow-wrap: anywhere;
+}
+.business-table thead th {
+  padding-block: var(--aitr-space-l);
+  block-size: 94px;
+  background: transparent;
+  color: var(--aitr-color-text-normal);
+  font: var(--aitr-font-weight-semibold) var(--aitr-font-size-m) / 1.6 var(--aitr-font-family-body);
+}
+.business-table thead th:first-child { inline-size: 32%; }
+.business-table thead .business-table__feature { color: var(--aitr-color-text-quiet); font-weight: var(--aitr-font-weight-normal); }
+.business-table__plan { display: block; }
+.business-table__tier { font-size: var(--aitr-font-size-xs); }
+.business-table th[scope="row"] { color: var(--aitr-color-text-normal); }
+.business-table td[data-type="text"] { color: var(--aitr-color-text-quiet); }
+.business-table thead .is-highlighted,
+.business-table .is-highlighted { background: var(--aitr-color-surface-lowered); font-weight: var(--aitr-font-weight-normal); }
+.business-table thead th.is-highlighted { font-weight: var(--aitr-font-weight-semibold); }
+
+/* ---------- stats ---------- */
+.business-stats {
+  display: flex;
+  align-items: start;
+  border-block-start: var(--aitr-border-width-s) solid var(--aitr-color-surface-border);
+}
+.business-stats > .aitr-stat { flex: 1 1 0; min-inline-size: 0; padding: var(--aitr-space-l) var(--aitr-space-m) 0 0; } /* compact Stat in a ruled row: 24 top, 16 right (Figma 2418:322) */
+
+/* ---------- get in touch ---------- */
+.aitr-form-panel.business-contact__panel {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: var(--aitr-space-5xl);
+  padding: calc(var(--aitr-space-3xl) + var(--aitr-space-xs)); /* 56 */
+  border-radius: var(--aitr-border-radius-dialog);
+}
+.business-contact__intro { display: grid; gap: var(--aitr-space-s); align-content: start; }
+.business-contact__intro h2 { margin: 0; color: var(--aitr-color-text-normal); }
+
+/* form and confirmation share one grid cell so they can cross-fade (Transition/Normal) */
+.business-contact__body { display: grid; min-inline-size: 0; }
+.business-contact__body > * {
+  grid-area: 1 / 1;
+  transition: opacity var(--aitr-transition-normal) var(--aitr-transition-easing-standard);
+}
+.business-contact__body > .is-fading { opacity: 0; pointer-events: none; }
+.business-contact__body > [hidden] { display: none; }
+
+.aitr-form.business-form { gap: calc(var(--aitr-space-m) + var(--aitr-space-2xs)); /* 20 */ }
+.business-form__summary-list { margin: var(--aitr-space-xs) 0 0; padding-inline-start: var(--aitr-space-m); }
+.business-form__summary-list a { color: inherit; }
+.business-form__submit { display: flex; align-items: center; gap: calc(var(--aitr-space-m) + var(--aitr-space-2xs)); flex-wrap: wrap; }
+.business-form__note { margin: 0; color: var(--aitr-color-text-subtle); }
+/* the Form Field label row carries the visible label + required mark; hide Web Awesome's own label/required slot */
+.business-form :is(wa-input, wa-select, wa-textarea)::part(label) { display: none; }
+.business-form__privacy { color: inherit; text-decoration: underline; }
+.business-contact__body .aitr-confirmation { padding-block-start: var(--aitr-space-l); }
+
+/* ---------- Tablet (768–1279): stack, table scrolls with sticky first column ---------- */
+@media (max-width: 1279px) {
+  .aitr-section.business-section { --business-k: 0.75; }
+  .business-hero__inner { grid-template-columns: 1fr; gap: var(--aitr-space-2xl); align-items: start; }
+  .business-split__inner { grid-template-columns: 1fr; gap: var(--aitr-space-l); }
+  .business-illusion .business-split__inner { gap: var(--aitr-space-m); }
+  .business-included__inner { gap: var(--aitr-space-m); }
+  .aitr-form-panel.business-contact__panel { grid-template-columns: 1fr; gap: var(--aitr-space-l); padding: var(--aitr-space-2xl); }
+
+  .business-table thead th:first-child { inline-size: 261px; }
+}
+
+/* ---------- Mobile (< 768): chip picker + single plan column, 2×2 stats, stacked form rows ---------- */
+@media (max-width: 767px) {
+  .aitr-section.business-section { --business-k: 0.5; }
+  .business-hero__inner { gap: var(--aitr-space-xl); }
+  .business-hero__cta { inline-size: 100%; }
+  .business-included__inner { gap: var(--aitr-space-s); }
+  .business-table { min-inline-size: 0; }
+  .business-table th, .business-table td {
+    padding-inline: calc(var(--aitr-space-s) + var(--aitr-space-3xs)); /* 14 */
+    font-size: var(--aitr-font-size-s);
+  }
+  .business-table thead th { block-size: auto; padding-block: calc(var(--aitr-space-m) + var(--aitr-space-3xs)); font-size: var(--aitr-font-size-s); }
+  .business-table thead th:first-child { inline-size: 34%; }
+  .business-plan-picker { display: none; } /* Figma mobile keeps the compressed 3-column table */
+
+  .business-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--aitr-space-m); }
+
+  .aitr-form-panel.business-contact__panel { padding: var(--aitr-space-l); border-radius: var(--aitr-border-radius-dialog); }
+  .business-form__submit { flex-direction: column; align-items: stretch; gap: var(--aitr-space-s); text-align: center; }
+  .business-form__submit wa-button { inline-size: 100%; }
+}
+
+/* 5 Oct spacing audit: the Business frames draw no plan picker at any width (compressed 3-column table on Tablet and Mobile) */
+.business-plan-picker { display: none !important; }
+@media (max-width: 767px) {
+  /* Mobile cells: values Caption/M 13/138, row labels + plan names 14/120 SemiBold (Figma 2442:7756 table) */
+  .business-table td { font-size: var(--aitr-font-size-xs); line-height: 1.385; letter-spacing: 0.0115em; }
+  .business-table th[scope="row"] { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s) / 1.2 var(--aitr-font-family-body); color: var(--aitr-color-text-normal); }
+  .business-table thead th { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s) / 1.2 var(--aitr-font-family-body); }
+  .business-table thead .business-table__feature { font-size: var(--aitr-font-size-xs); line-height: 1.385; }
+}
+@media (max-width: 767px) {
+  .business-table .business-table__tier { display: none; } /* Mobile head cells carry only the plan name (3 lines at 14/120) */
+  .business-table .business-table__plan { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s) / 1.2 var(--aitr-font-family-body); }
+}

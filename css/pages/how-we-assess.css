@@ -1,0 +1,201 @@
+/* How we assess v2 (13.1–13.7, "card style" lift-up of 2 Oct 2026) — page-specific layout only.
+   Source frames (Desktop): 2559:12613 · 2559:13029 · 2559:13265 · 2559:13536 · 2559:14060 · 2559:14386 · 2559:14619
+   Tablet: 2559:12769 · 2559:13121 · 2559:13369 · 2559:13724 · 2559:14182 · 2559:14477 · 2559:14709
+   Mobile: 2559:12915 · 2559:13210 · 2559:13470 · 2559:13909 · 2559:14301 · 2559:14565 · 2559:14797
+   Components (Section Nav Layout=Tabs / Dropdown, Glass recipe, Method Card, Safety Level Card, Tier Example,
+   Disclaimer, page header, tabpanel reveal) are styled in css/site.css + css/aitr-components.css; this file only sets
+   the measured section paddings and gaps, the glass "Intro card" (radius 24, padding 40 / 32 / 20) and the few metrics of
+   this page that differ from the generic defaults. Every value is a --aitr- token or a calc() of tokens. */
+
+/* ---------- header band · 2559:12617 — 5 Oct: top 80 / bottom 0, no divider (Tablet 60 · Mobile 40), gap 20 / 16 / 12; the tabs bar follows in the body ---------- */
+.assess-header {
+  padding-block: 80px 0;
+  border-block-end: 0;
+}
+.assess-header .aitr-page-header__inner {
+  gap: calc(var(--aitr-space-m) + var(--aitr-space-2xs));
+  max-inline-size: none;
+}
+.assess-header h1,
+.assess-header p { margin: 0; }
+
+/* ---------- body · 2559:12620 — tabs bar above the article; 5 Oct: padding 32 / 112, gap 48 (Tablet 24 / 84, gap 40 · Mobile 20 / 56, gap 24) ---------- */
+.assess-body { position: relative; }
+.assess-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--aitr-space-3xl);
+  padding-block: var(--aitr-space-xl) calc(var(--aitr-space-5xl) + var(--aitr-space-xl));
+}
+.assess-article {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+/* Section Nav: no "On this page" caption in the Tabs bar; in the Dropdown the <wa-select> carries the label itself
+   (Caption/M Text/Subtle, 6 below · 2559:13218), so the paragraph is hidden there too. */
+.aitr-section-nav[data-layout="tabs"] .aitr-section-nav__label,
+.aitr-section-nav[data-layout="dropdown"] .aitr-section-nav__label { display: none; }
+.aitr-section-nav[data-layout="dropdown"] wa-select::part(form-control-label) {
+  font: var(--aitr-font-weight-normal) var(--aitr-font-size-xs) / 1.4 var(--aitr-font-family-body);
+  color: var(--aitr-color-text-subtle);
+  margin-block-end: calc(var(--aitr-space-2xs) + var(--aitr-space-3xs));  /* 6 */
+}
+
+/* ---------- panels · Article gap 32 (section → disclaimer), section gap 24 (title → cards) ---------- */
+.assess-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aitr-space-xl);
+}
+.assess-panel[hidden] { display: none; }
+.assess-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aitr-space-l);
+}
+.assess-panel h2 { margin: 0; color: var(--aitr-color-text-normal); }
+.assess-panel p  { margin: 0; color: var(--aitr-color-text-quiet); }
+.assess-text-normal { color: var(--aitr-color-text-normal) !important; }
+
+/* panel swap-out: Fast · Exit (the swap-in reveal is the generic [role="tabpanel"]:not([hidden]) rule in site.css) */
+.assess-panel[data-exit] {
+  animation: assess-panel-out var(--aitr-transition-fast) var(--aitr-transition-easing-exit) both;
+}
+@keyframes assess-panel-out { to { opacity: 0; } }
+
+/* Intro / Note card · 2559:12743 — Glass recipe, radius 24, padding 40, gap 16; body copy measures 880 on Desktop */
+.assess-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aitr-space-m);
+  padding: var(--aitr-space-2xl);
+  border-radius: var(--aitr-border-radius-xl);
+}
+.assess-card > p { max-inline-size: calc(var(--aitr-space-6xl) * 7 + var(--aitr-space-2xl)); }  /* 880 */
+.assess-card--note > p { max-inline-size: none; }
+
+/* intro row with the ROAI logo · 2559:12625 — gap 20, logo 56 */
+.assess-intro {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--aitr-space-m) + var(--aitr-space-2xs));
+}
+.aitr-roai-logo {
+  flex: none;
+  inline-size: calc(var(--aitr-space-3xl) + var(--aitr-space-xs));
+  block-size: auto;
+}
+
+/* Method Card grid · 2559:12756 / 2559:14169 — card title Body/M Strong, body Caption/M */
+.assess-panel .aitr-method-card h3 { margin: 0; color: var(--aitr-color-text-normal); font-size: var(--aitr-font-size-m); line-height: 1.625; }
+.assess-panel .aitr-method-card p  { font-size: var(--aitr-font-size-xs); line-height: 1.3846; letter-spacing: 0.0115em; }
+
+/* Safety Level Card grid · 2559:13647 — the count sits with its "tools" unit on the right of the head */
+.assess-panel .aitr-level-card__head { gap: var(--aitr-space-s); }
+.assess-panel .aitr-level-card__count { margin-inline-start: auto; }
+.assess-panel .aitr-level-card__unit { color: var(--aitr-color-text-subtle); font: var(--aitr-font-weight-normal) var(--aitr-font-size-xs) / 1.4 var(--aitr-font-family-body); }
+.assess-panel .aitr-level-card p { color: var(--aitr-color-text-quiet); }
+
+/* Tier Example · 2559:13278 (Row): tool left, tiers right-aligned with label beside chip (gap 10), padding 20 / 20 / 20 / 24,
+   card 140 tall · 2559:13470 (Stacked): tool mark above the name, centred; tier rows full width, label left / chip right */
+.assess-panel .aitr-tier-example {
+  grid-template-columns: 1fr auto auto;
+  min-block-size: calc(var(--aitr-space-6xl) + var(--aitr-space-m) + var(--aitr-space-2xs));   /* 140 */
+  padding-block: calc(var(--aitr-space-m) + var(--aitr-space-2xs));
+  padding-inline: calc(var(--aitr-space-m) + var(--aitr-space-2xs)) var(--aitr-space-l);
+}
+.assess-panel .aitr-tier-example .aitr-tool-mark { inline-size: var(--aitr-avatar-size); block-size: var(--aitr-avatar-size); }
+.assess-panel .aitr-tier-example__tool { color: var(--aitr-color-text-normal); }
+.assess-panel .aitr-tier-example__tier {
+  grid-auto-flow: column;
+  align-items: center;
+  gap: calc(var(--aitr-space-xs) + var(--aitr-space-3xs));               /* 10 */
+  white-space: nowrap;
+}
+.assess-panel .aitr-tier-example__tier .aitr-caption-m { font-size: var(--aitr-font-size-xs); }
+.assess-panel .aitr-tier-example[data-layout="stacked"] {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: var(--aitr-space-s);
+  min-block-size: 0;
+  padding: var(--aitr-space-l);
+}
+.assess-panel .aitr-tier-example[data-layout="stacked"] .aitr-tier-example__tool { flex-direction: column; gap: var(--aitr-space-s); }
+.assess-panel .aitr-tier-example[data-layout="stacked"] .aitr-tier-example__tier {
+  inline-size: 100%;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr auto;
+  justify-items: start;
+}
+.assess-panel .aitr-tier-example[data-layout="stacked"] .aitr-tier-example__tier > :last-child { justify-self: end; }
+
+/* ---------- Tablet · 2559:13121 ---------- */
+@media (max-width: 1279px) {
+  .assess-header {
+    padding-block: 60px 0;
+  }
+  .assess-header .aitr-page-header__inner { gap: var(--aitr-space-m); }
+  .assess-layout {
+    gap: var(--aitr-space-2xl);
+    padding-block: var(--aitr-space-l) calc(var(--aitr-space-5xl) + var(--aitr-space-2xs));
+  }
+  /* the tabs bar hugs its items and the whole pill scrolls under the page margin (Section Nav (horizontal scroll) 2559:13129) */
+  .assess-layout .aitr-section-nav[data-layout="tabs"] {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .assess-layout .aitr-section-nav[data-layout="tabs"]::-webkit-scrollbar { display: none; }
+  .assess-layout .aitr-section-nav[data-layout="tabs"] .aitr-section-nav__list {
+    inline-size: max-content;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .assess-layout .aitr-section-nav[data-layout="tabs"] .aitr-section-nav__item { inline-size: auto; }  /* pills hug their label */
+  .assess-panel { gap: calc(var(--aitr-space-2xl) + var(--aitr-space-m)); }                /* Article gap 56 */
+  .assess-card { padding: var(--aitr-space-xl); }
+  .assess-card > p { max-inline-size: none; }
+}
+
+/* ---------- Mobile · 2559:13210 ---------- */
+@media (max-width: 767px) {
+  .assess-header {
+    padding-block: 40px 0;
+  }
+  .assess-header .aitr-page-header__inner { gap: var(--aitr-space-s); }
+  .assess-layout {
+    gap: var(--aitr-space-l);
+    padding-block: 20px calc(var(--aitr-space-2xl) + var(--aitr-space-m));
+  }
+  .assess-panel__body { gap: calc(var(--aitr-space-m) + var(--aitr-space-2xs)); }          /* 20 */
+  .assess-card { padding: calc(var(--aitr-space-m) + var(--aitr-space-2xs)); }
+}
+
+/* 13.5 What we check (5 Oct 2026, 2559:14060/14182/14301): Method Card + Scale (pad-top 6, gap 6: segmented meter, then the legend key
+   Caption/S 12/140%). Desktop 4 columns (cards 190), Tablet 2 columns, Mobile 1; grid gap 16. */
+.assess-checks { gap: var(--aitr-space-s); gap: 16px; align-items: stretch; }
+.assess-checks .aitr-method-card { min-block-size: 0; box-sizing: border-box; }
+.aitr-method-card__scale { display: grid; gap: calc(var(--aitr-space-2xs) + var(--aitr-space-3xs)); padding-block-start: calc(var(--aitr-space-2xs) + var(--aitr-space-3xs)); align-content: start; }
+.assess-panel .aitr-method-card .aitr-method-card__key { margin: 0; color: var(--aitr-color-text-quiet); font: var(--aitr-font-weight-normal) 12px / 1.4 var(--aitr-font-family-body); letter-spacing: 0; }
+@media (min-width: 1280px) { .assess-checks { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 768px) and (max-width: 1279px) { .assess-checks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .assess-checks { grid-template-columns: minmax(0, 1fr); } }
+
+/* 5 Oct 2026: Method Card exactly 130 for two-line bodies (20 pad + 26 + 8 + 54|36 + 20 + hairlines), copy margins reset */
+.assess-panel .aitr-method-card { box-sizing: border-box; min-block-size: 130px; }
+.assess-panel .aitr-method-card h3, .assess-panel .aitr-method-card p { margin: 0; }
+
+/* 5 Oct 2026 height audit (13.1 / 13.5 frames): tabs bar 50 (6 + 36 items + 6 + hairlines), Advisory Disclaimer 13/138 % (72 on Tablet),
+   Method Card grids gap 16 on Mobile */
+.assess-layout .aitr-section-nav[data-layout="tabs"] .aitr-section-nav__item { block-size: 36px; min-block-size: 36px; padding-block: 0; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; line-height: 1.2; }
+.assess-panel .aitr-disclaimer { line-height: 1.3846; letter-spacing: 0.0115em; }
+@media (max-width: 767px) { .assess-panel .aitr-grid { gap: 16px; } }
+.assess-card { border: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); }   /* Intro / Note card carry a 1px stroke (+2 high) */
+.assess-panel .aitr-method-card .aitr-method-card__key { line-height: 17px; }                 /* Scale key 17 per line, 34 for two */
+.assess-panel .aitr-method-card { border: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); }   /* Method Card 1px stroke (13.1: 128 + 2 = 130) */
+.assess-panel .aitr-level-card { box-sizing: border-box; min-block-size: 180px; gap: var(--aitr-space-m); align-content: start; }   /* Safety Level Card 180 (24 pad, gap 16) on all widths */
+.assess-panel .aitr-tier-example[data-layout="stacked"] { padding: calc(var(--aitr-space-m) + var(--aitr-space-2xs)) var(--aitr-space-l) calc(var(--aitr-space-m) + var(--aitr-space-2xs)) calc(var(--aitr-space-m) + var(--aitr-space-2xs)); gap: var(--aitr-space-s); }   /* Example 196 on Mobile: 20/24/20/20, gap 12 */

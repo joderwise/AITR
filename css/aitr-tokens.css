@@ -1,0 +1,552 @@
+/* AITR design tokens — generated from Figma (AITR Library v1.2.0, 30 Sep 2026). Do not edit by hand.
+   Source: Figma branch Kn3dOyzTI5wL9zLHKAQdXr · collections AITR / Palette, Theme (Colors), Theme (Styles), Responsive, Size, Shape, Motion.
+   Structure follows Web Awesome 3 (--wa-*) with the --aitr- prefix.
+   Breakpoints: Figma's default mode is Desktop, so this file is desktop-base with max-width overrides
+   (equivalent to the mobile-first min-width version on the Breakpoints page). */
+:root {
+  /* Palette */
+  --aitr-color-indigo-10: #1b204b;
+  --aitr-color-indigo-20: #2b317a;
+  --aitr-color-indigo-30: #3d44ad;
+  --aitr-color-indigo-40: #4d4fef;
+  --aitr-color-indigo-50: #6775ff;
+  --aitr-color-indigo-60: #8496fe;
+  --aitr-color-indigo-70: #a4b4fe;
+  --aitr-color-indigo-80: #c5d0fe;
+  --aitr-color-indigo-90: #e5eafe;
+  --aitr-color-indigo-95: #f4f6fe;
+  --aitr-color-indigo-05: #0f1329;
+  --aitr-color-gray-10: #23252b;
+  --aitr-color-gray-20: #393b45;
+  --aitr-color-gray-30: #505362;
+  --aitr-color-gray-40: #686c7f;
+  --aitr-color-gray-50: #81869c;
+  --aitr-color-gray-60: #9b9fb2;
+  --aitr-color-gray-70: #b4b8c8;
+  --aitr-color-gray-80: #cfd2de;
+  --aitr-color-gray-90: #e9ebf3;
+  --aitr-color-gray-95: #f2f3f7;
+  --aitr-color-gray-05: #0a0a14;
+  --aitr-color-green-10: #072d1c;
+  --aitr-color-green-20: #02482d;
+  --aitr-color-green-30: #026440;
+  --aitr-color-green-40: #028254;
+  --aitr-color-green-50: #00a169;
+  --aitr-color-green-60: #4bb884;
+  --aitr-color-green-70: #7dcda2;
+  --aitr-color-green-80: #a8e2c2;
+  --aitr-color-green-90: #cff6df;
+  --aitr-color-green-95: #e3ffee;
+  --aitr-color-green-05: #071910;
+  --aitr-color-amber-10: #312300;
+  --aitr-color-amber-20: #4d3800;
+  --aitr-color-amber-30: #6b4f04;
+  --aitr-color-amber-40: #8a6706;
+  --aitr-color-amber-50: #ab8003;
+  --aitr-color-amber-60: #c79824;
+  --aitr-color-amber-70: #d9b365;
+  --aitr-color-amber-80: #fbbf24;
+  --aitr-color-amber-90: #fce9c2;
+  --aitr-color-amber-95: #fff6e5;
+  --aitr-color-amber-05: #1c1404;
+  --aitr-color-red-10: #401710;
+  --aitr-color-red-20: #672117;
+  --aitr-color-red-30: #912c1e;
+  --aitr-color-red-40: #bd3724;
+  --aitr-color-red-50: #e34d37;
+  --aitr-color-red-60: #f27560;
+  --aitr-color-red-70: #fe9a88;
+  --aitr-color-red-80: #fec2b6;
+  --aitr-color-red-90: #ffe4df;
+  --aitr-color-red-95: #fff4f2;
+  --aitr-color-red-05: #230e0a;
+  --aitr-color-cyan-10: #022b32;
+  --aitr-color-cyan-20: #01444e;
+  --aitr-color-cyan-30: #035f6c;
+  --aitr-color-cyan-40: #067b8c;
+  --aitr-color-cyan-50: #0c98ad;
+  --aitr-color-cyan-60: #32b2c7;
+  --aitr-color-cyan-70: #70c8d9;
+  --aitr-color-cyan-80: #22d3ee;
+  --aitr-color-cyan-90: #caf4fd;
+  --aitr-color-cyan-95: #e8fbff;
+  --aitr-color-cyan-05: #05181c;
+  --aitr-color-violet-10: #2e1944;
+  --aitr-color-violet-20: #4a266f;
+  --aitr-color-violet-30: #69329c;
+  --aitr-color-violet-40: #893fcd;
+  --aitr-color-violet-50: #a756f4;
+  --aitr-color-violet-60: #ba7cfe;
+  --aitr-color-violet-70: #cba3fe;
+  --aitr-color-violet-80: #dec6ff;
+  --aitr-color-violet-90: #f0e6ff;
+  --aitr-color-violet-95: #f9f5ff;
+  --aitr-color-violet-05: #190f25;
+  --aitr-color-white: #ffffff;
+  --aitr-color-black: #000000;
+  --aitr-color-alpha-black-10: rgb(0 0 0 / 10%);
+  --aitr-color-alpha-black-20: rgb(0 0 0 / 20%);
+  --aitr-color-alpha-black-50: rgb(0 0 0 / 50%);
+  --aitr-color-alpha-black-70: rgb(0 0 0 / 70%);
+  --aitr-color-alpha-white-10: rgb(255 255 255 / 10%);
+  --aitr-color-alpha-white-20: rgb(255 255 255 / 20%);
+  /* Palette — migrated from Legacy / Primitives (v1.2.0, names unchanged) */
+  --aitr-color-ink-900: #05050a;
+  --aitr-color-ink-700: #10101e;
+  --aitr-color-ink-600: #16162a;
+  --aitr-color-ink-500: #1e1e38;
+  --aitr-color-ink-line: #2a2a46;
+  --aitr-color-ink-line-strong: #3a3a5e;
+  --aitr-color-paper-50: #fafafc;
+  --aitr-color-paper-200: #e7e9f0;
+  --aitr-color-paper-line: #dadde8;
+  --aitr-color-paper-line-strong: #b9becd;
+  --aitr-color-type-on-dark-hi: #f5f6fa;
+  --aitr-color-type-on-dark-mid: #a9aec4;
+  --aitr-color-type-on-dark-lo: #787e98;
+  --aitr-color-type-on-light-hi: #0d0d18;
+  --aitr-color-type-on-light-mid: #4e5468;
+  --aitr-color-type-on-light-lo: #6b7186;
+  --aitr-color-aurora-indigo-bright: #7c7cff;
+  --aitr-color-aurora-violet: #a855f7;
+  --aitr-color-aurora-cyan-deep: #0e7490;
+  --aitr-color-roai-cyan: #31c9f4;
+  --aitr-color-roai-mint: #5cecd8;
+  --aitr-color-roai-amber: #ffbe2d;
+  --aitr-color-roai-orange: #ffa039;
+  --aitr-color-roai-pink: #f4347b;
+  --aitr-color-roai-mauve: #ac83af;
+  --aitr-color-roai-blue: #2394d9;
+  --aitr-color-roai-navy: #0e2f7b;
+  --aitr-color-verdict-light-business-ground: #f6faf7;
+  --aitr-color-verdict-light-business-boundary: #3f6b4c;
+  --aitr-color-verdict-light-business-text: #1c4429;
+  --aitr-color-verdict-light-internal-ground: #edf0f6;
+  --aitr-color-verdict-light-internal-boundary: #4c5670;
+  --aitr-color-verdict-light-internal-text: #26304c;
+  --aitr-color-verdict-light-public-ground: #f5eddd;
+  --aitr-color-verdict-light-public-boundary: #7e5f27;
+  --aitr-color-verdict-light-public-text: #543b0d;
+  --aitr-color-verdict-light-unsafe-ground: #efddd9;
+  --aitr-color-verdict-light-unsafe-boundary: #8e3e32;
+  --aitr-color-verdict-light-unsafe-text: #6b1f16;
+  --aitr-color-verdict-dark-business-ground: #0c2a1d;
+  --aitr-color-verdict-dark-business-boundary: #1e7a52;
+  --aitr-color-verdict-dark-business-text: #5eeaa8;
+  --aitr-color-verdict-dark-internal-ground: #131a38;
+  --aitr-color-verdict-dark-internal-boundary: #3a4a9e;
+  --aitr-color-verdict-dark-internal-text: #9db0ff;
+  --aitr-color-verdict-dark-public-ground: #2e2410;
+  --aitr-color-verdict-dark-public-boundary: #8a6a1e;
+  --aitr-color-verdict-dark-public-text: #fbc94e;
+  --aitr-color-verdict-dark-unsafe-ground: #33130f;
+  --aitr-color-verdict-dark-unsafe-boundary: #9c3b2c;
+  --aitr-color-verdict-dark-unsafe-text: #ff9481;
+
+  /* Theme (Colors) — Light */
+  --aitr-color-brand-fill-quiet: var(--aitr-color-indigo-95);
+  --aitr-color-brand-fill-normal: var(--aitr-color-indigo-90);
+  --aitr-color-brand-fill-loud: #4d4fef;
+  --aitr-color-brand-border-quiet: var(--aitr-color-indigo-90);
+  --aitr-color-brand-border-normal: var(--aitr-color-indigo-80);
+  --aitr-color-brand-border-loud: var(--aitr-color-indigo-50);
+  --aitr-color-brand-on-quiet: var(--aitr-color-indigo-40);
+  --aitr-color-brand-on-normal: var(--aitr-color-indigo-30);
+  --aitr-color-brand-on-loud: var(--aitr-color-white);
+  --aitr-color-neutral-fill-quiet: var(--aitr-color-gray-95);
+  --aitr-color-neutral-fill-normal: #e7e9f0;
+  --aitr-color-neutral-fill-loud: #05050a;
+  --aitr-color-neutral-border-quiet: var(--aitr-color-gray-90);
+  --aitr-color-neutral-border-normal: #dadde8;
+  --aitr-color-neutral-border-loud: #b9becd;
+  --aitr-color-neutral-on-quiet: var(--aitr-color-gray-40);
+  --aitr-color-neutral-on-normal: var(--aitr-color-gray-30);
+  --aitr-color-neutral-on-loud: #f5f6fa;
+  --aitr-color-success-fill-quiet: var(--aitr-color-green-95);
+  --aitr-color-success-fill-normal: var(--aitr-color-green-90);
+  --aitr-color-success-fill-loud: var(--aitr-color-green-40);
+  --aitr-color-success-border-quiet: var(--aitr-color-green-90);
+  --aitr-color-success-border-normal: var(--aitr-color-green-80);
+  --aitr-color-success-border-loud: var(--aitr-color-green-50);
+  --aitr-color-success-on-quiet: var(--aitr-color-green-40);
+  --aitr-color-success-on-normal: var(--aitr-color-green-30);
+  --aitr-color-success-on-loud: var(--aitr-color-white);
+  --aitr-color-warning-fill-quiet: var(--aitr-color-amber-95);
+  --aitr-color-warning-fill-normal: var(--aitr-color-amber-90);
+  --aitr-color-warning-fill-loud: #fbbf24;
+  --aitr-color-warning-border-quiet: var(--aitr-color-amber-90);
+  --aitr-color-warning-border-normal: var(--aitr-color-amber-80);
+  --aitr-color-warning-border-loud: var(--aitr-color-amber-50);
+  --aitr-color-warning-on-quiet: var(--aitr-color-amber-40);
+  --aitr-color-warning-on-normal: var(--aitr-color-amber-30);
+  --aitr-color-warning-on-loud: var(--aitr-color-gray-05);
+  --aitr-color-danger-fill-quiet: var(--aitr-color-red-95);
+  --aitr-color-danger-fill-normal: var(--aitr-color-red-90);
+  --aitr-color-danger-fill-loud: var(--aitr-color-red-40);
+  --aitr-color-danger-border-quiet: var(--aitr-color-red-90);
+  --aitr-color-danger-border-normal: var(--aitr-color-red-80);
+  --aitr-color-danger-border-loud: var(--aitr-color-red-50);
+  --aitr-color-danger-on-quiet: var(--aitr-color-red-40);
+  --aitr-color-danger-on-normal: var(--aitr-color-red-30);
+  --aitr-color-danger-on-loud: var(--aitr-color-white);
+  --aitr-color-surface-default: #fafafc;
+  --aitr-color-surface-raised: #ffffff;
+  --aitr-color-surface-raised-quiet: #ffffff;
+  --aitr-color-surface-lowered: #f2f3f7;
+  --aitr-color-surface-border: #e7e9f0;
+  --aitr-color-text-normal: #0d0d18;
+  --aitr-color-text-quiet: #4e5468;
+  --aitr-color-text-subtle: #6b7186;
+  --aitr-color-text-link: var(--aitr-color-indigo-40);
+  --aitr-color-accent-violet: #a855f7;
+  --aitr-color-accent-signal: #0e7490;
+  --aitr-color-accent-signal-text: var(--aitr-color-cyan-30); /* v1.2.0 · text only · 6.06:1 */
+  --aitr-color-focus: #4d4fef;
+  --aitr-color-overlay-modal: var(--aitr-color-alpha-black-50);
+  --aitr-color-overlay-inline: var(--aitr-color-alpha-black-10);
+  --aitr-color-shadow: var(--aitr-color-alpha-black-10);
+  --aitr-color-mix-hover: var(--aitr-color-alpha-black-10);
+  --aitr-color-mix-active: var(--aitr-color-alpha-black-20);
+  --aitr-color-verdict-business-ready-ground: #f6faf7;
+  --aitr-color-verdict-business-ready-boundary: #3f6b4c;
+  --aitr-color-verdict-business-ready-text: #1c4429;
+  --aitr-color-verdict-internal-work-only-ground: #edf0f6;
+  --aitr-color-verdict-internal-work-only-boundary: #4c5670;
+  --aitr-color-verdict-internal-work-only-text: #26304c;
+  --aitr-color-verdict-public-data-only-ground: #f5eddd;
+  --aitr-color-verdict-public-data-only-boundary: #7e5f27;
+  --aitr-color-verdict-public-data-only-text: #543b0d;
+  --aitr-color-verdict-unsafe-ground: #efddd9;
+  --aitr-color-verdict-unsafe-boundary: #8e3e32;
+  --aitr-color-verdict-unsafe-text: #6b1f16;
+
+  /* Theme (Styles) */
+  --aitr-space-3xs: 2px;
+  --aitr-space-2xs: 4px;
+  --aitr-space-xs: 8px;
+  --aitr-space-s: 12px;
+  --aitr-space-m: 16px;
+  --aitr-space-l: 24px;
+  --aitr-space-xl: 32px;
+  --aitr-space-2xl: 40px;
+  --aitr-space-3xl: 48px;
+  --aitr-space-4xl: 64px;
+  --aitr-space-5xl: 80px;
+  --aitr-space-6xl: 120px;
+  --aitr-border-radius-square: 0px;
+  --aitr-border-radius-s: 6px;
+  --aitr-border-radius-m: 10px;
+  --aitr-border-radius-l: 16px;
+  --aitr-border-radius-xl: 24px;
+  --aitr-border-radius-2xl: 32px;
+  --aitr-border-radius-pill: 9999px;
+  --aitr-border-radius-dialog: 28px; /* v1.2.0 · dialogs, lead gate, sheet top corners */
+  --aitr-border-width-s: 1px;
+  --aitr-border-width-s-plus: 1.5px;
+  --aitr-border-width-m: 2px;
+  --aitr-border-width-l: 3px;
+  --aitr-focus-ring-width: 3px;
+  --aitr-focus-ring-offset: 2px;
+  --aitr-target-min: 44px;
+  --aitr-font-family-body: 'Public Sans', system-ui, sans-serif;
+  --aitr-font-family-heading: 'Public Sans', system-ui, sans-serif;
+  --aitr-font-family-code: 'IBM Plex Mono', ui-monospace, monospace;
+  --aitr-font-family-longform: 'Public Sans', system-ui, sans-serif;
+  --aitr-font-weight-light: 300;
+  --aitr-font-weight-normal: 400;
+  --aitr-font-weight-medium: 500;
+  --aitr-font-weight-semibold: 600;
+  --aitr-font-weight-bold: 700;
+  --aitr-font-weight-heading: var(--aitr-font-weight-bold);
+  --aitr-font-weight-body: var(--aitr-font-weight-normal);
+  --aitr-font-weight-action: var(--aitr-font-weight-semibold);
+  --aitr-line-height-condensed: 1.2;
+  --aitr-line-height-normal: 1.6;
+  --aitr-line-height-expanded: 2;
+
+  /* Elevation (effect styles AITR/Shadow/*, Legacy Elevation/Card · Float) */
+  --aitr-shadow-s: 0 1px 2px var(--aitr-color-shadow);
+  --aitr-shadow-m: 0 4px 8px -2px var(--aitr-color-shadow), 0 2px 4px -2px var(--aitr-color-shadow);
+  --aitr-shadow-l: 0 12px 24px -6px var(--aitr-color-shadow), 0 4px 8px -4px var(--aitr-color-shadow);
+  --aitr-shadow-float: 0 24px 60px -14px rgb(0 0 0 / 0.2), 0 6px 16px -6px rgb(0 0 0 / 0.16); /* AITR/Elevation/Float · dialogs */
+
+  /* Responsive — Desktop (base in Figma) */
+  --aitr-font-size-3xs: 11px;
+  --aitr-font-size-2xs: 12px;
+  --aitr-font-size-xs: 13px;
+  --aitr-font-size-s: 14px;
+  --aitr-font-size-m: 16px;
+  --aitr-font-size-l: 18px;
+  --aitr-font-size-xl: 22px;
+  --aitr-font-size-2xl: 28px;
+  --aitr-font-size-3xl: 34px;
+  --aitr-font-size-4xl: 52px;
+  --aitr-font-size-5xl: 76px;
+  --aitr-font-size-6xl: 104px;
+  --aitr-breakpoint-min-width: 1280px;
+  --aitr-layout-viewport: 1440px;
+  --aitr-layout-columns: 12;
+  --aitr-layout-page-margin: 64px;
+  --aitr-layout-gutter: 16px;
+  --aitr-layout-aside-gap: 96px; /* v1.2.0 · sidebar ↔ main column */
+  --aitr-layout-content-max-width: 1312px;
+  --aitr-space-section: 64px;
+  --aitr-space-section-inner: 28px;
+
+  /* Size — medium (default) */
+  --aitr-form-control-height: 40px;
+  --aitr-form-control-padding-inline: 16px;
+  --aitr-form-control-gap: 8px;
+  --aitr-form-control-font-size: 16px;
+  --aitr-form-control-icon-size: 20px;
+  --aitr-form-control-toggle-size: 18px;
+  --aitr-form-control-label-font-size: 14px;
+  --aitr-form-control-hint-font-size: 13px;
+  --aitr-form-control-label-gap: 6px;
+  --aitr-switch-width: 40px;
+  --aitr-switch-height: 22px;
+  --aitr-tag-height: 28px;
+  --aitr-tag-font-size: 13px;
+  --aitr-avatar-size: 40px;
+  --aitr-spinner-size: 24px;
+
+  /* Shape — default */
+  --aitr-form-control-border-radius: var(--aitr-border-radius-m);
+  --aitr-form-control-border-color: var(--aitr-color-gray-50); /* v1.2.0 · 3.61:1 (WCAG 1.4.11) */
+  --aitr-tag-border-radius: var(--aitr-border-radius-s);
+
+  /* Motion */
+  --aitr-transition-fast: 100ms;
+  --aitr-transition-normal: 200ms;
+  --aitr-transition-slow: 300ms;
+  --aitr-transition-expressive: 500ms;
+  --aitr-duration-count-up: 2000ms;
+  --aitr-duration-ambient: 8500ms;
+  --aitr-transition-easing: ease;
+  --aitr-transition-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --aitr-transition-easing-enter: cubic-bezier(0, 0, 0.2, 1);
+  --aitr-transition-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+  --aitr-transition-easing-emphasized: cubic-bezier(0.3, 0, 0, 1.3);
+  --aitr-motion-distance-s: 4px;
+  --aitr-motion-distance-m: 8px;
+  --aitr-motion-distance-l: 16px;
+  --aitr-motion-scale-press: 0.98;
+  /* Hero choreography (from the Iteration 4 Home hero keyframes) */
+  --aitr-transition-easing-entrance: cubic-bezier(0.22, 1, 0.36, 1);
+  --aitr-transition-easing-sway: cubic-bezier(0.65, 0, 0.35, 1);
+  --aitr-transition-easing-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --aitr-transition-reveal: 630ms;
+  --aitr-motion-stagger: 130ms;
+  --aitr-motion-stagger-tight: 70ms;
+  --aitr-duration-hero-loop: 14000ms;
+  --aitr-motion-distance-reveal: 20px;
+}
+
+/* Theme (Colors) — Dark */
+.aitr-dark, [data-theme="dark"] {
+  --aitr-color-brand-fill-quiet: var(--aitr-color-indigo-10);
+  --aitr-color-brand-fill-normal: var(--aitr-color-indigo-20);
+  --aitr-color-brand-fill-loud: #4d4fef; /* v1.2.0 · white label 5.71:1 */
+  --aitr-color-brand-border-quiet: var(--aitr-color-indigo-20);
+  --aitr-color-brand-border-normal: var(--aitr-color-indigo-30);
+  --aitr-color-brand-on-quiet: var(--aitr-color-indigo-70);
+  --aitr-color-brand-on-normal: var(--aitr-color-indigo-80);
+  --aitr-color-neutral-fill-quiet: var(--aitr-color-gray-10);
+  --aitr-color-neutral-fill-normal: #1e1e38;
+  --aitr-color-neutral-fill-loud: #ffffff;
+  --aitr-color-neutral-border-quiet: var(--aitr-color-gray-20);
+  --aitr-color-neutral-border-normal: #3a3a5e;
+  --aitr-color-neutral-border-loud: #4d4fef;
+  --aitr-color-neutral-on-quiet: var(--aitr-color-gray-70);
+  --aitr-color-neutral-on-normal: var(--aitr-color-gray-80);
+  --aitr-color-neutral-on-loud: #0d0d18;
+  --aitr-color-success-fill-quiet: var(--aitr-color-green-10);
+  --aitr-color-success-fill-normal: var(--aitr-color-green-20);
+  --aitr-color-success-border-quiet: var(--aitr-color-green-20);
+  --aitr-color-success-border-normal: var(--aitr-color-green-30);
+  --aitr-color-success-on-quiet: var(--aitr-color-green-70);
+  --aitr-color-success-on-normal: var(--aitr-color-green-80);
+  --aitr-color-warning-fill-quiet: var(--aitr-color-amber-10);
+  --aitr-color-warning-fill-normal: var(--aitr-color-amber-20);
+  --aitr-color-warning-border-quiet: var(--aitr-color-amber-20);
+  --aitr-color-warning-border-normal: var(--aitr-color-amber-30);
+  --aitr-color-warning-on-quiet: var(--aitr-color-amber-70);
+  --aitr-color-warning-on-normal: var(--aitr-color-amber-80);
+  --aitr-color-danger-fill-quiet: var(--aitr-color-red-10);
+  --aitr-color-danger-fill-normal: var(--aitr-color-red-20);
+  --aitr-color-danger-border-quiet: var(--aitr-color-red-20);
+  --aitr-color-danger-border-normal: var(--aitr-color-red-30);
+  --aitr-color-danger-on-quiet: var(--aitr-color-red-70);
+  --aitr-color-danger-on-normal: var(--aitr-color-red-80);
+  --aitr-color-surface-default: #05050a;
+  --aitr-color-surface-raised: #10101e;
+  --aitr-color-surface-raised-quiet: #0a0a14;
+  --aitr-color-surface-lowered: #16162a;
+  --aitr-color-surface-border: #2a2a46;
+  --aitr-color-text-normal: #f5f6fa;
+  --aitr-color-text-quiet: #a9aec4;
+  --aitr-color-text-subtle: #787e98;
+  --aitr-color-text-link: var(--aitr-color-indigo-70);
+  --aitr-color-accent-signal: #22d3ee;
+  --aitr-color-accent-signal-text: #22d3ee;
+  --aitr-form-control-border-color: var(--aitr-color-gray-40); /* 3.62:1 on raised */
+  --aitr-color-focus: #22d3ee;
+  --aitr-color-overlay-modal: var(--aitr-color-alpha-black-70);
+  --aitr-color-overlay-inline: var(--aitr-color-alpha-white-10);
+  --aitr-color-shadow: var(--aitr-color-alpha-black-50);
+  --aitr-color-verdict-business-ready-ground: #0c2a1d;
+  --aitr-color-verdict-business-ready-boundary: #1e7a52;
+  --aitr-color-verdict-business-ready-text: #5eeaa8;
+  --aitr-color-verdict-internal-work-only-ground: #131a38;
+  --aitr-color-verdict-internal-work-only-boundary: #3a4a9e;
+  --aitr-color-verdict-internal-work-only-text: #9db0ff;
+  --aitr-color-verdict-public-data-only-ground: #2e2410;
+  --aitr-color-verdict-public-data-only-boundary: #8a6a1e;
+  --aitr-color-verdict-public-data-only-text: #fbc94e;
+  --aitr-color-verdict-unsafe-ground: #33130f;
+  --aitr-color-verdict-unsafe-boundary: #9c3b2c;
+  --aitr-color-verdict-unsafe-text: #ff9481;
+}
+
+/* Responsive — Tablet */
+@media (max-width: 1279px) {
+  :root {
+    --aitr-font-size-2xl: 26px;
+    --aitr-font-size-3xl: 30px;
+    --aitr-font-size-4xl: 40px;
+    --aitr-font-size-5xl: 56px;
+    --aitr-font-size-6xl: 72px;
+    --aitr-breakpoint-min-width: 768px;
+    --aitr-layout-viewport: 834px;
+    --aitr-layout-columns: 8;
+    --aitr-layout-page-margin: 32px;
+    --aitr-layout-content-max-width: 770px;
+    --aitr-space-section: 56px;
+    --aitr-space-section-inner: 24px;
+    --aitr-layout-aside-gap: 48px;
+  }
+}
+
+/* Responsive — Mobile */
+@media (max-width: 767px) {
+  :root {
+    --aitr-font-size-xl: 20px;
+    --aitr-font-size-2xl: 24px;
+    --aitr-font-size-3xl: 28px;
+    --aitr-font-size-4xl: 34px;
+    --aitr-font-size-5xl: 40px;
+    --aitr-font-size-6xl: 48px;
+    --aitr-breakpoint-min-width: 0px;
+    --aitr-layout-viewport: 390px;
+    --aitr-layout-columns: 4;
+    --aitr-layout-page-margin: 16px;
+    --aitr-layout-gutter: 12px;
+    --aitr-layout-content-max-width: 358px;
+    --aitr-space-section: 40px;
+    --aitr-space-section-inner: 20px;
+    --aitr-layout-aside-gap: 32px;
+  }
+}
+
+/* Size modifier (AITR / Size mode) */
+[size="small"] {
+  --aitr-form-control-height: 32px;
+  --aitr-form-control-padding-inline: 12px;
+  --aitr-form-control-gap: 6px;
+  --aitr-form-control-font-size: 14px;
+  --aitr-form-control-icon-size: 16px;
+  --aitr-form-control-toggle-size: 16px;
+  --aitr-form-control-label-font-size: 13px;
+  --aitr-form-control-hint-font-size: 12px;
+  --aitr-form-control-label-gap: 4px;
+  --aitr-switch-width: 32px;
+  --aitr-switch-height: 18px;
+  --aitr-tag-height: 22px;
+  --aitr-tag-font-size: 12px;
+  --aitr-avatar-size: 32px;
+  --aitr-spinner-size: 16px;
+}
+
+[size="large"] {
+  --aitr-form-control-height: 48px;
+  --aitr-form-control-padding-inline: 20px;
+  --aitr-form-control-gap: 10px;
+  --aitr-form-control-font-size: 18px;
+  --aitr-form-control-icon-size: 24px;
+  --aitr-form-control-toggle-size: 22px;
+  --aitr-form-control-label-font-size: 16px;
+  --aitr-form-control-hint-font-size: 14px;
+  --aitr-form-control-label-gap: 8px;
+  --aitr-switch-width: 48px;
+  --aitr-switch-height: 26px;
+  --aitr-tag-height: 34px;
+  --aitr-tag-font-size: 14px;
+  --aitr-avatar-size: 56px;
+  --aitr-spinner-size: 32px;
+}
+
+/* Pill modifier (AITR / Shape mode) */
+[pill] {
+  --aitr-form-control-border-radius: var(--aitr-border-radius-pill);
+  --aitr-tag-border-radius: var(--aitr-border-radius-pill);
+}
+
+/* Reduced motion (AITR / Motion mode = Reduced) */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --aitr-transition-fast: 0ms;
+    --aitr-transition-normal: 0ms;
+    --aitr-transition-slow: 0ms;
+    --aitr-transition-expressive: 150ms;
+    --aitr-duration-count-up: 0ms;
+    --aitr-duration-ambient: 0ms;
+    --aitr-transition-easing-standard: linear;
+    --aitr-transition-easing-enter: linear;
+    --aitr-transition-easing-exit: linear;
+    --aitr-transition-easing-emphasized: linear;
+    --aitr-motion-distance-s: 0px;
+    --aitr-motion-distance-m: 0px;
+    --aitr-motion-distance-l: 0px;
+    --aitr-motion-scale-press: 1;
+    --aitr-transition-easing-entrance: linear;
+    --aitr-transition-easing-sway: linear;
+    --aitr-transition-easing-pop: linear;
+    --aitr-transition-reveal: 0ms;
+    --aitr-motion-stagger: 0ms;
+    --aitr-motion-stagger-tight: 0ms;
+    --aitr-duration-hero-loop: 0ms;
+    --aitr-motion-distance-reveal: 0px;
+  }
+}
+
+/* Typography utilities (AITR/* text styles) */
+.aitr-heading-6xl { font: var(--aitr-font-weight-bold) var(--aitr-font-size-6xl)/1.1 var(--aitr-font-family-heading); letter-spacing: -0.025em; }
+.aitr-heading-5xl { font: var(--aitr-font-weight-bold) var(--aitr-font-size-5xl)/1.1 var(--aitr-font-family-heading); letter-spacing: -0.025em; }
+.aitr-heading-4xl { font: var(--aitr-font-weight-bold) var(--aitr-font-size-4xl)/1.1 var(--aitr-font-family-heading); letter-spacing: -0.02em; }
+.aitr-heading-3xl { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-3xl)/1.2 var(--aitr-font-family-heading); letter-spacing: -0.015em; }
+.aitr-heading-2xl { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-2xl)/1.2 var(--aitr-font-family-heading); letter-spacing: -0.01em; }
+.aitr-heading-xl  { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-xl)/1.3 var(--aitr-font-family-heading); letter-spacing: -0.005em; }
+.aitr-heading-l   { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-l)/1.3 var(--aitr-font-family-heading); }
+.aitr-heading-m   { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-m)/1.4 var(--aitr-font-family-heading); }
+.aitr-heading-s   { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s)/1.4 var(--aitr-font-family-heading); }
+.aitr-body-l      { font: var(--aitr-font-weight-normal) var(--aitr-font-size-l)/1.6 var(--aitr-font-family-body); }
+.aitr-body-m      { font: var(--aitr-font-weight-normal) var(--aitr-font-size-m)/1.6 var(--aitr-font-family-body); }
+.aitr-body-m-strong { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-m)/1.6 var(--aitr-font-family-body); }
+.aitr-body-s      { font: var(--aitr-font-weight-normal) var(--aitr-font-size-s)/1.5 var(--aitr-font-family-body); }
+.aitr-body-s-strong { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s)/1.5 var(--aitr-font-family-body); }
+.aitr-body-xs     { font: var(--aitr-font-weight-normal) var(--aitr-font-size-xs)/1.5 var(--aitr-font-family-body); }
+.aitr-caption-m   { font: var(--aitr-font-weight-normal) var(--aitr-font-size-xs)/1.4 var(--aitr-font-family-body); }
+.aitr-caption-s   { font: var(--aitr-font-weight-normal) var(--aitr-font-size-2xs)/1.4 var(--aitr-font-family-body); }
+.aitr-caption-xs  { font: var(--aitr-font-weight-medium) var(--aitr-font-size-3xs)/1.4 var(--aitr-font-family-body); }
+.aitr-caption-eyebrow { font: var(--aitr-font-weight-medium) var(--aitr-font-size-2xs)/1.4 var(--aitr-font-family-code); letter-spacing: 0.08em; text-transform: uppercase; }
+.aitr-label-l     { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-m)/1.2 var(--aitr-font-family-body); }
+.aitr-label-m     { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s)/1.2 var(--aitr-font-family-body); }
+.aitr-label-s     { font: var(--aitr-font-weight-medium) var(--aitr-font-size-xs)/1.2 var(--aitr-font-family-body); }
+.aitr-code-m      { font: var(--aitr-font-weight-normal) var(--aitr-font-size-s)/1.5 var(--aitr-font-family-code); }
+.aitr-code-s      { font: var(--aitr-font-weight-medium) var(--aitr-font-size-2xs)/1.5 var(--aitr-font-family-code); }
+
+/* Focus ring (all interactive UI components) */
+:where(a, button, [tabindex], input, select, textarea, [role="button"]):focus-visible {
+  outline: var(--aitr-focus-ring-width) solid var(--aitr-color-focus);
+  outline-offset: var(--aitr-focus-ring-offset);
+}
