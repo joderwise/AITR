@@ -86,3 +86,8 @@ Rule applied throughout: **the Iteration 6 frame wins over the brief/SPEC when t
 - 6 Oct 2026 How we assess · 13.3 "Every pricing tier, separately" was redesigned in Figma first, then in the demo:
   - Layout: a copy column (intro, "Why the same tool rates differently by plan", three plain List Items with bold lead-ins) sits beside the tier ladder. The ladder is the new Tier Example Layout=Ladder 2865:475 (Ladder Compact 2865:22677 on Mobile): verdict chip plus Data training mini meter for Free / Plus / Business / Enterprise. A trailing link points to "See all tiers".
   - Demo code: `.aitr-tier-example[data-layout="ladder"]`, `.aitr-tier-ladder*` and `.aitr-mini-meter` in `css/site.css`; the layout is in `css/pages/how-we-assess.css`. The breakpoint switch is CSS only; the old JS Row/Stacked swap is removed.
+- 6 Oct 2026 Mobile hero and widows:
+  - Mobile hero (≤767): Still only, with no aurora drift, copy entrance or card motion, and no Motion Toggle (Figma Home Hero Mobile Animated variant retired). Trending: label above, all three chips on one row.
+  - Widows, site-wide: `text-wrap: balance` for headings and short UI labels, `pretty` for running text. A `noWidow()` helper in `js/site.js` joins the last two words of short labels with a no-break space, reverts if that overflows, and also covers JS-rendered content.
+  - Check with `node tools/widows.mjs [page|all] [widths]`. It reports 0 on every page at 390/834/1440.
+  - Figma has no balance/pretty wrapping, so its screens need manual fixes. The hero headline got one ("at work." joined).

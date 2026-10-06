@@ -383,7 +383,15 @@
     margin-block-start: calc(var(--aitr-space-3xl) + var(--aitr-space-2xs));
     zoom: 0.895;
   }
-  .home-hero__toggle { inset-block-end: auto; inset-block-start: 554px; inset-inline-end: var(--aitr-layout-page-margin); } /* Figma 2433:5886 */
+  /* 6 Oct: the Mobile hero is Still only (Figma Home Hero Size=Mobile, Motion=Still; the animated mobile variant was retired).
+     No aurora drift, no copy entrance, no card motion — so no Motion Toggle either. */
+  .home-hero__toggle { display: none; }
+  .aitr-home-hero .aitr-aurora, .aitr-home-hero .aitr-aurora *,
+  .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending, .home-hero__mobile-card, .home-hero__mobile-card * { animation: none !important; transition: none; }
+  .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending, .home-hero__mobile-card { opacity: 1; translate: none; }
+  /* Trending: label on its own line, the three chips on one row (Figma 2425:2525: 8 below the label, chips 6 apart) — never a lone chip on a second line */
+  .home-hero__trending { display: grid; grid-template-columns: auto auto auto; justify-content: start; gap: var(--aitr-space-xs) 6px; }
+  .home-hero__trending-label { grid-column: 1 / -1; }
 }
 
 /* ------------------------------------------------------------------ */

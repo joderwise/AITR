@@ -1005,3 +1005,12 @@ wa-button::part(base):focus-visible, .aitr-section-nav__item:focus-visible, .ait
   .aitr-tier-ladder__labels { grid-template-areas: "plan meter"; } .aitr-tier-ladder__labels .aitr-tier-ladder__rating { display: none; }
   .aitr-tier-ladder__wide { display: none; } .aitr-tier-ladder__narrow { display: inline; }
 }
+
+/* 6 Oct · No widows. Headings and short UI labels balance their lines (buttons, chips, tags, links, card/tile titles, form labels);
+   running text avoids a lone last word (pretty). Inherited, so it also reaches the text inside Web Awesome shadow parts. */
+h1, h2, h3, h4, h5, h6, [class*="aitr-heading"], legend, label, figcaption, th,
+button, wa-button, wa-tag, wa-option, .aitr-chip, .aitr-link, .aitr-verdict-tag, .aitr-tag,
+[class*="__title"], [class*="__name"], [class*="__label"], [class*="__heading"], .aitr-body-m-strong { text-wrap: balance; }
+p, li, dd, blockquote, aside, .aitr-body-l, .aitr-body-m, .aitr-body-s,
+[class*="aitr-caption"], [class*="__body"], [class*="__desc"], [class*="__lead"], [class*="__meta"] { text-wrap: pretty; }
+[class*="__note"], [class*="__plan"], .aitr-stat__label { text-wrap: balance; }   /* short notes and labels */

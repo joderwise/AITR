@@ -374,6 +374,27 @@ document.querySelectorAll('footer.aitr-footer').forEach(renderFooter);
 document.querySelectorAll('[data-search-scope]').forEach(initCombobox);
 initReveal(); initCountUp(); initScores(); initChips(); initTables(); initCitations(); initShortcuts();
 document.querySelectorAll('[data-motion-toggle]').forEach(hydrateMotionToggle);
+
+/* ---------- No widows (6 Oct): CSS text-wrap balance/pretty does most of it; short labels (≤ 6 words) still split 2 + 1 in narrow
+   columns, so the last two words are joined with a no-break space — undone if that makes the element overflow. Runs on load and on
+   anything rendered later (Browse cards, Related Tools, search results, Tier Comparison). ---------- */
+const WIDOW_SEL = 'h1, h2, h3, h4, h5, h6, p, li, dd, aside, figcaption, label, legend, th, td, .aitr-link, [class*="aitr-heading"], [class*="__title"], [class*="__name"], [class*="__label"], [class*="__note"], [class*="__body"], [class*="__desc"], [class*="__lead"], [class*="__meta"], [class*="__plan"]';
+function noWidow(el) {
+  if (el.dataset.noWidow || el.closest('[contenteditable], input, textarea, wa-input, wa-textarea')) return;
+  el.dataset.noWidow = '1';
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let lastText = null;
+  while (walker.nextNode()) if (walker.currentNode.textContent.trim()) lastText = walker.currentNode;
+  if (!lastText) return;
+  const words = el.textContent.trim().split(/\s+/); if (words.length < 3) return;
+  const t = lastText.textContent, i = t.trimEnd().lastIndexOf(' ');
+  if (i <= 0) return;                                            // the last two words live in different nodes: leave it to CSS
+  const before = t;
+  lastText.textContent = t.slice(0, i) + '\u00A0' + t.slice(i + 1);
+  if (el.scrollWidth > el.clientWidth + 1) lastText.textContent = before;
+}
+const sweepWidows = (root = document.body) => { if (root.nodeType !== 1) return; if (root.matches(WIDOW_SEL)) noWidow(root); root.querySelectorAll(WIDOW_SEL).forEach(noWidow); };
+requestAnimationFrame(() => sweepWidows());
+new MutationObserver((ms) => { for (const m of ms) m.addedNodes.forEach((n) => sweepWidows(n)); }).observe(document.body, { childList: true, subtree: true });
 requestAnimationFrame(initBackToTop);
 document.dispatchEvent(new CustomEvent('aitr-ready'));
 
