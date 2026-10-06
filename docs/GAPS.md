@@ -91,3 +91,4 @@ Rule applied throughout: **the Iteration 6 frame wins over the brief/SPEC when t
   - Widows, site-wide: `text-wrap: balance` for headings and short UI labels, `pretty` for running text. A `noWidow()` helper in `js/site.js` joins the last two words of short labels with a no-break space, reverts if that overflows, and also covers JS-rendered content.
   - Check with `node tools/widows.mjs [page|all] [widths]`. It reports 0 on every page at 390/834/1440.
   - Figma has no balance/pretty wrapping, so its screens need manual fixes. The hero headline got one ("at work." joined).
+- 6 Oct 2026 Unlock Teaser, Tablet breakpoint: new Figma variant Layout=Split (2879:17636), used on all Tablet screens. Copy and CTA sit on top; the four benefits form a 2 × 2 grid under a hairline. The demo (768–1279) now uses named grid areas: the DOM order (copy → benefits → CTA) had pushed the button below the benefits. Mobile is still Stacked and Desktop is still Row.
