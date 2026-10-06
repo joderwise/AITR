@@ -979,3 +979,29 @@ wa-button::part(base):focus-visible, .aitr-section-nav__item:focus-visible, .ait
   .aitr-category-tile:is(:hover, :focus-visible) .aitr-category-tile__icon [data-part] { animation: none; }
   .aitr-category-tile:is(:hover, :focus-visible) [data-part="slash"] { translate: none; rotate: none; }
 }
+
+/* Tier Example · Layout=Ladder (Figma 2865:475) / Ladder Compact (2865:22677, ≤767): one tool, every plan stacked, verdict chip +
+   Data training mini meter per plan. Surface/Raised, Surface/Border, radius 16, padding 8/24/16 (16 side on compact); rows 12 + hairline;
+   columns Plan 1fr · Rating 160 · Data training 96 (compact: plan over chip · 72). Meter = Factor Mini Kind=Training (4 bars, tone by level). */
+.aitr-tier-example[data-layout="ladder"] { display: block; margin: 0; padding: var(--aitr-space-xs) var(--aitr-space-l) var(--aitr-space-m); border: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); border-radius: var(--aitr-border-radius-l); background: var(--aitr-color-surface-raised); }
+.aitr-tier-ladder__head { display: flex; align-items: center; gap: var(--aitr-space-s); padding-block: var(--aitr-space-m); }
+.aitr-tier-ladder__head > span:last-child { display: grid; min-inline-size: 0; }
+.aitr-tier-ladder__vendor { font-size: var(--aitr-font-size-xs); line-height: 1.4; color: var(--aitr-color-text-quiet); }
+.aitr-tier-ladder { list-style: none; margin: 0; padding: 0; }
+.aitr-tier-ladder__row { display: grid; grid-template-columns: minmax(0, 1fr) 160px 96px; column-gap: var(--aitr-space-m); align-items: center; padding-block: var(--aitr-space-s); border-block-start: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); font-size: var(--aitr-font-size-s); color: var(--aitr-color-text-normal); }
+.aitr-tier-ladder__labels { padding-block: var(--aitr-space-s) var(--aitr-space-2xs); font-size: var(--aitr-font-size-xs); color: var(--aitr-color-text-quiet); }
+.aitr-tier-ladder__labels + .aitr-tier-ladder__row { border-block-start-color: var(--aitr-color-surface-border); }
+.aitr-tier-ladder__note { margin: 0; padding-block-start: 14px; border-block-start: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); font-size: var(--aitr-font-size-xs); line-height: 1.5; color: var(--aitr-color-text-quiet); }
+.aitr-tier-ladder__narrow { display: none; }
+.aitr-mini-meter { --tone: var(--aitr-color-success-fill-loud); display: flex; gap: 4px; block-size: 6px; }
+.aitr-mini-meter[data-tone="warning"] { --tone: var(--aitr-color-warning-fill-loud); }
+.aitr-mini-meter[data-tone="danger"] { --tone: var(--aitr-color-danger-fill-loud); }
+.aitr-mini-meter > i { flex: 1 1 0; min-inline-size: 0; border-radius: 3px; background: var(--aitr-color-surface-border); }
+.aitr-mini-meter > i.on { background: var(--tone); }
+@media (max-width: 767px) {
+  .aitr-tier-example[data-layout="ladder"] { padding-inline: var(--aitr-space-m); }
+  .aitr-tier-ladder__row { grid-template-columns: minmax(0, 1fr) 72px; grid-template-areas: "plan meter" "rating meter"; column-gap: var(--aitr-space-s); row-gap: 6px; }
+  .aitr-tier-ladder__plan { grid-area: plan; } .aitr-tier-ladder__rating { grid-area: rating; } .aitr-tier-ladder__row > :last-child { grid-area: meter; }
+  .aitr-tier-ladder__labels { grid-template-areas: "plan meter"; } .aitr-tier-ladder__labels .aitr-tier-ladder__rating { display: none; }
+  .aitr-tier-ladder__wide { display: none; } .aitr-tier-ladder__narrow { display: inline; }
+}

@@ -101,7 +101,7 @@
 
 /* Tier Example · 2559:13278 (Row): tool left, tiers right-aligned with label beside chip (gap 10), padding 20 / 20 / 20 / 24,
    card 140 tall · 2559:13470 (Stacked): tool mark above the name, centred; tier rows full width, label left / chip right */
-.assess-panel .aitr-tier-example {
+.assess-panel .aitr-tier-example:not([data-layout="ladder"]) {
   grid-template-columns: 1fr auto auto;
   min-block-size: calc(var(--aitr-space-6xl) + var(--aitr-space-m) + var(--aitr-space-2xs));   /* 140 */
   padding-block: calc(var(--aitr-space-m) + var(--aitr-space-2xs));
@@ -199,3 +199,17 @@
 .assess-panel .aitr-method-card { border: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); }   /* Method Card 1px stroke (13.1: 128 + 2 = 130) */
 .assess-panel .aitr-level-card { box-sizing: border-box; min-block-size: 180px; gap: var(--aitr-space-m); align-content: start; }   /* Safety Level Card 180 (24 pad, gap 16) on all widths */
 .assess-panel .aitr-tier-example[data-layout="stacked"] { padding: calc(var(--aitr-space-m) + var(--aitr-space-2xs)) var(--aitr-space-l) calc(var(--aitr-space-m) + var(--aitr-space-2xs)) calc(var(--aitr-space-m) + var(--aitr-space-2xs)); gap: var(--aitr-space-s); }   /* Example 196 on Mobile: 20/24/20/20, gap 12 */
+
+/* 13.3 · Every pricing tier, separately (6 Oct redesign, Figma 2559:13265 / 13369 / 13470): Desktop = copy column + 560 ladder (gap 48);
+   Tablet/Mobile stack (gap 28 / 20). Reasons are List Item Style=Plain with a bold lead-in; trailing link under the card. */
+.assess-tiers { display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 48px; align-items: start; }
+.assess-tiers__copy { display: grid; gap: 20px; min-inline-size: 0; }
+.assess-tiers__copy > p { margin: 0; }
+.assess-tiers__copy > .aitr-body-m { color: var(--aitr-color-text-quiet); }
+.assess-tiers__copy > .assess-tiers__why { color: var(--aitr-color-text-normal); }
+.assess-tiers__reasons { margin: 0; padding: 0; list-style: none; border-block-start: 0; }
+.assess-tiers__reasons strong { font-weight: var(--aitr-font-weight-semibold); color: var(--aitr-color-text-normal); }
+.assess-tiers__reasons .aitr-list-item { color: var(--aitr-color-text-normal); }
+.assess-tiers__link { justify-self: start; }
+@media (max-width: 1279px) { .assess-tiers { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+@media (max-width: 767px) { .assess-tiers { gap: 20px; } .assess-tiers__copy { gap: 16px; } }

@@ -104,23 +104,53 @@
           <section class="assess-panel" id="every-tier" role="tabpanel" aria-labelledby="tab-every-tier" hidden>
             <div class="assess-panel__body">
               <h2 class="aitr-heading-3xl" tabindex="-1">Every pricing tier, separately</h2>
-              <div class="aitr-glass assess-card">
-                <p class="aitr-body-m">A tool’s Free tier and its Enterprise tier often have very different data protections. We grade each one on its own evidence, so “is this safe?” always has a per-tier answer.</p>
-                <div class="aitr-tier-example" data-layout="row">
-                  <div class="aitr-tier-example__tool">
-                    <span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true"></span><!-- 3 Oct: Show initial=false → plain brand circle -->
-                    <span class="aitr-body-m-strong">AI Tool</span>
-                  </div>
-                  <div class="aitr-tier-example__tier">
-                    <span class="aitr-caption-m">Free</span>
-                    <wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag>
-                  </div>
-                  <div class="aitr-tier-example__tier">
-                    <span class="aitr-caption-m">Enterprise</span>
-                    <wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag>
-                  </div>
+              <!-- 6 Oct: tier ladder (Figma 13.3 · Tier Example Layout=Ladder 2865:475 / Ladder Compact 2865:22677 on Mobile) -->
+              <div class="aitr-glass assess-card assess-tiers">
+                <div class="assess-tiers__copy">
+                  <p class="aitr-body-m">A tool’s Free tier and its Enterprise tier often have very different data protections. We grade each one on its own evidence, so “is this safe?” always has a per‑tier answer.</p>
+                  <p class="aitr-body-m-strong assess-tiers__why">Why the same tool rates differently by plan</p>
+                  <ul class="aitr-list assess-tiers__reasons">
+                    <li class="aitr-list-item" data-style="plain"><span><strong>Data training</strong> — free plans often train on what you type; business plans usually switch it off.</span></li>
+                    <li class="aitr-list-item" data-style="plain"><span><strong>Admin and security controls</strong> — SSO, audit logs and retention settings usually start at Business.</span></li>
+                    <li class="aitr-list-item" data-style="plain"><span><strong>Contract terms</strong> — a data processing agreement normally comes only with paid business plans.</span></li>
+                  </ul>
                 </div>
+                <figure class="aitr-tier-example" data-layout="ladder" aria-labelledby="tier-ladder-cap">
+                  <div class="aitr-tier-ladder__head">
+                    <span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true"></span>
+                    <span><span class="aitr-body-m-strong">AI Tool</span><span class="aitr-tier-ladder__vendor">Example Inc. · <span class="aitr-tier-ladder__wide">the same tool on four plans</span><span class="aitr-tier-ladder__narrow">one tool, four plans</span></span></span>
+                  </div>
+                  <ul class="aitr-tier-ladder" aria-label="AI Tool ratings by plan">
+                    <li class="aitr-tier-ladder__row aitr-tier-ladder__labels" aria-hidden="true">
+                      <span class="aitr-tier-ladder__plan"><span class="aitr-tier-ladder__wide">Plan</span><span class="aitr-tier-ladder__narrow">Plan · rating</span></span>
+                      <span class="aitr-tier-ladder__rating">Rating</span>
+                      <span><span class="aitr-tier-ladder__wide">Data training</span><span class="aitr-tier-ladder__narrow">Training</span></span>
+                    </li>
+                    <li class="aitr-tier-ladder__row">
+                      <span class="aitr-tier-ladder__plan">Free</span>
+                      <span class="aitr-tier-ladder__rating"><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag></span>
+                      <span class="aitr-mini-meter" data-tone="danger" role="img" aria-label="Data training: Always trains on your data"><i class="on"></i><i></i><i></i><i></i></span>
+                    </li>
+                    <li class="aitr-tier-ladder__row">
+                      <span class="aitr-tier-ladder__plan">Plus</span>
+                      <span class="aitr-tier-ladder__rating"><wa-tag class="aitr-verdict-tag" data-verdict="public-data-only" size="small" pill>Public Data Only</wa-tag></span>
+                      <span class="aitr-mini-meter" data-tone="danger" role="img" aria-label="Data training: Trains unless you opt out"><i class="on"></i><i class="on"></i><i></i><i></i></span>
+                    </li>
+                    <li class="aitr-tier-ladder__row">
+                      <span class="aitr-tier-ladder__plan">Business</span>
+                      <span class="aitr-tier-ladder__rating"><wa-tag class="aitr-verdict-tag" data-verdict="internal-work-only" size="small" pill>Internal Work Only</wa-tag></span>
+                      <span class="aitr-mini-meter" data-tone="warning" role="img" aria-label="Data training: Only trains if you opt in"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+                    </li>
+                    <li class="aitr-tier-ladder__row">
+                      <span class="aitr-tier-ladder__plan">Enterprise</span>
+                      <span class="aitr-tier-ladder__rating"><wa-tag class="aitr-verdict-tag" data-verdict="business-ready" size="small" pill>Business Ready</wa-tag></span>
+                      <span class="aitr-mini-meter" data-tone="success" role="img" aria-label="Data training: Never trains on your data"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+                    </li>
+                  </ul>
+                  <figcaption id="tier-ladder-cap" class="aitr-tier-ladder__note">Same tool, four different answers. Data training: 4 bars = never trains on your data, 1 bar = always does.</figcaption>
+                </figure>
               </div>
+              <a class="aitr-link assess-tiers__link" data-arrow="trailing" href="tool.html"><span class="aitr-tier-ladder__wide">On a tool page, pick your plan — or open “See all tiers” to compare them</span><span class="aitr-tier-ladder__narrow">Compare every tier on any tool page</span> <wa-icon library="lucide" name="arrow-right" aria-hidden="true"></wa-icon></a>
             </div>
             <aside class="aitr-disclaimer">
               <p><strong>Advisory Disclaimer:</strong> AI Trust Ratings reflect publicly available information at the time of review. They are not legal advice and should not be the sole basis for compliance decisions. Policies change — always verify directly with the vendor before processing sensitive data. Ratings are provided by RAB2B Operational AI for informational purposes only.</p>

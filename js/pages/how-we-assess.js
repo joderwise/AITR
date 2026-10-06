@@ -7,7 +7,6 @@ const label = nav?.querySelector('.aitr-section-nav__label');
 const tablist = nav?.querySelector('[role="tablist"]');
 const tabs = tablist ? [...tablist.querySelectorAll('[role="tab"]')] : [];
 const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
-const tierExample = document.querySelector('.aitr-tier-example');
 
 if (nav && tabs.length) init();
 
@@ -38,7 +37,7 @@ function init() {
       tablist.setAttribute('aria-orientation', 'horizontal');
       scrollTabIntoView(tabs[current], 'auto');
     }
-    tierExample?.setAttribute('data-layout', layout === 'dropdown' ? 'stacked' : 'row');
+    // 13.3's Tier Example is Layout=Ladder now; its Desktop/Mobile (Ladder Compact) switch is pure CSS
   }
   mqMobile.addEventListener('change', applyLayout);
 
