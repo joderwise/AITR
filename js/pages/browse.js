@@ -5,6 +5,7 @@
    ("Showing n of N"), Clear filters, URL mirroring via replaceState. */
 
 import { TOOLS_DB, TYPE_LABELS } from '../data/tools.js';
+import { toolIcon } from '../site.js';
 
 const TOTAL = TOOLS_DB.length;   // 84
 const PAGE = 24;                 // cards per page (Load more adds another 24)
@@ -13,14 +14,12 @@ let limit = PAGE;
 const $ = (id) => document.getElementById(id);
 const grid = $('browse-grid');
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const markHtml = (t) => (t.logo
-  ? `<img class="aitr-tool-mark aitr-tool-mark--round" src="${t.logo}" alt="" width="36" height="36" loading="lazy">`
-  : `<span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true">${esc(t.initials)}</span>`);
+const markHtml = (t) => toolIcon(t.icon, 36);
 const cardHtml = (t) => `<article class="aitr-registry-card" data-name="${esc(t.name)}" data-vendor="${esc(t.vendor)}" data-category="${t.type}" data-verdict="${t.verdict}" data-slug="${t.slug}">
         <div class="aitr-registry-card__top">${markHtml(t)}
           <div>
-            <a class="aitr-registry-card__name" href="tool.html?tool=${t.slug}">${esc(t.name)}</a>${t.agentic ? ' <wa-icon class="browse-card__agentic" library="lucide" name="zap" label="Agentic capabilities"></wa-icon>' : ''}
-            <div class="aitr-registry-card__meta">${esc(t.vendor)} · ${esc(t.typeLabel)}</div>
+            <a class="aitr-registry-card__name" href="tool.html?tool=${t.slug}" title="${esc(t.name)}">${esc(t.name)}</a>${t.agentic ? ' <wa-icon class="browse-card__agentic" library="lucide" name="zap" label="Agentic capabilities"></wa-icon>' : ''}
+            <div class="aitr-registry-card__meta" title="${esc(t.vendor)} · ${esc(t.typeLabel)}">${esc(t.vendor)} · ${esc(t.typeLabel)}</div>
           </div>
           <wa-icon class="browse-card__open" library="lucide" name="chevron-right" aria-hidden="true"></wa-icon>
         </div>

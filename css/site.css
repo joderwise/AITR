@@ -646,6 +646,15 @@ wa-textarea.aitr-field::part(textarea) { min-block-size: 144px; font-family: var
 .aitr-registry-card__footer { gap: var(--aitr-space-s); flex-wrap: wrap; }
 .aitr-registry-card .aitr-bone { display: block; block-size: 12px; }
 .aitr-registry-card[aria-busy="true"] { gap: var(--aitr-space-s); }
+/* Long names / vendors truncate with an ellipsis inside the card (every Registry Card: Browse, Related Tools, For Business preview).
+   The card is a one-column grid: minmax(0, 1fr) stops that column growing to the longest unbroken line, then each text line clips.
+   The name keeps room for the trailing agentic icon (16 + 4 gap ≈ 28 with the inline space); the full text stays in the DOM / title. */
+.aitr-registry-card { grid-template-columns: minmax(0, 1fr); }
+.aitr-registry-card__top > div { overflow: hidden; }
+.aitr-registry-card__name { display: inline-block; max-inline-size: calc(100% - 28px); vertical-align: bottom; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aitr-registry-card__name:not(:has(+ wa-icon)) { max-inline-size: 100%; } /* no agentic icon after it */
+.aitr-registry-card__meta { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aitr-registry-card__checked { min-inline-size: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 [data-list-enter] > * { animation: aitr-list-enter var(--aitr-transition-slow) var(--aitr-transition-easing-enter) both; animation-delay: calc(min(var(--i, 0), 7) * 30ms); }
 @keyframes aitr-list-enter { from { opacity: 0; transform: translateY(var(--aitr-motion-distance-m)); } }
 .aitr-tool-mark { background: var(--aitr-color-paper-50); }
@@ -658,6 +667,12 @@ wa-textarea.aitr-field::part(textarea) { min-block-size: 144px; font-family: var
 .aitr-tool-header__logo:has(.aitr-tool-mark--generic) { padding: 0; background: var(--aitr-color-brand-fill-loud); border-color: transparent; overflow: hidden; border-radius: 50%; box-shadow: none; }
 .aitr-tool-header__logo .aitr-tool-mark--generic { border-radius: 50%; }
 .aitr-registry-card__top .aitr-tool-mark--generic, .aitr-tier-example .aitr-tool-mark--generic, .aitr-tier-card .aitr-tool-mark--generic, .aitr-factor-grid__title .aitr-tool-mark--generic { border-radius: 50%; padding: 0; }
+/* AI tool icon library — <wa-icon class="aitr-tool-icon" library="aitr-tools" name="<slug>" style="--size:36px"> (js/site.js toolIcon()).
+   One square SVG per tool in assets/tool-icons (brand mark or generated monogram), shown whole at --size with its own colours. */
+.aitr-tool-icon { --size: 36px; flex: 0 0 auto; display: inline-block; inline-size: var(--size); block-size: var(--size); min-inline-size: 0; min-block-size: 0; font-size: var(--size); line-height: 1; vertical-align: middle; } /* WA host default is a 1.25em-wide canvas (min-width) — tool icons are square */
+.aitr-tool-icon::part(svg) { inline-size: 100%; block-size: 100%; }
+.aitr-tool-header__logo .aitr-tool-icon { inline-size: 100%; block-size: 100%; font-size: inherit; } /* fills the padded 80 / 56 tile */
+.aitr-tool-mark--icon { display: inline-grid; place-items: center; flex: 0 0 auto; }                   /* 40 tile (Tool Mark Custom) holding a 20 icon */
 .aitr-skeleton, .aitr-bone { position: relative; overflow: hidden; background: var(--aitr-color-surface-lowered); border-radius: var(--aitr-border-radius-pill); }
 .aitr-skeleton::after, .aitr-bone::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, var(--aitr-color-overlay-inline), transparent); animation: aitr-shimmer 1.2s linear infinite; }
 @keyframes aitr-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }

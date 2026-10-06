@@ -26,6 +26,13 @@ const lucide = {
 registerIconLibrary('lucide', lucide);
 registerIconLibrary('default', lucide);
 
+/* ---------- AI tool icons: one square SVG per registry tool (assets/tool-icons, built by tools/build-tool-icons.mjs) ----------
+   Brand marks from LobeHub Icons (MIT) / Simple Icons (CC0) where an open-licensed SVG exists, a generated monogram otherwise.
+   Colours are kept (no mutator). Without a label the icon is decorative (aria-hidden); pass one when it is the only name. */
+const TOOL_ICONS = new URL('../assets/tool-icons/', import.meta.url);
+registerIconLibrary('aitr-tools', { resolver: (name) => new URL(`${name}.svg`, TOOL_ICONS).href });
+export const toolIcon = (slug, size = 36, label = '') => `<wa-icon class="aitr-tool-icon" library="aitr-tools" name="${slug}" style="--size:${size}px"${label ? ` label="${String(label).replace(/"/g, '&quot;')}"` : ''}></wa-icon>`;
+
 /* ---------- Page chrome ---------- */
 const PAGES = [
   { key: 'browse', label: 'Browse Tools', href: 'browse.html' },
@@ -144,12 +151,12 @@ function renderAurora(el) {
 /* Search data = the 84-tool mock registry (js/data/tools.js) + the Figma example tool "AI Tool" that the hero demo and Tool detail frames use. */
 export const TOOLS = [
   { name: 'AI Tool', vendor: 'Example Inc.', category: 'Chat & Search', plans: 6, slug: 'ai-tool', initial: 'AI', tiers: [['Free', 'public-data-only', 'Public Data Only'], ['Go', 'public-data-only', 'Public Data Only'], ['Plus', 'public-data-only', 'Public Data Only'], ['Pro', 'public-data-only', 'Public Data Only'], ['Business', 'business-ready', 'Business Ready'], ['Enterprise', 'business-ready', 'Business Ready']] },
-  ...TOOLS_DB.map((t) => ({ name: t.name, vendor: t.vendor, category: t.typeLabel, plans: t.tiers.length, slug: t.slug, logo: t.logo || undefined, initial: t.logo ? undefined : t.initials,
+  ...TOOLS_DB.map((t) => ({ name: t.name, vendor: t.vendor, category: t.typeLabel, plans: t.tiers.length, slug: t.slug, icon: t.slug,
     tiers: t.tiers.map((x) => [x.label, x.verdict, VERDICT_LABELS[x.verdict]]) }))
 ];
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const toolMark = (t, size = 32) => t.initial ? `<span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:${size}px" aria-hidden="true">${esc(t.initial)}</span>` : `<img class="aitr-tool-mark${size === 32 ? ' aitr-tool-mark--s' : ''}" src="${t.logo}" alt="" width="${size}" height="${size}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'aitr-tool-mark aitr-tool-mark--s aitr-search-listbox__fallback',textContent:'${esc(t.name[0])}'}))">`;
+const toolMark = (t, size = 32) => t.icon ? toolIcon(t.icon, size) : `<span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:${size}px" aria-hidden="true">${esc(t.initial)}</span>`;
 
 export function initCombobox(scope) {
   const input = scope.querySelector('wa-input[role="combobox"]');

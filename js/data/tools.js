@@ -1,6 +1,7 @@
 /* Mock registry behind Browse, the nav / hero search and Tool detail (5 Oct 2026).
    The 84 tools, vendors, types, safety ratings, top plans and agentic flags are the real rows drawn in the Figma Browse frame
-   (Iteration 6 › 12 · Browse Tools, cards "Tool / *"); logos are the exact Figma image fills where the frame has them, otherwise a brand tile with initials.
+   (Iteration 6 › 12 · Browse Tools, cards "Tool / *"); every tool's icon is assets/tool-icons/<slug>.svg (the "aitr-tools" icon library, see tools/build-tool-icons.mjs); the last column is the
+   legacy Figma image fill (PNG), kept only as a reference.
    Everything else (plan ladders, per-tier scores, country) is generated deterministically from the row so every page agrees. */
 
 export const TYPE_LABELS = { 'chat-search': 'Chat & Search', 'writing': 'Writing', 'image': 'Image', 'video-audio': 'Video & Audio', 'code-dev': 'Code & Developer Tools', 'productivity-agents': 'Productivity & Agents' };
@@ -154,10 +155,10 @@ function buildTiers(row) {
 }
 
 export const TOOLS_DB = ROWS.map((row) => {
-  const [name, slug, vendor, type, verdict, plan, agentic, logo] = row;
+  const [name, slug, vendor, type, verdict, plan, agentic] = row;
   const initials = name.replace(/\(.*?\)/g, '').split(/[\s.]+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('') || name[0].toUpperCase();
   const tiers = buildTiers(row);
-  return { name, slug, vendor, type, typeLabel: TYPE_LABELS[type], verdict, verdictLabel: VERDICT_LABELS[verdict], plan, agentic, logo, initials, tiers,
+  return { name, slug, vendor, type, typeLabel: TYPE_LABELS[type], verdict, verdictLabel: VERDICT_LABELS[verdict], plan, agentic, icon: slug, initials, tiers,
     description: DESCRIBE(name, type, vendor) };
 });
 

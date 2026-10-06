@@ -78,7 +78,7 @@
 }
 .home-hero__trend:hover { background: color-mix(in srgb, var(--aitr-color-surface-raised), var(--aitr-color-mix-hover)); }
 .home-hero__trend:active { transform: scale(var(--aitr-motion-scale-press)); }
-.home-hero__trend img { inline-size: var(--aitr-space-l); block-size: var(--aitr-space-l); object-fit: contain; } /* logo as exported, no mask */
+.home-hero__trend .aitr-tool-icon { margin: 0; } /* 24 tool icon (aitr-tools); cancels WA native button styles' 0.75em gap after a leading <wa-icon> — the chip gap already spaces it */
 
 /* Copy intro: Reveal 630 · stagger 130 · rise 20 · Entrance — runs once */
 .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending {

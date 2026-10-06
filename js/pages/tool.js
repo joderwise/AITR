@@ -2,7 +2,7 @@
    modal (native dialog · bottom sheet on mobile), Unlock Teaser → lead gate, locked overlay + lead gate (panel · mobile bottom
    sheet), work-email validation, tier-error / tier-loading / unlock-error / tiers-open states, "Show source" ↔ citation linking.
    Shared behaviour (nav, aurora, footer, score pips, citations, reveal, factorRating) is in js/site.js. */
-import { hydrateScore, factorRating, motion, state } from '../site.js';
+import { hydrateScore, factorRating, motion, state, toolIcon } from '../site.js';
 import { toolBySlug, relatedTo, VERDICT_LABELS } from '../data/tools.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -55,7 +55,7 @@ function hydrateTool(t) {
   $('.tool-header__description').textContent = t.description;
   const trace = $('.aitr-trace', $('.aitr-tool-header__name')); if (trace) trace.hidden = !t.agentic;
   const logo = $('.aitr-tool-header__logo');
-  logo.innerHTML = t.logo ? `<img class="aitr-tool-mark aitr-tool-mark--round" src="${t.logo}" alt="" style="--size:80px;inline-size:80px;block-size:80px">` : `<span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:80px" aria-hidden="true">${t.initials}</span>`;
+  logo.innerHTML = toolIcon(t.icon, 80);
   COUNTRY = t.tiers[0].country || 'US';
   TIERS = t.tiers;
   $('#tier-select').innerHTML = TIERS.map((x, i) => `<wa-option value="${i}">${x.label}</wa-option>`).join('');
@@ -63,7 +63,7 @@ function hydrateTool(t) {
   const sub = $('#tiers-sub'); if (sub) sub.textContent = `${t.name} · the same four checks for every plan`;
   const cards = relatedTo(t, 4);
   const esc = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const html = cards.map((r) => `<article class="aitr-registry-card"><div class="aitr-registry-card__top">${r.logo ? `<img class="aitr-tool-mark aitr-tool-mark--round" src="${r.logo}" alt="" width="36" height="36">` : `<span class="aitr-tool-mark aitr-tool-mark--generic" style="--size:36px" aria-hidden="true">${esc(r.initials)}</span>`}<div><a class="aitr-registry-card__name" href="tool.html?tool=${r.slug}">${esc(r.name)}</a>${r.agentic ? ' <wa-icon library="lucide" name="bolt" label="Agentic capabilities" class="tool-related__agentic"></wa-icon>' : ''}<div class="aitr-registry-card__meta">${esc(r.vendor)} · ${esc(r.typeLabel)}</div></div><wa-icon library="lucide" name="chevron-right" class="tool-related__open" aria-hidden="true"></wa-icon></div><div class="aitr-registry-card__footer"><wa-tag class="aitr-verdict-tag" data-verdict="${r.verdict}" size="small" pill>${r.verdictLabel}</wa-tag><span class="aitr-registry-card__checked">${esc(r.plan)}</span></div></article>`).join('');
+  const html = cards.map((r) => `<article class="aitr-registry-card"><div class="aitr-registry-card__top">${toolIcon(r.icon, 36)}<div><a class="aitr-registry-card__name" href="tool.html?tool=${r.slug}" title="${esc(r.name)}">${esc(r.name)}</a>${r.agentic ? ' <wa-icon library="lucide" name="bolt" label="Agentic capabilities" class="tool-related__agentic"></wa-icon>' : ''}<div class="aitr-registry-card__meta" title="${esc(r.vendor)} · ${esc(r.typeLabel)}">${esc(r.vendor)} · ${esc(r.typeLabel)}</div></div><wa-icon library="lucide" name="chevron-right" class="tool-related__open" aria-hidden="true"></wa-icon></div><div class="aitr-registry-card__footer"><wa-tag class="aitr-verdict-tag" data-verdict="${r.verdict}" size="small" pill>${r.verdictLabel}</wa-tag><span class="aitr-registry-card__checked">${esc(r.plan)}</span></div></article>`).join('');
   const relGrid = $('.tool-related .aitr-grid');
   if (relGrid) relGrid.innerHTML = html;
 }

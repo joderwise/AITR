@@ -219,9 +219,6 @@
 }
 
 /* 5 Oct spacing audit: cards are 147 high in every frame (one-line name + one-line meta) → meta/name truncate instead of wrapping; mobile grid gap 16; count row 18 */
-.browse-grid .aitr-registry-card__top > div { overflow: hidden; }
-.browse-grid .aitr-registry-card__name { display: inline-block; max-inline-size: calc(100% - 28px); vertical-align: bottom; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.browse-grid .aitr-registry-card__meta { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
 .browse-count-row { min-block-size: 18px; block-size: auto; }
 @media (max-width: 767px) { .browse-grid { gap: var(--aitr-space-m); } }
 .browse-grid > .aitr-registry-card { min-block-size: 147px; box-sizing: border-box; }
