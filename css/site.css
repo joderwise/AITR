@@ -616,7 +616,7 @@ wa-textarea.aitr-field::part(textarea) { min-block-size: 144px; font-family: var
 .aitr-category-tile:hover [data-part="left"], .aitr-category-tile:focus-visible [data-part="left"] { transform: translateX(-3.33px); }
 .aitr-category-tile:hover [data-part="slash"], .aitr-category-tile:focus-visible [data-part="slash"] { transform: translate(-0.76px, 0.18px) rotate(-8deg); }
 .aitr-category-tile:hover [data-part="antenna"], .aitr-category-tile:focus-visible [data-part="antenna"] { transform: translateY(-3.33px); }
-.aitr-category-tile:hover [data-part="eye"], .aitr-category-tile:focus-visible [data-part="eye"] { transform: scaleY(0.006); stroke-width: 3; }
+.aitr-category-tile:hover [data-part="eye"], .aitr-category-tile:focus-visible [data-part="eye"] { stroke-dasharray: 0 1; stroke-width: 3; } /* Hover eye = 0.024 tall at the same top (21.667), stroke 3 → a round dot: collapse the dash toward the top */
 .aitr-category-tile:active { transform: scale(var(--aitr-motion-scale-press)); box-shadow: var(--aitr-shadow-card); transition-duration: var(--aitr-transition-fast); }
 @media (max-width: 767px) { .aitr-category-tile__icon svg { inline-size: 26.67px; block-size: 26.67px; } }
 @media (prefers-reduced-motion: reduce) { .aitr-category-tile__icon svg path, .aitr-category-tile__icon svg g { transition: none; } .aitr-category-tile:hover [data-part], .aitr-category-tile:focus-visible [data-part] { transform: none; } }
@@ -884,3 +884,83 @@ wa-button::part(base):focus-visible, .aitr-section-nav__item:focus-visible, .ait
 .aitr-category-tile__icon svg path, .aitr-category-tile__icon svg g,
 .aitr-category-tile:hover .aitr-category-tile__icon svg path, .aitr-category-tile:focus-visible .aitr-category-tile__icon svg path { transition-duration: var(--tile-dur); transition-timing-function: var(--tile-ease); }
 .aitr-category-tile:active { transition-duration: var(--aitr-transition-fast); }
+
+/* Category Tile — icon micro-motion, keyframes from the component's motion timeline (get_motion_context on set 2147:4919, 5 Oct).
+   Hover (2147:47xx–49xx) and Focus (2280:*) variants carry identical tracks; Default and Pressed are static. The timeline is 14 s
+   and all motion ends at 14.643 % (≈2.05 s), so each glyph plays once per hover/focus and then holds its rest state.
+   Percentages, values and curves are copied verbatim from the snippets; rotate is in degrees (motion.dev values). Every track
+   is an individual translate / rotate / scale property, pivoting on the layer's own box centre (transform-box: fill-box), and it
+   composes with the static Hover offsets that the 280 ms Smart Animate transition above still applies through `transform`. */
+.aitr-category-tile { --tile-motion: 14s linear 1 forwards; }
+.aitr-category-tile__icon svg path, .aitr-category-tile__icon svg g { transition-property: stroke, stroke-width, stroke-dasharray, transform, opacity, translate, rotate; }
+/* rest states the tracks start from */
+.aitr-category-tile__icon [data-part="line"] { stroke-dasharray: 0.4444 1; stroke-dashoffset: -0.5556; }      /* Writing baseline: trimmed 55.6 → 100 % */
+.aitr-category-tile__icon :is([data-part="frame"], [data-part="sun"], [data-part="hill"]) { stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.aitr-category-tile__icon :is([data-part="token"], [data-part="caret"]) { opacity: 0; }
+.aitr-category-tile__icon [data-part="eye"] { stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+/* Hover/Focus static geometry of the slash: Figma relativeTransform = translate(−1.897, +0.45) about its centre, rotated 8° clockwise */
+.aitr-category-tile:hover [data-part="slash"], .aitr-category-tile:focus-visible [data-part="slash"] { transform: none; translate: -1.897px 0.45px; rotate: 8deg; }
+
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="bubble"]         { animation: tile-chat-bubble var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="dot"][data-n="1"] { animation: tile-chat-dot-1 var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="dot"][data-n="2"] { animation: tile-chat-dot-2 var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="dot"][data-n="3"] { animation: tile-chat-dot-3 var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="line"]           { animation: tile-write-line-width var(--tile-motion), tile-write-line-trim var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="pen"]            { animation: tile-write-pen-rotate var(--tile-motion), tile-write-pen-move var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="frame"]          { animation: tile-image-frame var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="sun"]            { animation: tile-image-sun var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="hill"]           { animation: tile-image-hill var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="board"]          { animation: tile-video-board var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="top"]            { animation: tile-video-top var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="right"]          { animation: tile-code-right var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="left"]           { animation: tile-code-left var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="slash"]          { animation: tile-code-slash-opacity var(--tile-motion), tile-code-slash-rotate var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="token"][data-n="1"] { animation: tile-code-token-1 var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="token"][data-n="2"] { animation: tile-code-token-2 var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="token"][data-n="3"] { animation: tile-code-token-3 var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="caret"]          { animation: tile-code-caret-opacity var(--tile-motion), tile-code-caret-move var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="antenna"]        { animation: tile-agent-antenna var(--tile-motion); }
+.aitr-category-tile:is(:hover, :focus-visible) [data-part="head"]           { animation: tile-agent-head var(--tile-motion); }
+
+/* Chat & Search — 2147:4782–4785 */
+@keyframes tile-chat-bubble { 0% { translate: 0 0; } 0.357% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 0; } 5.119% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 -1.32px; } 14.643%, 100% { translate: 0 -0.001px; } }
+@keyframes tile-chat-dot-1 { 0% { translate: 0 0; } 2.144% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 0; } 5.119% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 -2.64px; } 8.691%, 100% { translate: 0 0; } }
+@keyframes tile-chat-dot-2 { 0% { translate: 0 0; } 3.81% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 0; } 6.786% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 -2.64px; } 10.357%, 100% { translate: 0 0; } }
+@keyframes tile-chat-dot-3 { 0% { translate: 0 0; } 5.476% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 0; } 8.452% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 -2.64px; } 12.024%, 100% { translate: 0 0; } }
+
+/* Writing — 2164:2923 Line (path trim, pathLength=1) + 2147:4807 Pen: the pen writes the line in three strokes */
+@keyframes tile-write-line-width { 0% { stroke-width: 1.925px; } 0.371% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); stroke-width: 1.925px; } 3.351% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); stroke-width: 2.406px; } 6.344% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); stroke-width: 2.021px; } 9.337% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); stroke-width: 2.503px; } 14.643%, 100% { stroke-width: 1.927px; } }
+@keyframes tile-write-line-trim { 0% { animation-timing-function: step-end; stroke-dasharray: 0.4444 1; stroke-dashoffset: -0.5556; visibility: visible; } 0.357% { stroke-dasharray: 0 1; stroke-dashoffset: 0; visibility: hidden; } 0.371% { animation-timing-function: step-end; stroke-dasharray: 0 1; stroke-dashoffset: 0; visibility: hidden; } 3.351% { animation-timing-function: step-end; stroke-dasharray: 0.1667 1; stroke-dashoffset: 0; visibility: visible; } 6.344% { animation-timing-function: step-end; stroke-dasharray: 0.3333 1; stroke-dashoffset: 0; visibility: visible; } 9.337% { animation-timing-function: step-end; stroke-dasharray: 0.5 1; stroke-dashoffset: 0; visibility: visible; } 9.881% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); stroke-dasharray: 0.5104 1; stroke-dashoffset: 0; visibility: visible; } 14.643%, 100% { stroke-dasharray: 0.445 1; stroke-dashoffset: -0.5536; visibility: visible; } }
+@keyframes tile-write-pen-rotate { 0% { rotate: 0deg; } 0.371% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 0deg; } 3.351% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 7deg; } 6.344% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 3deg; } 9.337% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 8deg; } 14.643%, 100% { rotate: 0.023deg; } }
+@keyframes tile-write-pen-move { 0% { translate: 0 0; } 0.371% { translate: 0 0; } 0.714% { translate: 0.074px -0.011px; } 1.429% { translate: 1.145px -0.166px; } 2.143% { translate: 2.331px -0.339px; } 2.857% { translate: 2.698px -0.392px; } 3.351% { translate: 2.75px -0.4px; } 3.571% { translate: 2.778px -0.394px; } 4.286% { translate: 3.593px -0.216px; } 5% { translate: 4.95px 0.08px; } 5.714% { translate: 5.412px 0.181px; } 6.344% { translate: 5.5px 0.2px; } 6.429% { translate: 5.504px 0.199px; } 7.143% { translate: 6.062px 0.098px; } 7.857% { translate: 7.53px -0.169px; } 8.571% { translate: 8.113px -0.275px; } 9.286% { translate: 8.25px -0.3px; } 9.337% { translate: 8.25px -0.3px; } 10% { translate: 7.983px -0.447px; } 10.714% { translate: 6.683px -0.921px; } 11.429% { translate: 3.988px -1.079px; } 11.922% { translate: 2.403px -1.1px; } 12.143% { translate: 1.886px -1.086px; } 12.857% { translate: 0.786px -0.675px; } 13.571% { translate: 0.241px -0.155px; } 14.286%, 100% { translate: 0.023px -0.013px; } }
+
+/* Image — 2164:2830–2832: frame, sun, hill redraw in sequence (path trim, pathLength=1) */
+@keyframes tile-image-frame { 0% { animation-timing-function: step-end; stroke-dasharray: 1 1; visibility: visible; } 0.357% { stroke-dasharray: 0 1; visibility: hidden; } 0.37% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); stroke-dasharray: 0 1; visibility: hidden; } 7.5%, 100% { stroke-dasharray: 1 1; visibility: visible; } }
+@keyframes tile-image-sun { 0% { animation-timing-function: step-end; stroke-dasharray: 1 1; visibility: visible; } 0.357% { stroke-dasharray: 0 1; visibility: hidden; } 6.214% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); stroke-dasharray: 0 1; visibility: hidden; } 10.747%, 100% { stroke-dasharray: 1 1; visibility: visible; } }
+@keyframes tile-image-hill { 0% { animation-timing-function: step-end; stroke-dasharray: 1 1; visibility: visible; } 0.357% { stroke-dasharray: 0 1; visibility: hidden; } 9.461% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); stroke-dasharray: 0 1; visibility: hidden; } 14.643%, 100% { stroke-dasharray: 0.9999 1; visibility: visible; } }
+
+/* Video & Audio — 2147:4855 Board + 2147:4856 Top: the clapper opens and snaps shut */
+@keyframes tile-video-board { 0% { rotate: 0deg; translate: 0 0; } 0.357% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); rotate: 0deg; translate: 0 0; } 7.5% { animation-timing-function: cubic-bezier(0.6, 0, 0.95, 0.45); rotate: 6deg; translate: -0.953px 1.522px; } 10.199% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); rotate: 0deg; translate: 0 0; } 12.262% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 0.5deg; translate: -0.073px 0.131px; } 14.643%, 100% { rotate: 0.008deg; translate: -0.001px 0.002px; } }
+@keyframes tile-video-top { 0% { rotate: 0deg; translate: 0 0; } 0.357% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); rotate: 0deg; translate: 0 0; } 7.5% { animation-timing-function: cubic-bezier(0.6, 0, 0.95, 0.45); rotate: 24deg; translate: 1.874px 6.146px; } 10.199% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); rotate: 0deg; translate: 0 0; } 12.262% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 2deg; translate: 0.253px 0.476px; } 14.643%, 100% { rotate: 0.031deg; translate: 0.004px 0.007px; } }
+
+/* Code & Developer Tools — 2147:4881–4883, 2168:2912–2916, 2171:2864: brackets spread, the slash spins out, a caret types three tokens */
+@keyframes tile-code-right { 0% { translate: 0 0; } 0.357% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); translate: 0 0; } 2.954% { translate: 1.467px 0; } 11.786% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); translate: 1.467px 0; } 14.643%, 100% { translate: 0.013px 0; } }
+@keyframes tile-code-left { 0% { translate: 0 0; } 0.357% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); translate: 0 0; } 2.954% { translate: -1.467px 0; } 11.786% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); translate: -1.467px 0; } 14.643%, 100% { translate: -0.013px 0; } }
+@keyframes tile-code-slash-opacity { 0% { opacity: 1; } 2.694% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 1; } 2.954% { opacity: 0; } 12.046% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0; } 12.306%, 100% { opacity: 1; } }
+@keyframes tile-code-slash-rotate { 0% { rotate: 8deg; } 0.357% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); rotate: 8deg; } 2.694% { rotate: -17.354deg; } 12.306% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); rotate: -17.354deg; } 14.643%, 100% { rotate: 7.65deg; } }
+@keyframes tile-code-token-1 { 0% { opacity: 0; } 4.253% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0; } 5.189% { opacity: 1; } 10.487% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; } 12.306%, 100% { opacity: 0; } }
+@keyframes tile-code-token-2 { 0% { opacity: 0; } 5.811% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0; } 6.747% { opacity: 1; } 10.747% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; } 12.564%, 100% { opacity: 0; } }
+@keyframes tile-code-token-3 { 0% { opacity: 0; } 7.37% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0; } 8.306% { opacity: 1; } 11.007% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; } 12.824%, 100% { opacity: 0; } }
+@keyframes tile-code-caret-opacity { 0% { opacity: 0; } 2.694% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0; } 2.954% { opacity: 1; } 12.046% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); opacity: 1; } 12.306%, 100% { opacity: 0; } }
+@keyframes tile-code-caret-move { 0% { translate: 0 0; } 2.954% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); translate: 0 0; } 4.253% { translate: -6.4px 0; } 4.357% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: -6.4px 0; } 5.293% { translate: -2px 0; } 5.916% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: -2px 0; } 6.85% { translate: 2.4px 0; } 7.474% { animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); translate: 2.4px 0; } 8.409% { translate: 6.8px 0; } 10.487% { animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); translate: 6.8px 0; } 12.046%, 100% { translate: 0 0; } }
+
+/* Productivity & Agents — 2147:4908 Antenna, 2147:4909 Head. Eyes 2147:4912/4913 carry a blink track (scaleY 1 → 0.12 → 1 at 7.5–9.46 %),
+   but it scales a 0.024-tall Hover layer, so it has no visible effect in Figma; it is deliberately not reproduced. */
+@keyframes tile-agent-antenna { 0% { translate: 0 0; } 0.357% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 0; } 4.375% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); translate: 0 -2.64px; } 10.179%, 100% { translate: 0 0; } }
+@keyframes tile-agent-head { 0% { rotate: 0deg; } 0.357% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 0deg; } 4.821% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: 8deg; } 10.179% { animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); rotate: -6deg; } 14.643%, 100% { rotate: -0.024deg; } }
+
+/* Reduced motion: the Hover appearance (colour, outline, part offsets) stays; the glyph micro-motion does not play */
+@media (prefers-reduced-motion: reduce) {
+  .aitr-category-tile:is(:hover, :focus-visible) .aitr-category-tile__icon [data-part] { animation: none; }
+  .aitr-category-tile:is(:hover, :focus-visible) [data-part="slash"] { translate: none; rotate: none; }
+}
