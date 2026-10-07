@@ -95,7 +95,6 @@
   inset-block-end: var(--aitr-space-xl);
   inset-inline-end: var(--aitr-layout-page-margin);
 }
-.aitr-home-hero .aitr-tier-card.home-hero__mobile-card { display: none; }
 
 /* ------------------------------------------------------------------ */
 /* Scene (1440×810 desktop coordinate space, centred)                  */
@@ -374,21 +373,15 @@
 /* Hero · Mobile 390: copy + search + trending + one static Enterprise card */
 /* ------------------------------------------------------------------ */
 @media (max-width: 767px) {
-  .aitr-home-hero { block-size: auto; min-block-size: 919px; padding-block-end: var(--aitr-space-l); }
+  .aitr-home-hero { block-size: auto; min-block-size: 0; padding-block-end: var(--aitr-space-2xl); } /* 6 Oct: no tier card on mobile (Figma Size=Mobile hugs at 598) */
   .home-hero__copy { margin-block-start: var(--aitr-space-2xs); }
   .home-hero__scene { display: none; }
-  .aitr-home-hero .aitr-tier-card.home-hero__mobile-card {
-    display: flex; position: relative; z-index: 2;
-    inline-size: 100%;
-    margin-block-start: calc(var(--aitr-space-3xl) + var(--aitr-space-2xs));
-    zoom: 0.895;
-  }
   /* 6 Oct: the Mobile hero is Still only (Figma Home Hero Size=Mobile, Motion=Still; the animated mobile variant was retired).
      No aurora drift, no copy entrance, no card motion — so no Motion Toggle either. */
   .home-hero__toggle { display: none; }
   .aitr-home-hero .aitr-aurora, .aitr-home-hero .aitr-aurora *,
-  .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending, .home-hero__mobile-card, .home-hero__mobile-card * { animation: none !important; transition: none; }
-  .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending, .home-hero__mobile-card { opacity: 1; translate: none; }
+  .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending { animation: none !important; transition: none; }
+  .home-hero__title, .home-hero__lead, .home-hero__search-wrap, .home-hero__trending { opacity: 1; translate: none; }
   /* Trending: label on its own line, the three chips on one row (Figma 2425:2525: 8 below the label, chips 6 apart) — never a lone chip on a second line */
   .home-hero__trending { display: grid; grid-template-columns: auto auto auto; justify-content: start; gap: var(--aitr-space-xs) 6px; }
   .home-hero__trending-label { grid-column: 1 / -1; }
@@ -567,7 +560,6 @@
   .home-hero__lead { max-inline-size: none; }
 }
 @media (max-width: 767px) {
-  .aitr-home-hero .aitr-tier-card.home-hero__mobile-card { margin-block-start: 67px; padding-block-end: 20px; } /* ×0.895 zoom → 60 / 17.9 */
 }
 
 /* Hero Aurora Background instance (Density=Hero, 1440 × 860): on Tablet it sits at x −606 and on Mobile at x −1050 / y 242 — the right-hand part of the 1440 field shows
@@ -584,5 +576,4 @@
    (Copy 458 at y 104; Browse by Tool Type starts at y 598). Markup kept in index.html for a quick restore. */
 @media (max-width: 767px) {
   .aitr-home-hero { min-block-size: 598px; }
-  .aitr-home-hero .aitr-tier-card.home-hero__mobile-card { display: none; }
 }
