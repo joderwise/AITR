@@ -558,3 +558,31 @@
 .home-step--plan .home-step__plan.is-selected { background: transparent; animation: home-plan-pick var(--home-loop) linear infinite; }
 @keyframes home-opt-press { 0%, 21.6% { background-color: var(--aitr-color-surface-lowered); } 22.4% { background-color: color-mix(in srgb, var(--aitr-color-brand-fill-loud) 14%, transparent); } 25%, 100% { background-color: var(--aitr-color-surface-lowered); } }
 @keyframes home-plan-pick { 0%, 37.6% { background-color: transparent; } 38.2% { background-color: var(--aitr-color-surface-lowered); } 38.7% { background-color: color-mix(in srgb, var(--aitr-color-brand-fill-loud) 14%, transparent); } 41%, 100% { background-color: var(--aitr-color-neutral-fill-quiet); } }
+
+/* ── 6 Oct 2026 · Home hero re-read (Tablet 2433:5225 · Mobile 2433:5886) ──
+   Tablet: the Headline carries hard line breaks as on Desktop (three lines at 52, box 165), and the Lead runs the full 770 copy column (Desktop keeps 520).
+   Mobile: the static Enterprise card sits 60 below the Trending row (622) and is 249 high — its bottom padding is 17.9 (20 before the 0.895 scale), not 21.5. */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .home-hero__br { display: inline; }
+  .home-hero__lead { max-inline-size: none; }
+}
+@media (max-width: 767px) {
+  .aitr-home-hero .aitr-tier-card.home-hero__mobile-card { margin-block-start: 67px; padding-block-end: 20px; } /* ×0.895 zoom → 60 / 17.9 */
+}
+
+/* Hero Aurora Background instance (Density=Hero, 1440 × 860): on Tablet it sits at x −606 and on Mobile at x −1050 / y 242 — the right-hand part of the 1440 field shows
+   (blobs A / B / Green), not the middle, and on Mobile the wash starts at y 242 (hard top edge as drawn, 2433:5886). Desktop is x 0 / y 0. */
+.aitr-home-hero .aitr-aurora[data-density="hero"] .aitr-aurora__field { block-size: 860px; }
+@media (max-width: 1279px) {
+  .aitr-home-hero .aitr-aurora[data-density="hero"] .aitr-aurora__field { inset-inline-start: auto; inset-inline-end: 0; transform: none; }
+}
+@media (max-width: 767px) {
+  .aitr-home-hero .aitr-aurora[data-density="hero"] .aitr-aurora__field { inset-block-start: 242px; }
+}
+
+/* 7 Oct watch tick: Figma Home · Mobile (2433:5886) Home Hero is 598 tall and copy-only — the Mobile example card was removed
+   (Copy 458 at y 104; Browse by Tool Type starts at y 598). Markup kept in index.html for a quick restore. */
+@media (max-width: 767px) {
+  .aitr-home-hero { min-block-size: 598px; }
+  .aitr-home-hero .aitr-tier-card.home-hero__mobile-card { display: none; }
+}

@@ -222,3 +222,9 @@
 .browse-count-row { min-block-size: 18px; block-size: auto; }
 @media (max-width: 767px) { .browse-grid { gap: var(--aitr-space-m); } }
 .browse-grid > .aitr-registry-card { min-block-size: 147px; box-sizing: border-box; }
+.browse-grid .aitr-registry-card__footer { flex-wrap: nowrap; min-inline-size: 0; }
+.browse-grid .aitr-registry-card__footer wa-tag { flex: none; }
+.browse-grid .aitr-registry-card__checked { min-inline-size: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: end; } /* long plan labels (e.g. GOOGLE WORKSPACE ENTERPRISE) truncate instead of wrapping the card to 165 */
+.browse-grid .aitr-registry-card__top > div { overflow: hidden; }
+.browse-grid .aitr-registry-card__name { display: inline-block; max-inline-size: calc(100% - 28px); vertical-align: bottom; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.browse-grid .aitr-registry-card__meta { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* one-line name + meta: cards stay 147 high (Fotor's vendor name is long) */

@@ -986,12 +986,12 @@ wa-button::part(base):focus-visible, .aitr-section-nav__item:focus-visible, .ait
 .aitr-tier-example[data-layout="ladder"] { display: block; margin: 0; padding: var(--aitr-space-xs) var(--aitr-space-l) var(--aitr-space-m); border: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); border-radius: var(--aitr-border-radius-l); background: var(--aitr-color-surface-raised); }
 .aitr-tier-ladder__head { display: flex; align-items: center; gap: var(--aitr-space-s); padding-block: var(--aitr-space-m); }
 .aitr-tier-ladder__head > span:last-child { display: grid; min-inline-size: 0; }
-.aitr-tier-ladder__vendor { font-size: var(--aitr-font-size-xs); line-height: 1.4; color: var(--aitr-color-text-quiet); }
+.aitr-tier-ladder__vendor { font-size: var(--aitr-font-size-xs); line-height: 1.3846; color: var(--aitr-color-text-quiet); }
 .aitr-tier-ladder { list-style: none; margin: 0; padding: 0; }
 .aitr-tier-ladder__row { display: grid; grid-template-columns: minmax(0, 1fr) 160px 96px; column-gap: var(--aitr-space-m); align-items: center; padding-block: var(--aitr-space-s); border-block-start: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); font-size: var(--aitr-font-size-s); color: var(--aitr-color-text-normal); }
-.aitr-tier-ladder__labels { padding-block: var(--aitr-space-s) var(--aitr-space-2xs); font-size: var(--aitr-font-size-xs); color: var(--aitr-color-text-quiet); }
+.aitr-tier-ladder__labels { padding-block: var(--aitr-space-s) var(--aitr-space-2xs); font-size: var(--aitr-font-size-xs); line-height: 1.3846; color: var(--aitr-color-text-quiet); }
 .aitr-tier-ladder__labels + .aitr-tier-ladder__row { border-block-start-color: var(--aitr-color-surface-border); }
-.aitr-tier-ladder__note { margin: 0; padding-block-start: 14px; border-block-start: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); font-size: var(--aitr-font-size-xs); line-height: 1.5; color: var(--aitr-color-text-quiet); }
+.aitr-tier-ladder__note { margin: 0; padding-block-start: 14px; border-block-start: var(--aitr-border-width-s) solid var(--aitr-color-surface-border); font-size: var(--aitr-font-size-xs); line-height: 1.3846; color: var(--aitr-color-text-quiet); }
 .aitr-tier-ladder__narrow { display: none; }
 .aitr-mini-meter { --tone: var(--aitr-color-success-fill-loud); display: flex; gap: 4px; block-size: 6px; }
 .aitr-mini-meter[data-tone="warning"] { --tone: var(--aitr-color-warning-fill-loud); }
@@ -1014,3 +1014,32 @@ button, wa-button, wa-tag, wa-option, .aitr-chip, .aitr-link, .aitr-verdict-tag,
 p, li, dd, blockquote, aside, .aitr-body-l, .aitr-body-m, .aitr-body-s,
 [class*="aitr-caption"], [class*="__body"], [class*="__desc"], [class*="__lead"], [class*="__meta"] { text-wrap: pretty; }
 [class*="__note"], [class*="__plan"], .aitr-stat__label { text-wrap: balance; }   /* short notes and labels */
+
+/* ── 6 Oct 2026 · Site Nav re-read (Home D 2433:4535 · T 2433:5225 · M 2433:5886): the Brand lockup is 179 × 31 (Tablet / Mobile 156 × 27) — the artwork is drawn 3.6 % larger than before (it was 172.7 / 150.4 wide);
+   the Bar's 1 px stroke counts in the layout, so the bar's inline padding is 33 (T / M 21 · 9); on Tablet the Links sit directly beside the Search button (gap 8) and the free space is the Middle spacer between Brand and Links. ── */
+.aitr-nav .aitr-brand img { inline-size: 179px; block-size: auto; }
+.aitr-nav__bar { padding-inline: 33px; }
+@media (max-width: 1279px) {
+  .aitr-nav .aitr-brand img { inline-size: 156px; block-size: auto; }
+  .aitr-nav__bar { padding-inline: 21px 9px; }
+  .aitr-nav__actions { margin-inline-start: 0; }
+}
+@media (max-width: 767px) { .aitr-nav__actions { margin-inline-start: auto; } }
+
+/* ── 6 Oct 2026 · Query Field Type=Search (Home hero 2433:4542, Browse, Search results — every frame draws the same instance): padding 14 / 20 (+1 stroke), icon 24 then gap 16 to the placeholder
+   (placeholder at x 61), Shortcut key 46 × 28 (r6, fill + stroke Surface/Border, padding 0 10, "/" 12/500) 16 after the input. Before: icon 30 + 24 margin, so the text started 18 px too far right. ── */
+wa-input.aitr-field[size="large"][type="search"]::part(base) { padding-inline: 20px; }
+wa-input.aitr-field[size="large"][type="search"] [slot="start"] { inline-size: 24px; min-inline-size: 0; block-size: 24px; margin-inline-end: var(--aitr-space-m); flex: none; }
+wa-input.aitr-field[size="large"][type="search"] kbd[slot="end"] { box-sizing: border-box; justify-content: center; min-inline-size: 46px; block-size: 28px; padding: 0 10px; margin-inline-start: var(--aitr-space-m); border-radius: 6px; background: var(--aitr-color-surface-border); border-color: var(--aitr-color-surface-border); font-size: var(--aitr-font-size-2xs); font-weight: var(--aitr-font-weight-medium); }
+
+/* 6 Oct · Tier Card (summary) factors match the Tool detail report (Figma Home Hero cards): verdict tag on top, then a 2 × 2 grid —
+   icon + name (Caption/M, Text/Quiet) · value in the tone colour (Label/M, Success|Warning|Danger/On/Quiet) · Factor Mini bars. */
+.aitr-tier-card__factors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px var(--aitr-space-m); padding-block: 6px 2px; }
+.aitr-tier-factor { --tone-text: var(--aitr-color-success-on-quiet); display: grid; gap: var(--aitr-space-3xs); align-content: start; min-inline-size: 0; }
+.aitr-tier-factor[data-tone="warning"] { --tone-text: var(--aitr-color-warning-on-quiet); }
+.aitr-tier-factor[data-tone="danger"] { --tone-text: var(--aitr-color-danger-on-quiet); }
+.aitr-tier-factor__name { display: flex; align-items: center; gap: 6px; font-size: var(--aitr-font-size-xs); line-height: 1.4; color: var(--aitr-color-text-quiet); }
+.aitr-tier-factor__name wa-icon { flex: none; font-size: 14px; }
+.aitr-tier-factor__value { font: var(--aitr-font-weight-semibold) var(--aitr-font-size-s) / 1.25 var(--aitr-font-family-body); color: var(--tone-text); text-wrap: balance; }
+.aitr-tier-factor .aitr-mini-meter { margin-block-start: var(--aitr-space-3xs); }
+.aitr-mini-meter[data-segs="10"] { gap: 3px; }

@@ -213,3 +213,9 @@
 .assess-tiers__link { justify-self: start; }
 @media (max-width: 1279px) { .assess-tiers { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 @media (max-width: 767px) { .assess-tiers { gap: 20px; } .assess-tiers__copy { gap: 16px; } }
+.assess-tiers__link { padding-block: 4px; }
+@media (min-width: 768px) and (max-width: 1279px) { .assess-tiers__reasons .aitr-list-item { padding-inline-end: 8px; } }  /* Figma Tablet wraps the Admin row to 2 lines (text measures wider there) */
+.assess-tiers__copy, .assess-tiers__reasons .aitr-list-item { line-height: 1.625; }
+.aitr-tier-ladder__row { line-height: 1.5; }
+.aitr-tier-ladder__row.aitr-tier-ladder__labels { line-height: 1.3846; }
+.aitr-section-nav[data-layout="dropdown"] wa-select::part(combobox) { min-block-size: 56px; }  /* Figma Trigger 358x56 (nav 80 = 18 + 6 + 56) */

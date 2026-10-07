@@ -325,3 +325,68 @@ html.tool-modal-open { overflow: hidden; scrollbar-gutter: stable; }
 @media (max-width: 1279px) { .tool-rating .aitr-verdict-card[aria-busy="true"] { min-block-size: 225px; } }
 @media (max-width: 767px) { .tool-rating .aitr-verdict-card[aria-busy="true"] { min-block-size: 223px; } }
 @media (min-width: 768px) { .tool-rating .aitr-factor-rating[aria-busy="true"] { min-block-size: 139px; } }
+
+/* ── 6 Oct 2026 · locked frames (16 / Unlock error / Loading / See all tiers) draw "Official documentation": one flat run of the five citations in order 1–5 (Heading 300 | Citations, gap 8, pad-top 4; Mobile stacked, gap 12). Unlocked (17) keeps "Sources by topic". Same DOM; the grouped list flattens with display: contents. ── */
+#docs-title [data-when="unlocked"] { display: none; }
+.tool-page[data-state="unlocked"] #docs-title [data-when="locked"] { display: none; }
+.tool-page[data-state="unlocked"] #docs-title [data-when="unlocked"] { display: inline; }
+.tool-page:not([data-state="unlocked"]) .tool-sources { display: flex; flex-wrap: wrap; gap: var(--aitr-space-xs); padding-block-start: var(--aitr-space-2xs); }
+.tool-page:not([data-state="unlocked"]) .tool-sources__row,
+.tool-page:not([data-state="unlocked"]) .tool-sources__cites,
+.tool-page:not([data-state="unlocked"]) .tool-sources .tool-citations,
+.tool-page:not([data-state="unlocked"]) .tool-sources .tool-citations > li { display: contents; }
+.tool-page:not([data-state="unlocked"]) .tool-sources__topic { display: none; }
+.tool-page:not([data-state="unlocked"]) .tool-sources .tool-citations > li:has(> a:not([id])) { display: none; } /* the Location copy of citation 1 */
+.tool-page:not([data-state="unlocked"]) .tool-sources a.aitr-citation { order: var(--cite-order, 0); }
+.tool-page:not([data-state="unlocked"]) .tool-sources a[data-cite="1"] { --cite-order: 1; }
+.tool-page:not([data-state="unlocked"]) .tool-sources a[data-cite="2"] { --cite-order: 2; }
+.tool-page:not([data-state="unlocked"]) .tool-sources a[data-cite="3"] { --cite-order: 3; }
+.tool-page:not([data-state="unlocked"]) .tool-sources a[data-cite="4"] { --cite-order: 4; }
+.tool-page:not([data-state="unlocked"]) .tool-sources a[data-cite="5"] { --cite-order: 5; }
+@media (max-width: 767px) {
+  .tool-page:not([data-state="unlocked"]) .tool-sources { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── 6 Oct 2026 · Rating Summary / Unlock Teaser re-read (Desktop 2447:6838, Tablet 2447:7729 = 3284, Mobile 2447:8480).
+   Every stroke is "included in layout": the Rating Summary card is 1px bigger on each side (463 / 696 / 1020), its header and body sit at 25 not 24.
+   The rim stays on the outer edge. Verdict eyebrow + trace are IBM Plex Mono −0.4 px, the title −1.4 px. ── */
+.tool-rating__card { border: var(--aitr-border-width-s) solid transparent; }
+.tool-rating__card::before { inset: calc(-1 * var(--aitr-border-width-s)); }
+.tool-rating .aitr-verdict-card__eyebrow, .tool-rating .aitr-verdict-card__trace { letter-spacing: -0.4px; }
+.tool-rating .aitr-verdict-card__title { letter-spacing: -1.4px; }
+@media (max-width: 1279px) {
+  /* Tablet Unlock Teaser Layout=Split: padding 32, Top gap 32, benefits rows gap 16 (Teaser 327; section 1099) */
+  .tool-teaser { padding: var(--aitr-space-xl); gap: var(--aitr-space-l) var(--aitr-space-xl); }
+  .tool-teaser__benefits { row-gap: var(--aitr-space-m); }
+}
+@media (max-width: 767px) {
+  .tool-teaser { padding: var(--aitr-space-section-inner); gap: var(--aitr-space-section-inner); }
+  .tool-teaser__benefits { row-gap: var(--aitr-space-s); }
+}
+
+/* ── 6 Oct 2026 · "See all tiers" re-read (2685:14251 / 15233 / 16000): title group gap 4 (Header 55 · Mobile 52 with Heading 20/27), legend lines Caption/M tracking 1.15 %,
+   selected row padding 14/20 (D) · 16 (T, M) inside the 2 px stroke (card 182), and the Tablet / Mobile cards are 168 high: Top 28 centred, gap 14,
+   two 40 px factor rows (Head 16 + 8 + meter 6 in a fixed 40 box), row gap 12. ── */
+.tool-tiers__titles { gap: 4px; }
+.tool-tiers__legend p:not(.tool-tiers__legend-title) { letter-spacing: 0.0115em; }
+.tool-tier-row[aria-current="true"] { padding: 14px 20px; }
+@media (max-width: 1279px) {
+  .tool-tier-row, .tool-tier-row[aria-current="true"] { padding: var(--aitr-space-m); }
+  .tool-tier-row__grid { grid-template-rows: auto 42px 40px; row-gap: 12px; column-gap: var(--aitr-space-s); }
+  .tool-tier-row__tier { align-self: center; }
+  .tool-tier-row[aria-current="true"] .tool-tier-row__tier { align-self: start; }
+  .tool-tier-row__rating { align-self: center; }
+  .tool-tier-row__grid > :nth-child(3), .tool-tier-row__grid > :nth-child(4) { align-self: end; }
+  .tool-tier-row__grid > .tool-mini { min-block-size: 40px; align-content: start; }
+  .tool-mini__head { block-size: 16px; line-height: 16px; }
+}
+@media (max-width: 767px) {
+  .tool-tiers__header { margin-block-start: 0; }
+  .tool-tiers__title { font-size: 20px; line-height: 27px; letter-spacing: 0; }
+}
+@media (max-width: 1279px) { .tool-tiers[open] { gap: var(--aitr-space-m); } } /* Tablet dialog + Mobile sheet: gap 16 between Handle / Header / Tiers / Legend (the 20 gap is Desktop only) */
+.tool-mini__head wa-icon { inline-size: 16px; block-size: 16px; } /* icon box 16 so the label starts at 22 (Figma Head: icon 16 + gap 6) */
+
+/* 7 Oct watch tick: Figma hides the Unlock Teaser on 16 · locked (Desktop 2447:6838, Tablet 2447:7729, Mobile 2447:8480 — layer visible:false;
+   Rating summary section 535 / 752 / 1056). The Locked Overlay's Lead Gate is the single unlock path. Markup kept for a quick restore. */
+.tool-teaser { display: none; }
